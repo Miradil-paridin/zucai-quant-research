@@ -1,0 +1,5392 @@
+{
+  "schema_version": 1,
+  "source_snapshot_response_date_utc": "2026-07-27T16:45:12Z",
+  "scope": "Read-only validation of Football-Data.co.uk Nordic merged CSV files FIN.csv, NOR.csv and SWE.csv. No paid API, database or application code was used.",
+  "source": {
+    "provider": "Football-Data.co.uk",
+    "field_documentation": "https://www.football-data.co.uk/notes.txt",
+    "archive_overview": "https://www.football-data.co.uk/data.php",
+    "pinnacle_warning": {
+      "effective_date": "2025-07-23",
+      "source_page": "https://www.football-data.co.uk/data.php",
+      "summary": "Provider says Pinnacle public API odds became unreliable and systematically stale from 2025-07-23, and Pinnacle was removed from market Max/Avg calculations."
+    },
+    "licence_note": "Files are publicly downloadable for quantitative testing, but the site states All Rights Reserved and no standard open-data licence was identified; use internally unless redistribution rights are confirmed."
+  },
+  "summary": {
+    "file_count": 3,
+    "total_rows": 9618,
+    "countries": [
+      "Finland",
+      "Finland ",
+      "Norway",
+      "Sweden",
+      "Sweden "
+    ],
+    "leagues": [
+      "Allsvenskan",
+      "Allsvenskan ",
+      "Eliteserien",
+      "Veikkausliiga",
+      "Veikkausliiga "
+    ],
+    "season_union": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "missing_required_rows": 0,
+    "invalid_date_rows": 0,
+    "invalid_time_rows": 0,
+    "result_mismatch_rows": 0,
+    "duplicate_key_groups": 0,
+    "status": "REVIEW_REQUIRED_ODDS_ANOMALY_WITH_PINNACLE_QUARANTINE",
+    "normalized_countries": [
+      "Finland",
+      "Norway",
+      "Sweden"
+    ],
+    "normalized_leagues": [
+      "Allsvenskan",
+      "Eliteserien",
+      "Veikkausliiga"
+    ],
+    "rows_with_source_whitespace": 12,
+    "normalized_duplicate_key_groups": 0,
+    "invalid_or_structurally_inconsistent_odds_values": 1,
+    "time_timezone": "unknown"
+  },
+  "files": [
+    {
+      "code": "FIN",
+      "expected_country": "Finland",
+      "landing_page": "https://www.football-data.co.uk/finland.php",
+      "url": "https://www.football-data.co.uk/new/FIN.csv",
+      "http": {
+        "status": 200,
+        "content_type": "text/csv",
+        "content_length_header": 302646,
+        "date": "Mon, 27 Jul 2026 16:45:06 GMT",
+        "last_modified": "Mon, 20 Jul 2026 20:48:11 GMT",
+        "etag": "\"49e36-6571106415439\""
+      },
+      "sha256": "7329AF32F77CDB042B4E69DE5E8180860AB619336D3354D08EC17B70134FB0A9",
+      "bytes": 302646,
+      "decoded_as": "utf-8-sig",
+      "headers": [
+        "Country",
+        "League",
+        "Season",
+        "Date",
+        "Time",
+        "Home",
+        "Away",
+        "HG",
+        "AG",
+        "Res",
+        "PSCH",
+        "PSCD",
+        "PSCA",
+        "MaxCH",
+        "MaxCD",
+        "MaxCA",
+        "AvgCH",
+        "AvgCD",
+        "AvgCA",
+        "BFECH",
+        "BFECD",
+        "BFECA",
+        "B365CH",
+        "B365CD",
+        "B365CA"
+      ],
+      "header_matches_expected": true,
+      "row_count": 2640,
+      "country_values": [
+        "Finland",
+        "Finland "
+      ],
+      "league_values": [
+        "Veikkausliiga",
+        "Veikkausliiga "
+      ],
+      "season_values": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "season_min": 2012,
+      "season_max": 2026,
+      "validation": {
+        "missing_required_rows": 0,
+        "invalid_date_rows": 0,
+        "invalid_time_rows": 0,
+        "season_parse_error_rows": 0,
+        "season_year_mismatch_rows": 0,
+        "invalid_goal_rows": 0,
+        "result_mismatch_rows": 0,
+        "same_home_away_rows": 0,
+        "duplicate_key_groups": 0,
+        "duplicate_key_excess_rows": 0,
+        "country_matches_expected": false,
+        "country_matches_expected_after_trim": true,
+        "rows_with_leading_or_trailing_whitespace": 5,
+        "whitespace_field_counts": {
+          "Country": 5,
+          "League": 5
+        },
+        "normalized_duplicate_key_groups": 0,
+        "normalized_duplicate_key_excess_rows": 0
+      },
+      "anomaly_details": {
+        "missing_required": [],
+        "invalid_dates": [],
+        "invalid_times": [],
+        "season_parse_errors": [],
+        "season_year_mismatches": [],
+        "invalid_goals": [],
+        "result_mismatches": [],
+        "same_home_away": [],
+        "duplicate_keys": [],
+        "whitespace_examples": [
+          {
+            "season": "2018",
+            "date": "22/05/2018",
+            "home": "HJK",
+            "away": "Inter Turku",
+            "fields": [
+              "Country",
+              "League"
+            ]
+          },
+          {
+            "season": "2018",
+            "date": "22/05/2018",
+            "home": "PS Kemi",
+            "away": "Ilves",
+            "fields": [
+              "Country",
+              "League"
+            ]
+          },
+          {
+            "season": "2018",
+            "date": "22/05/2018",
+            "home": "TPS",
+            "away": "Honka",
+            "fields": [
+              "Country",
+              "League"
+            ]
+          },
+          {
+            "season": "2018",
+            "date": "22/05/2018",
+            "home": "VPS",
+            "away": "KuPS",
+            "fields": [
+              "Country",
+              "League"
+            ]
+          },
+          {
+            "season": "2018",
+            "date": "22/05/2018",
+            "home": "Mariehamn",
+            "away": "Lahti",
+            "fields": [
+              "Country",
+              "League"
+            ]
+          }
+        ],
+        "normalized_duplicate_keys": []
+      },
+      "odds": {
+        "market": "closing_1x2",
+        "fields": [
+          "PSCH",
+          "PSCD",
+          "PSCA",
+          "MaxCH",
+          "MaxCD",
+          "MaxCA",
+          "AvgCH",
+          "AvgCD",
+          "AvgCA",
+          "BFECH",
+          "BFECD",
+          "BFECA",
+          "B365CH",
+          "B365CD",
+          "B365CA"
+        ],
+        "field_coverage": {
+          "PSCH": {
+            "present_rows": 2530,
+            "missing_rows": 110,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.09,
+            "max_numeric": 19.53
+          },
+          "PSCD": {
+            "present_rows": 2530,
+            "missing_rows": 110,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 2.84,
+            "max_numeric": 12.58
+          },
+          "PSCA": {
+            "present_rows": 2530,
+            "missing_rows": 110,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.18,
+            "max_numeric": 26.23
+          },
+          "MaxCH": {
+            "present_rows": 2640,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.1,
+            "max_numeric": 21.0
+          },
+          "MaxCD": {
+            "present_rows": 2640,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 2.93,
+            "max_numeric": 13.87
+          },
+          "MaxCA": {
+            "present_rows": 2640,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.2,
+            "max_numeric": 45.55
+          },
+          "AvgCH": {
+            "present_rows": 2640,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.08,
+            "max_numeric": 15.62
+          },
+          "AvgCD": {
+            "present_rows": 2640,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 2.82,
+            "max_numeric": 10.65
+          },
+          "AvgCA": {
+            "present_rows": 2640,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.15,
+            "max_numeric": 27.16
+          },
+          "BFECH": {
+            "present_rows": 334,
+            "missing_rows": 2306,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.18,
+            "max_numeric": 12.0
+          },
+          "BFECD": {
+            "present_rows": 334,
+            "missing_rows": 2306,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 2.86,
+            "max_numeric": 10.0
+          },
+          "BFECA": {
+            "present_rows": 334,
+            "missing_rows": 2306,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.31,
+            "max_numeric": 19.0
+          },
+          "B365CH": {
+            "present_rows": 159,
+            "missing_rows": 2481,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.17,
+            "max_numeric": 8.5
+          },
+          "B365CD": {
+            "present_rows": 159,
+            "missing_rows": 2481,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 3.0,
+            "max_numeric": 7.5
+          },
+          "B365CA": {
+            "present_rows": 159,
+            "missing_rows": 2481,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.29,
+            "max_numeric": 12.0
+          }
+        },
+        "rows_with_any_odds": 2640,
+        "rows_with_all_15_odds_fields": 53,
+        "avg_exceeds_max_violations": {
+          "H": {
+            "count": 0,
+            "examples": []
+          },
+          "D": {
+            "count": 0,
+            "examples": []
+          },
+          "A": {
+            "count": 1,
+            "examples": [
+              {
+                "Country": "Finland",
+                "League": "Veikkausliiga",
+                "Season": "2021",
+                "Date": "31/08/2021",
+                "Time": "16:30",
+                "Home": "KTP",
+                "Away": "Inter Turku",
+                "HG": "1",
+                "AG": "3",
+                "Res": "A",
+                "AvgCA": 1.75,
+                "MaxCA": 1.29
+              }
+            ]
+          }
+        },
+        "b365_exceeds_max_violations": {
+          "H": {
+            "count": 0,
+            "examples": []
+          },
+          "D": {
+            "count": 0,
+            "examples": []
+          },
+          "A": {
+            "count": 0,
+            "examples": []
+          }
+        },
+        "pinnacle": {
+          "fields": [
+            "PSCH",
+            "PSCD",
+            "PSCA"
+          ],
+          "provider_warning_effective_date": "2025-07-23",
+          "rows_before_warning": 2464,
+          "rows_before_warning_with_pinnacle_trio": 2459,
+          "rows_on_or_after_warning": 176,
+          "rows_on_or_after_warning_with_pinnacle_trio": 71,
+          "ps_exceeds_max_after_warning": {
+            "H": {
+              "count": 26,
+              "examples": [
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "08/08/2025",
+                  "Time": "16:00",
+                  "Home": "Inter Turku",
+                  "Away": "AC Oulu",
+                  "HG": "3",
+                  "AG": "2",
+                  "Res": "H",
+                  "PSCH": 1.36,
+                  "MaxCH": 1.3
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "09/08/2025",
+                  "Time": "13:00",
+                  "Home": "Jaro",
+                  "Away": "Haka",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCH": 2.37,
+                  "MaxCH": 2.35
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "09/08/2025",
+                  "Time": "14:00",
+                  "Home": "KTP",
+                  "Away": "KuPS",
+                  "HG": "0",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCH": 4.17,
+                  "MaxCH": 3.9
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "09/08/2025",
+                  "Time": "17:00",
+                  "Home": "Mariehamn",
+                  "Away": "Gnistan",
+                  "HG": "2",
+                  "AG": "5",
+                  "Res": "A",
+                  "PSCH": 3.38,
+                  "MaxCH": 3.3
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "10/08/2025",
+                  "Time": "16:30",
+                  "Home": "VPS",
+                  "Away": "SJK",
+                  "HG": "1",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCH": 2.79,
+                  "MaxCH": 2.71
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "11/08/2025",
+                  "Time": "17:00",
+                  "Home": "HJK",
+                  "Away": "Ilves",
+                  "HG": "5",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCH": 2.53,
+                  "MaxCH": 2.5
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "15/08/2025",
+                  "Time": "16:00",
+                  "Home": "Gnistan",
+                  "Away": "VPS",
+                  "HG": "0",
+                  "AG": "0",
+                  "Res": "D",
+                  "PSCH": 2.08,
+                  "MaxCH": 1.98
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "16/08/2025",
+                  "Time": "15:00",
+                  "Home": "AC Oulu",
+                  "Away": "Ilves",
+                  "HG": "0",
+                  "AG": "4",
+                  "Res": "A",
+                  "PSCH": 4.41,
+                  "MaxCH": 4.2
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "16/08/2025",
+                  "Time": "17:00",
+                  "Home": "Mariehamn",
+                  "Away": "KTP",
+                  "HG": "3",
+                  "AG": "0",
+                  "Res": "H",
+                  "PSCH": 2.58,
+                  "MaxCH": 2.5
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "18/08/2025",
+                  "Time": "17:00",
+                  "Home": "Jaro",
+                  "Away": "SJK",
+                  "HG": "0",
+                  "AG": "4",
+                  "Res": "A",
+                  "PSCH": 3.47,
+                  "MaxCH": 3.3
+                }
+              ]
+            },
+            "D": {
+              "count": 32,
+              "examples": [
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "09/08/2025",
+                  "Time": "13:00",
+                  "Home": "Jaro",
+                  "Away": "Haka",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCD": 3.94,
+                  "MaxCD": 3.85
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "11/08/2025",
+                  "Time": "17:00",
+                  "Home": "HJK",
+                  "Away": "Ilves",
+                  "HG": "5",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCD": 4.1,
+                  "MaxCD": 3.9
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "24/08/2025",
+                  "Time": "13:00",
+                  "Home": "HJK",
+                  "Away": "Mariehamn",
+                  "HG": "8",
+                  "AG": "2",
+                  "Res": "H",
+                  "PSCD": 7.06,
+                  "MaxCD": 7.0
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "25/08/2025",
+                  "Time": "16:00",
+                  "Home": "Haka",
+                  "Away": "SJK",
+                  "HG": "2",
+                  "AG": "3",
+                  "Res": "A",
+                  "PSCD": 4.42,
+                  "MaxCD": 4.25
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "25/08/2025",
+                  "Time": "17:00",
+                  "Home": "Gnistan",
+                  "Away": "AC Oulu",
+                  "HG": "3",
+                  "AG": "2",
+                  "Res": "H",
+                  "PSCD": 4.21,
+                  "MaxCD": 4.2
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "15:00",
+                  "Home": "AC Oulu",
+                  "Away": "Haka",
+                  "HG": "3",
+                  "AG": "2",
+                  "Res": "H",
+                  "PSCD": 3.95,
+                  "MaxCD": 3.85
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "15:00",
+                  "Home": "Inter Turku",
+                  "Away": "VPS",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCD": 5.3,
+                  "MaxCD": 4.9
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "15:00",
+                  "Home": "SJK",
+                  "Away": "KuPS",
+                  "HG": "1",
+                  "AG": "1",
+                  "Res": "D",
+                  "PSCD": 3.92,
+                  "MaxCD": 3.9
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "13/09/2025",
+                  "Time": "15:00",
+                  "Home": "Gnistan",
+                  "Away": "Inter Turku",
+                  "HG": "0",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCD": 4.32,
+                  "MaxCD": 4.25
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "13/09/2025",
+                  "Time": "15:00",
+                  "Home": "VPS",
+                  "Away": "KTP",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCD": 4.29,
+                  "MaxCD": 4.25
+                }
+              ]
+            },
+            "A": {
+              "count": 38,
+              "examples": [
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "09/08/2025",
+                  "Time": "13:00",
+                  "Home": "Jaro",
+                  "Away": "Haka",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCA": 2.79,
+                  "MaxCA": 2.75
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "09/08/2025",
+                  "Time": "17:00",
+                  "Home": "Mariehamn",
+                  "Away": "Gnistan",
+                  "HG": "2",
+                  "AG": "5",
+                  "Res": "A",
+                  "PSCA": 2.11,
+                  "MaxCA": 2.1
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "10/08/2025",
+                  "Time": "16:30",
+                  "Home": "VPS",
+                  "Away": "SJK",
+                  "HG": "1",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCA": 2.56,
+                  "MaxCA": 2.45
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "16/08/2025",
+                  "Time": "17:00",
+                  "Home": "Mariehamn",
+                  "Away": "KTP",
+                  "HG": "3",
+                  "AG": "0",
+                  "Res": "H",
+                  "PSCA": 2.73,
+                  "MaxCA": 2.65
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "13:00",
+                  "Home": "Haka",
+                  "Away": "HJK",
+                  "HG": "1",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCA": 1.63,
+                  "MaxCA": 1.55
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "15:00",
+                  "Home": "KuPS",
+                  "Away": "Inter Turku",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCA": 2.12,
+                  "MaxCA": 1.98
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "18/08/2025",
+                  "Time": "17:00",
+                  "Home": "Jaro",
+                  "Away": "SJK",
+                  "HG": "0",
+                  "AG": "4",
+                  "Res": "A",
+                  "PSCA": 1.99,
+                  "MaxCA": 1.98
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "22/08/2025",
+                  "Time": "16:00",
+                  "Home": "VPS",
+                  "Away": "KTP",
+                  "HG": "3",
+                  "AG": "2",
+                  "Res": "H",
+                  "PSCA": 4.78,
+                  "MaxCA": 4.75
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "24/08/2025",
+                  "Time": "13:00",
+                  "Home": "HJK",
+                  "Away": "Mariehamn",
+                  "HG": "8",
+                  "AG": "2",
+                  "Res": "H",
+                  "PSCA": 12.32,
+                  "MaxCA": 12.0
+                },
+                {
+                  "Country": "Finland",
+                  "League": "Veikkausliiga",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "15:00",
+                  "Home": "AC Oulu",
+                  "Away": "Haka",
+                  "HG": "3",
+                  "AG": "2",
+                  "Res": "H",
+                  "PSCA": 3.64,
+                  "MaxCA": 3.6
+                }
+              ]
+            }
+          },
+          "risk": "Do not use PSCH/PSCD/PSCA on or after 2025-07-23 as a trustworthy closing line. The provider states Pinnacle API odds became systematically stale and were excluded from Max/Avg calculations."
+        },
+        "validation_summary": {
+          "nonnumeric_values": 0,
+          "odds_le_1_values": 0,
+          "avg_exceeds_corresponding_max_rows": 1,
+          "b365_exceeds_corresponding_max_rows": 0,
+          "invalid_or_structurally_inconsistent_values": 1
+        }
+      },
+      "seasons": [
+        {
+          "season": 2012,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 198,
+          "team_count": 12,
+          "teams": [
+            "HJK",
+            "Haka",
+            "Honka",
+            "Inter Turku",
+            "JJK Jyvaskyla",
+            "Jaro",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "MyPa",
+            "TPS",
+            "VPS"
+          ],
+          "first_match_date": "2012-04-15",
+          "last_match_date": "2012-10-27",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 198,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 197,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 12,
+          "teams_after_trim": [
+            "HJK",
+            "Haka",
+            "Honka",
+            "Inter Turku",
+            "JJK Jyvaskyla",
+            "Jaro",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "MyPa",
+            "TPS",
+            "VPS"
+          ]
+        },
+        {
+          "season": 2013,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 198,
+          "team_count": 12,
+          "teams": [
+            "HJK",
+            "Honka",
+            "Inter Turku",
+            "JJK Jyvaskyla",
+            "Jaro",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "MyPa",
+            "Rovaniemi",
+            "TPS",
+            "VPS"
+          ],
+          "first_match_date": "2013-04-13",
+          "last_match_date": "2013-10-26",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 198,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 198,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 12,
+          "teams_after_trim": [
+            "HJK",
+            "Honka",
+            "Inter Turku",
+            "JJK Jyvaskyla",
+            "Jaro",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "MyPa",
+            "Rovaniemi",
+            "TPS",
+            "VPS"
+          ]
+        },
+        {
+          "season": 2014,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 198,
+          "team_count": 12,
+          "teams": [
+            "HJK",
+            "Honka",
+            "Inter Turku",
+            "Jaro",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "MyPa",
+            "Rovaniemi",
+            "SJK",
+            "TPS",
+            "VPS"
+          ],
+          "first_match_date": "2014-04-06",
+          "last_match_date": "2014-10-26",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 198,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 197,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 12,
+          "teams_after_trim": [
+            "HJK",
+            "Honka",
+            "Inter Turku",
+            "Jaro",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "MyPa",
+            "Rovaniemi",
+            "SJK",
+            "TPS",
+            "VPS"
+          ]
+        },
+        {
+          "season": 2015,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 200,
+          "team_count": 13,
+          "teams": [
+            "HIFK",
+            "HJK",
+            "Ilves",
+            "Inter Turku",
+            "Jaro",
+            "KTP",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "PK-35 Vantaa",
+            "Rovaniemi",
+            "SJK",
+            "VPS"
+          ],
+          "first_match_date": "2015-04-12",
+          "last_match_date": "2015-10-31",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 200,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 199,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 13,
+          "teams_after_trim": [
+            "HIFK",
+            "HJK",
+            "Ilves",
+            "Inter Turku",
+            "Jaro",
+            "KTP",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "PK-35 Vantaa",
+            "Rovaniemi",
+            "SJK",
+            "VPS"
+          ]
+        },
+        {
+          "season": 2016,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 200,
+          "team_count": 13,
+          "teams": [
+            "HIFK",
+            "HJK",
+            "Ilves",
+            "Inter Turku",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "PK-35 Vantaa",
+            "PS Kemi",
+            "Rovaniemi",
+            "SJK",
+            "TPS",
+            "VPS"
+          ],
+          "first_match_date": "2016-04-02",
+          "last_match_date": "2016-10-29",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 200,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 199,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 13,
+          "teams_after_trim": [
+            "HIFK",
+            "HJK",
+            "Ilves",
+            "Inter Turku",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "PK-35 Vantaa",
+            "PS Kemi",
+            "Rovaniemi",
+            "SJK",
+            "TPS",
+            "VPS"
+          ]
+        },
+        {
+          "season": 2017,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 200,
+          "team_count": 13,
+          "teams": [
+            "HIFK",
+            "HJK",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "JJK Jyvaskyla",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "PS Kemi",
+            "Rovaniemi",
+            "SJK",
+            "VPS"
+          ],
+          "first_match_date": "2017-04-05",
+          "last_match_date": "2017-11-04",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 200,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 200,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 13,
+          "teams_after_trim": [
+            "HIFK",
+            "HJK",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "JJK Jyvaskyla",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "PS Kemi",
+            "Rovaniemi",
+            "SJK",
+            "VPS"
+          ]
+        },
+        {
+          "season": 2018,
+          "country_values": [
+            "Finland",
+            "Finland "
+          ],
+          "league_values": [
+            "Veikkausliiga",
+            "Veikkausliiga "
+          ],
+          "rows": 200,
+          "team_count": 13,
+          "teams": [
+            "HJK",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "KPV Kokkola",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "PS Kemi",
+            "Rovaniemi",
+            "SJK",
+            "TPS",
+            "VPS"
+          ],
+          "first_match_date": "2018-04-07",
+          "last_match_date": "2018-11-03",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 200,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 199,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 13,
+          "teams_after_trim": [
+            "HJK",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "KPV Kokkola",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "PS Kemi",
+            "Rovaniemi",
+            "SJK",
+            "TPS",
+            "VPS"
+          ]
+        },
+        {
+          "season": 2019,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 169,
+          "team_count": 13,
+          "teams": [
+            "HIFK",
+            "HJK",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "KPV Kokkola",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "Rovaniemi",
+            "SJK",
+            "TPS",
+            "VPS"
+          ],
+          "first_match_date": "2019-04-03",
+          "last_match_date": "2019-11-03",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 169,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 169,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 13,
+          "teams_after_trim": [
+            "HIFK",
+            "HJK",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "KPV Kokkola",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "Rovaniemi",
+            "SJK",
+            "TPS",
+            "VPS"
+          ]
+        },
+        {
+          "season": 2020,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 134,
+          "team_count": 13,
+          "teams": [
+            "HIFK",
+            "HJK",
+            "Haka",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "KTP",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "Rovaniemi",
+            "SJK",
+            "TPS"
+          ],
+          "first_match_date": "2020-07-01",
+          "last_match_date": "2020-11-14",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 134,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 134,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 13,
+          "teams_after_trim": [
+            "HIFK",
+            "HJK",
+            "Haka",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "KTP",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "Rovaniemi",
+            "SJK",
+            "TPS"
+          ]
+        },
+        {
+          "season": 2021,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 164,
+          "team_count": 13,
+          "teams": [
+            "AC Oulu",
+            "HIFK",
+            "HJK",
+            "Haka",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "KTP",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "Rovaniemi",
+            "SJK"
+          ],
+          "first_match_date": "2021-04-24",
+          "last_match_date": "2021-11-07",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 164,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 164,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 13,
+          "teams_after_trim": [
+            "AC Oulu",
+            "HIFK",
+            "HJK",
+            "Haka",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "KTP",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "Rovaniemi",
+            "SJK"
+          ]
+        },
+        {
+          "season": 2022,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 170,
+          "team_count": 14,
+          "teams": [
+            "AC Oulu",
+            "HIFK",
+            "HJK",
+            "Haka",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "Jaro",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "SJK",
+            "TPS",
+            "VPS"
+          ],
+          "first_match_date": "2022-04-02",
+          "last_match_date": "2022-10-30",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 170,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 170,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 14,
+          "teams_after_trim": [
+            "AC Oulu",
+            "HIFK",
+            "HJK",
+            "Haka",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "Jaro",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "SJK",
+            "TPS",
+            "VPS"
+          ]
+        },
+        {
+          "season": 2023,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 167,
+          "team_count": 12,
+          "teams": [
+            "AC Oulu",
+            "HJK",
+            "Haka",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "KTP",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "SJK",
+            "VPS"
+          ],
+          "first_match_date": "2023-04-05",
+          "last_match_date": "2023-11-05",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 167,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 167,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 12,
+          "teams_after_trim": [
+            "AC Oulu",
+            "HJK",
+            "Haka",
+            "Honka",
+            "Ilves",
+            "Inter Turku",
+            "KTP",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "SJK",
+            "VPS"
+          ]
+        },
+        {
+          "season": 2024,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 169,
+          "team_count": 13,
+          "teams": [
+            "AC Oulu",
+            "Ekenas",
+            "Gnistan",
+            "HJK",
+            "Haka",
+            "Ilves",
+            "Inter Turku",
+            "Jaro",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "SJK",
+            "VPS"
+          ],
+          "first_match_date": "2024-04-06",
+          "last_match_date": "2024-11-02",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 169,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 169,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 13,
+          "teams_after_trim": [
+            "AC Oulu",
+            "Ekenas",
+            "Gnistan",
+            "HJK",
+            "Haka",
+            "Ilves",
+            "Inter Turku",
+            "Jaro",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "SJK",
+            "VPS"
+          ]
+        },
+        {
+          "season": 2025,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 177,
+          "team_count": 12,
+          "teams": [
+            "AC Oulu",
+            "Gnistan",
+            "HJK",
+            "Haka",
+            "Ilves",
+            "Inter Turku",
+            "Jaro",
+            "KTP",
+            "KuPS",
+            "Mariehamn",
+            "SJK",
+            "VPS"
+          ],
+          "first_match_date": "2025-04-05",
+          "last_match_date": "2025-11-09",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 177,
+          "rows_with_all_closing_odds": 53,
+          "rows_with_pinnacle_trio": 168,
+          "rows_on_or_after_pinnacle_warning": 80,
+          "rows_on_or_after_warning_with_pinnacle_trio": 71,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 12,
+          "teams_after_trim": [
+            "AC Oulu",
+            "Gnistan",
+            "HJK",
+            "Haka",
+            "Ilves",
+            "Inter Turku",
+            "Jaro",
+            "KTP",
+            "KuPS",
+            "Mariehamn",
+            "SJK",
+            "VPS"
+          ]
+        },
+        {
+          "season": 2026,
+          "country_values": [
+            "Finland"
+          ],
+          "league_values": [
+            "Veikkausliiga"
+          ],
+          "rows": 96,
+          "team_count": 12,
+          "teams": [
+            "AC Oulu",
+            "Gnistan",
+            "HJK",
+            "Ilves",
+            "Inter Turku",
+            "Jaro",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "SJK",
+            "TPS",
+            "VPS"
+          ],
+          "first_match_date": "2026-04-04",
+          "last_match_date": "2026-07-20",
+          "is_latest_season_snapshot": true,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 96,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 0,
+          "rows_on_or_after_pinnacle_warning": 96,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Finland"
+          ],
+          "normalized_league_values": [
+            "Veikkausliiga"
+          ],
+          "team_count_after_trim": 12,
+          "teams_after_trim": [
+            "AC Oulu",
+            "Gnistan",
+            "HJK",
+            "Ilves",
+            "Inter Turku",
+            "Jaro",
+            "KuPS",
+            "Lahti",
+            "Mariehamn",
+            "SJK",
+            "TPS",
+            "VPS"
+          ]
+        }
+      ],
+      "normalized_country_values": [
+        "Finland"
+      ],
+      "normalized_league_values": [
+        "Veikkausliiga"
+      ],
+      "time_semantics": {
+        "field": "Time",
+        "format": "HH:MM",
+        "timezone": "unknown",
+        "evidence": "The merged CSV and Football-Data notes define kickoff time but provide no timezone name or UTC offset. No timezone conversion was performed in this validation."
+      }
+    },
+    {
+      "code": "NOR",
+      "expected_country": "Norway",
+      "landing_page": "https://www.football-data.co.uk/norway.php",
+      "url": "https://www.football-data.co.uk/new/NOR.csv",
+      "http": {
+        "status": 200,
+        "content_type": "text/csv",
+        "content_length_header": 406239,
+        "date": "Mon, 27 Jul 2026 16:45:09 GMT",
+        "last_modified": "Fri, 24 Jul 2026 05:56:13 GMT",
+        "etag": "\"632df-6575507bc1439\""
+      },
+      "sha256": "5AF67414DD7CACE5E27D482103BF2F58914FD63CB0F805E2E7EB8509C8CA79E1",
+      "bytes": 406239,
+      "decoded_as": "utf-8-sig",
+      "headers": [
+        "Country",
+        "League",
+        "Season",
+        "Date",
+        "Time",
+        "Home",
+        "Away",
+        "HG",
+        "AG",
+        "Res",
+        "PSCH",
+        "PSCD",
+        "PSCA",
+        "MaxCH",
+        "MaxCD",
+        "MaxCA",
+        "AvgCH",
+        "AvgCD",
+        "AvgCA",
+        "BFECH",
+        "BFECD",
+        "BFECA",
+        "B365CH",
+        "B365CD",
+        "B365CA"
+      ],
+      "header_matches_expected": true,
+      "row_count": 3489,
+      "country_values": [
+        "Norway"
+      ],
+      "league_values": [
+        "Eliteserien"
+      ],
+      "season_values": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "season_min": 2012,
+      "season_max": 2026,
+      "validation": {
+        "missing_required_rows": 0,
+        "invalid_date_rows": 0,
+        "invalid_time_rows": 0,
+        "season_parse_error_rows": 0,
+        "season_year_mismatch_rows": 0,
+        "invalid_goal_rows": 0,
+        "result_mismatch_rows": 0,
+        "same_home_away_rows": 0,
+        "duplicate_key_groups": 0,
+        "duplicate_key_excess_rows": 0,
+        "country_matches_expected": true,
+        "country_matches_expected_after_trim": true,
+        "rows_with_leading_or_trailing_whitespace": 0,
+        "whitespace_field_counts": {},
+        "normalized_duplicate_key_groups": 0,
+        "normalized_duplicate_key_excess_rows": 0
+      },
+      "anomaly_details": {
+        "missing_required": [],
+        "invalid_dates": [],
+        "invalid_times": [],
+        "season_parse_errors": [],
+        "season_year_mismatches": [],
+        "invalid_goals": [],
+        "result_mismatches": [],
+        "same_home_away": [],
+        "duplicate_keys": [],
+        "whitespace_examples": [],
+        "normalized_duplicate_keys": []
+      },
+      "odds": {
+        "market": "closing_1x2",
+        "fields": [
+          "PSCH",
+          "PSCD",
+          "PSCA",
+          "MaxCH",
+          "MaxCD",
+          "MaxCA",
+          "AvgCH",
+          "AvgCD",
+          "AvgCA",
+          "BFECH",
+          "BFECD",
+          "BFECA",
+          "B365CH",
+          "B365CD",
+          "B365CA"
+        ],
+        "field_coverage": {
+          "PSCH": {
+            "present_rows": 3346,
+            "missing_rows": 143,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.02,
+            "max_numeric": 14.19
+          },
+          "PSCD": {
+            "present_rows": 3346,
+            "missing_rows": 143,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 2.99,
+            "max_numeric": 21.88
+          },
+          "PSCA": {
+            "present_rows": 3346,
+            "missing_rows": 143,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.2,
+            "max_numeric": 35.75
+          },
+          "MaxCH": {
+            "present_rows": 3489,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.03,
+            "max_numeric": 17.0
+          },
+          "MaxCD": {
+            "present_rows": 3489,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 3.15,
+            "max_numeric": 21.0
+          },
+          "MaxCA": {
+            "present_rows": 3489,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.22,
+            "max_numeric": 51.0
+          },
+          "AvgCH": {
+            "present_rows": 3489,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.02,
+            "max_numeric": 13.32
+          },
+          "AvgCD": {
+            "present_rows": 3489,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 2.96,
+            "max_numeric": 16.13
+          },
+          "AvgCA": {
+            "present_rows": 3489,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.19,
+            "max_numeric": 36.0
+          },
+          "BFECH": {
+            "present_rows": 455,
+            "missing_rows": 3034,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.04,
+            "max_numeric": 18.0
+          },
+          "BFECD": {
+            "present_rows": 455,
+            "missing_rows": 3034,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 3.05,
+            "max_numeric": 29.0
+          },
+          "BFECA": {
+            "present_rows": 455,
+            "missing_rows": 3034,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.21,
+            "max_numeric": 65.0
+          },
+          "B365CH": {
+            "present_rows": 208,
+            "missing_rows": 3281,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.03,
+            "max_numeric": 11.0
+          },
+          "B365CD": {
+            "present_rows": 208,
+            "missing_rows": 3281,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 3.1,
+            "max_numeric": 17.0
+          },
+          "B365CA": {
+            "present_rows": 208,
+            "missing_rows": 3281,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.22,
+            "max_numeric": 41.0
+          }
+        },
+        "rows_with_any_odds": 3489,
+        "rows_with_all_15_odds_fields": 67,
+        "avg_exceeds_max_violations": {
+          "H": {
+            "count": 0,
+            "examples": []
+          },
+          "D": {
+            "count": 0,
+            "examples": []
+          },
+          "A": {
+            "count": 0,
+            "examples": []
+          }
+        },
+        "b365_exceeds_max_violations": {
+          "H": {
+            "count": 0,
+            "examples": []
+          },
+          "D": {
+            "count": 0,
+            "examples": []
+          },
+          "A": {
+            "count": 0,
+            "examples": []
+          }
+        },
+        "pinnacle": {
+          "fields": [
+            "PSCH",
+            "PSCD",
+            "PSCA"
+          ],
+          "provider_warning_effective_date": "2025-07-23",
+          "rows_before_warning": 3261,
+          "rows_before_warning_with_pinnacle_trio": 3259,
+          "rows_on_or_after_warning": 228,
+          "rows_on_or_after_warning_with_pinnacle_trio": 87,
+          "ps_exceeds_max_after_warning": {
+            "H": {
+              "count": 32,
+              "examples": [
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "09/08/2025",
+                  "Time": "15:00",
+                  "Home": "Molde",
+                  "Away": "HamKam",
+                  "HG": "1",
+                  "AG": "0",
+                  "Res": "H",
+                  "PSCH": 1.41,
+                  "MaxCH": 1.37
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "10/08/2025",
+                  "Time": "16:00",
+                  "Home": "Haugesund",
+                  "Away": "Sarpsborg 08",
+                  "HG": "3",
+                  "AG": "2",
+                  "Res": "H",
+                  "PSCH": 5.39,
+                  "MaxCH": 5.33
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "10/08/2025",
+                  "Time": "18:15",
+                  "Home": "Sandefjord",
+                  "Away": "Viking",
+                  "HG": "1",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCH": 2.79,
+                  "MaxCH": 2.55
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "13:30",
+                  "Home": "Tromso",
+                  "Away": "Brann",
+                  "HG": "1",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCH": 2.33,
+                  "MaxCH": 2.28
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "16:00",
+                  "Home": "HamKam",
+                  "Away": "Bryne",
+                  "HG": "1",
+                  "AG": "0",
+                  "Res": "H",
+                  "PSCH": 2.73,
+                  "MaxCH": 2.7
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "30/08/2025",
+                  "Time": "17:00",
+                  "Home": "Valerenga",
+                  "Away": "Bryne",
+                  "HG": "3",
+                  "AG": "2",
+                  "Res": "H",
+                  "PSCH": 1.7,
+                  "MaxCH": 1.62
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "13:30",
+                  "Home": "Kristiansund",
+                  "Away": "Brann",
+                  "HG": "2",
+                  "AG": "2",
+                  "Res": "D",
+                  "PSCH": 4.8,
+                  "MaxCH": 4.5
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "16:00",
+                  "Home": "HamKam",
+                  "Away": "Sarpsborg 08",
+                  "HG": "1",
+                  "AG": "3",
+                  "Res": "A",
+                  "PSCH": 2.52,
+                  "MaxCH": 2.38
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "13/09/2025",
+                  "Time": "17:00",
+                  "Home": "Brann",
+                  "Away": "Valerenga",
+                  "HG": "3",
+                  "AG": "2",
+                  "Res": "H",
+                  "PSCH": 1.56,
+                  "MaxCH": 1.55
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "14/09/2025",
+                  "Time": "16:00",
+                  "Home": "Sarpsborg 08",
+                  "Away": "Sandefjord",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCH": 2.42,
+                  "MaxCH": 2.23
+                }
+              ]
+            },
+            "D": {
+              "count": 38,
+              "examples": [
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "09/08/2025",
+                  "Time": "18:15",
+                  "Home": "Bodo/Glimt",
+                  "Away": "Tromso",
+                  "HG": "1",
+                  "AG": "1",
+                  "Res": "D",
+                  "PSCD": 5.41,
+                  "MaxCD": 5.25
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "10/08/2025",
+                  "Time": "16:00",
+                  "Home": "Bryne",
+                  "Away": "KFUM Oslo",
+                  "HG": "0",
+                  "AG": "0",
+                  "Res": "D",
+                  "PSCD": 3.34,
+                  "MaxCD": 3.15
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "13:30",
+                  "Home": "Tromso",
+                  "Away": "Brann",
+                  "HG": "1",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCD": 3.72,
+                  "MaxCD": 3.7
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "16:00",
+                  "Home": "Kristiansund",
+                  "Away": "Sandefjord",
+                  "HG": "2",
+                  "AG": "2",
+                  "Res": "D",
+                  "PSCD": 3.99,
+                  "MaxCD": 3.9
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "24/08/2025",
+                  "Time": "18:15",
+                  "Home": "Molde",
+                  "Away": "Tromso",
+                  "HG": "2",
+                  "AG": "0",
+                  "Res": "H",
+                  "PSCD": 3.57,
+                  "MaxCD": 3.5
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "13:30",
+                  "Home": "Kristiansund",
+                  "Away": "Brann",
+                  "HG": "2",
+                  "AG": "2",
+                  "Res": "D",
+                  "PSCD": 4.41,
+                  "MaxCD": 4.35
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "16:00",
+                  "Home": "Viking",
+                  "Away": "Rosenborg",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCD": 4.45,
+                  "MaxCD": 4.2
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "12/09/2025",
+                  "Time": "18:00",
+                  "Home": "Bodo/Glimt",
+                  "Away": "Kristiansund",
+                  "HG": "7",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCD": 10.28,
+                  "MaxCD": 8.75
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "13/09/2025",
+                  "Time": "15:00",
+                  "Home": "Molde",
+                  "Away": "Fredrikstad",
+                  "HG": "1",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCD": 3.95,
+                  "MaxCD": 3.9
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "13/09/2025",
+                  "Time": "17:00",
+                  "Home": "Brann",
+                  "Away": "Valerenga",
+                  "HG": "3",
+                  "AG": "2",
+                  "Res": "H",
+                  "PSCD": 4.82,
+                  "MaxCD": 4.8
+                }
+              ]
+            },
+            "A": {
+              "count": 28,
+              "examples": [
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "09/08/2025",
+                  "Time": "18:15",
+                  "Home": "Bodo/Glimt",
+                  "Away": "Tromso",
+                  "HG": "1",
+                  "AG": "1",
+                  "Res": "D",
+                  "PSCA": 7.58,
+                  "MaxCA": 7.0
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "16:00",
+                  "Home": "HamKam",
+                  "Away": "Bryne",
+                  "HG": "1",
+                  "AG": "0",
+                  "Res": "H",
+                  "PSCA": 2.79,
+                  "MaxCA": 2.75
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "16:00",
+                  "Home": "KFUM Oslo",
+                  "Away": "Molde",
+                  "HG": "0",
+                  "AG": "0",
+                  "Res": "D",
+                  "PSCA": 2.76,
+                  "MaxCA": 2.5
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "16:00",
+                  "Home": "Kristiansund",
+                  "Away": "Sandefjord",
+                  "HG": "2",
+                  "AG": "2",
+                  "Res": "D",
+                  "PSCA": 2.15,
+                  "MaxCA": 2.1
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "18:15",
+                  "Home": "Valerenga",
+                  "Away": "Sarpsborg 08",
+                  "HG": "4",
+                  "AG": "0",
+                  "Res": "H",
+                  "PSCA": 4.19,
+                  "MaxCA": 3.85
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "24/08/2025",
+                  "Time": "13:30",
+                  "Home": "Haugesund",
+                  "Away": "Valerenga",
+                  "HG": "2",
+                  "AG": "3",
+                  "Res": "A",
+                  "PSCA": 1.52,
+                  "MaxCA": 1.51
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "25/08/2025",
+                  "Time": "18:00",
+                  "Home": "Sarpsborg 08",
+                  "Away": "Kristiansund",
+                  "HG": "0",
+                  "AG": "1",
+                  "Res": "A",
+                  "PSCA": 5.08,
+                  "MaxCA": 4.33
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "16:00",
+                  "Home": "Fredrikstad",
+                  "Away": "Haugesund",
+                  "HG": "2",
+                  "AG": "2",
+                  "Res": "D",
+                  "PSCA": 9.81,
+                  "MaxCA": 9.5
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "16:00",
+                  "Home": "Sandefjord",
+                  "Away": "Bodo/Glimt",
+                  "HG": "1",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCA": 1.55,
+                  "MaxCA": 1.51
+                },
+                {
+                  "Country": "Norway",
+                  "League": "Eliteserien",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "16:00",
+                  "Home": "Viking",
+                  "Away": "Rosenborg",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCA": 4.82,
+                  "MaxCA": 3.5
+                }
+              ]
+            }
+          },
+          "risk": "Do not use PSCH/PSCD/PSCA on or after 2025-07-23 as a trustworthy closing line. The provider states Pinnacle API odds became systematically stale and were excluded from Max/Avg calculations."
+        },
+        "validation_summary": {
+          "nonnumeric_values": 0,
+          "odds_le_1_values": 0,
+          "avg_exceeds_corresponding_max_rows": 0,
+          "b365_exceeds_corresponding_max_rows": 0,
+          "invalid_or_structurally_inconsistent_values": 0
+        }
+      },
+      "seasons": [
+        {
+          "season": 2012,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "Aalesund",
+            "Brann",
+            "Fredrikstad",
+            "Haugesund",
+            "Honefoss",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandnes",
+            "Sogndal",
+            "Stabaek",
+            "Stromsgodset",
+            "Tromso",
+            "Ull/Kisa",
+            "Valerenga",
+            "Viking"
+          ],
+          "first_match_date": "2012-03-23",
+          "last_match_date": "2012-11-24",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 241,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "Aalesund",
+            "Brann",
+            "Fredrikstad",
+            "Haugesund",
+            "Honefoss",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandnes",
+            "Sogndal",
+            "Stabaek",
+            "Stromsgodset",
+            "Tromso",
+            "Ull/Kisa",
+            "Valerenga",
+            "Viking"
+          ]
+        },
+        {
+          "season": 2013,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "Aalesund",
+            "Brann",
+            "Haugesund",
+            "Honefoss",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Ranheim",
+            "Rosenborg",
+            "Sandnes",
+            "Sarpsborg 08",
+            "Sogndal",
+            "Start",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ],
+          "first_match_date": "2013-03-15",
+          "last_match_date": "2013-11-16",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "Aalesund",
+            "Brann",
+            "Haugesund",
+            "Honefoss",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Ranheim",
+            "Rosenborg",
+            "Sandnes",
+            "Sarpsborg 08",
+            "Sogndal",
+            "Start",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ]
+        },
+        {
+          "season": 2014,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Brann",
+            "Haugesund",
+            "Lillestrom",
+            "Mjondalen",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandnes",
+            "Sarpsborg 08",
+            "Sogndal",
+            "Stabaek",
+            "Start",
+            "Stromsgodset",
+            "Valerenga",
+            "Viking"
+          ],
+          "first_match_date": "2014-03-28",
+          "last_match_date": "2014-11-26",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Brann",
+            "Haugesund",
+            "Lillestrom",
+            "Mjondalen",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandnes",
+            "Sarpsborg 08",
+            "Sogndal",
+            "Stabaek",
+            "Start",
+            "Stromsgodset",
+            "Valerenga",
+            "Viking"
+          ]
+        },
+        {
+          "season": 2015,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Haugesund",
+            "Jerv",
+            "Lillestrom",
+            "Mjondalen",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stabaek",
+            "Start",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ],
+          "first_match_date": "2015-04-06",
+          "last_match_date": "2015-11-25",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Haugesund",
+            "Jerv",
+            "Lillestrom",
+            "Mjondalen",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stabaek",
+            "Start",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ]
+        },
+        {
+          "season": 2016,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Brann",
+            "Haugesund",
+            "Jerv",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sarpsborg 08",
+            "Sogndal",
+            "Stabaek",
+            "Start",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ],
+          "first_match_date": "2016-03-11",
+          "last_match_date": "2016-12-04",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Brann",
+            "Haugesund",
+            "Jerv",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sarpsborg 08",
+            "Sogndal",
+            "Stabaek",
+            "Start",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ]
+        },
+        {
+          "season": 2017,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "Aalesund",
+            "Brann",
+            "Haugesund",
+            "Kristiansund",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Ranheim",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Sogndal",
+            "Stabaek",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ],
+          "first_match_date": "2017-04-01",
+          "last_match_date": "2017-12-02",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 241,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "Aalesund",
+            "Brann",
+            "Haugesund",
+            "Kristiansund",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Ranheim",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Sogndal",
+            "Stabaek",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ]
+        },
+        {
+          "season": 2018,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 241,
+          "team_count": 17,
+          "teams": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Brann",
+            "Haugesund",
+            "Kristiansund",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Ranheim",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stabaek",
+            "Start",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga"
+          ],
+          "first_match_date": "2018-03-11",
+          "last_match_date": "2018-12-09",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 241,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 241,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Brann",
+            "Haugesund",
+            "Kristiansund",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Ranheim",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stabaek",
+            "Start",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga"
+          ]
+        },
+        {
+          "season": 2019,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "Bodo/Glimt",
+            "Brann",
+            "Haugesund",
+            "Kristiansund",
+            "Lillestrom",
+            "Mjondalen",
+            "Molde",
+            "Odd",
+            "Ranheim",
+            "Rosenborg",
+            "Sarpsborg 08",
+            "Stabaek",
+            "Start",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ],
+          "first_match_date": "2019-03-30",
+          "last_match_date": "2019-12-11",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "Bodo/Glimt",
+            "Brann",
+            "Haugesund",
+            "Kristiansund",
+            "Lillestrom",
+            "Mjondalen",
+            "Molde",
+            "Odd",
+            "Ranheim",
+            "Rosenborg",
+            "Sarpsborg 08",
+            "Stabaek",
+            "Start",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ]
+        },
+        {
+          "season": 2020,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 240,
+          "team_count": 16,
+          "teams": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Brann",
+            "Haugesund",
+            "Kristiansund",
+            "Mjondalen",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stabaek",
+            "Start",
+            "Stromsgodset",
+            "Valerenga",
+            "Viking"
+          ],
+          "first_match_date": "2020-06-16",
+          "last_match_date": "2020-12-22",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 240,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 240,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 16,
+          "teams_after_trim": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Brann",
+            "Haugesund",
+            "Kristiansund",
+            "Mjondalen",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stabaek",
+            "Start",
+            "Stromsgodset",
+            "Valerenga",
+            "Viking"
+          ]
+        },
+        {
+          "season": 2021,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 241,
+          "team_count": 17,
+          "teams": [
+            "Bodo/Glimt",
+            "Brann",
+            "Haugesund",
+            "Jerv",
+            "Kristiansund",
+            "Lillestrom",
+            "Mjondalen",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stabaek",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ],
+          "first_match_date": "2021-05-09",
+          "last_match_date": "2021-12-15",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 241,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 241,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "Bodo/Glimt",
+            "Brann",
+            "Haugesund",
+            "Jerv",
+            "Kristiansund",
+            "Lillestrom",
+            "Mjondalen",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stabaek",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ]
+        },
+        {
+          "season": 2022,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Ham-Kam",
+            "Haugesund",
+            "Jerv",
+            "Kongsvinger",
+            "Kristiansund",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ],
+          "first_match_date": "2022-04-02",
+          "last_match_date": "2022-11-19",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Ham-Kam",
+            "Haugesund",
+            "Jerv",
+            "Kongsvinger",
+            "Kristiansund",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ]
+        },
+        {
+          "season": 2023,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 242,
+          "team_count": 18,
+          "teams": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Brann",
+            "Ham-Kam",
+            "HamKam",
+            "Haugesund",
+            "Kristiansund",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stabaek",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ],
+          "first_match_date": "2023-04-10",
+          "last_match_date": "2023-12-10",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 18,
+          "teams_after_trim": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Brann",
+            "Ham-Kam",
+            "HamKam",
+            "Haugesund",
+            "Kristiansund",
+            "Lillestrom",
+            "Molde",
+            "Odd",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stabaek",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ]
+        },
+        {
+          "season": 2024,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "Bodo/Glimt",
+            "Brann",
+            "Fredrikstad",
+            "HamKam",
+            "Haugesund",
+            "KFUM Oslo",
+            "Kristiansund",
+            "Lillestrom",
+            "Molde",
+            "Moss",
+            "Odd",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stromsgodset",
+            "Tromso",
+            "Viking"
+          ],
+          "first_match_date": "2024-03-31",
+          "last_match_date": "2024-12-08",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "Bodo/Glimt",
+            "Brann",
+            "Fredrikstad",
+            "HamKam",
+            "Haugesund",
+            "KFUM Oslo",
+            "Kristiansund",
+            "Lillestrom",
+            "Molde",
+            "Moss",
+            "Odd",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stromsgodset",
+            "Tromso",
+            "Viking"
+          ]
+        },
+        {
+          "season": 2025,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 240,
+          "team_count": 16,
+          "teams": [
+            "Bodo/Glimt",
+            "Brann",
+            "Bryne",
+            "Fredrikstad",
+            "HamKam",
+            "Haugesund",
+            "KFUM Oslo",
+            "Kristiansund",
+            "Molde",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ],
+          "first_match_date": "2025-03-29",
+          "last_match_date": "2025-11-30",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 240,
+          "rows_with_all_closing_odds": 67,
+          "rows_with_pinnacle_trio": 206,
+          "rows_on_or_after_pinnacle_warning": 121,
+          "rows_on_or_after_warning_with_pinnacle_trio": 87,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 16,
+          "teams_after_trim": [
+            "Bodo/Glimt",
+            "Brann",
+            "Bryne",
+            "Fredrikstad",
+            "HamKam",
+            "Haugesund",
+            "KFUM Oslo",
+            "Kristiansund",
+            "Molde",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Stromsgodset",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ]
+        },
+        {
+          "season": 2026,
+          "country_values": [
+            "Norway"
+          ],
+          "league_values": [
+            "Eliteserien"
+          ],
+          "rows": 107,
+          "team_count": 16,
+          "teams": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Brann",
+            "Fredrikstad",
+            "HamKam",
+            "KFUM Oslo",
+            "Kristiansund",
+            "Lillestrom",
+            "Molde",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Start",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ],
+          "first_match_date": "2026-03-14",
+          "last_match_date": "2026-07-22",
+          "is_latest_season_snapshot": true,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 107,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 0,
+          "rows_on_or_after_pinnacle_warning": 107,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Norway"
+          ],
+          "normalized_league_values": [
+            "Eliteserien"
+          ],
+          "team_count_after_trim": 16,
+          "teams_after_trim": [
+            "Aalesund",
+            "Bodo/Glimt",
+            "Brann",
+            "Fredrikstad",
+            "HamKam",
+            "KFUM Oslo",
+            "Kristiansund",
+            "Lillestrom",
+            "Molde",
+            "Rosenborg",
+            "Sandefjord",
+            "Sarpsborg 08",
+            "Start",
+            "Tromso",
+            "Valerenga",
+            "Viking"
+          ]
+        }
+      ],
+      "normalized_country_values": [
+        "Norway"
+      ],
+      "normalized_league_values": [
+        "Eliteserien"
+      ],
+      "time_semantics": {
+        "field": "Time",
+        "format": "HH:MM",
+        "timezone": "unknown",
+        "evidence": "The merged CSV and Football-Data notes define kickoff time but provide no timezone name or UTC offset. No timezone conversion was performed in this validation."
+      }
+    },
+    {
+      "code": "SWE",
+      "expected_country": "Sweden",
+      "landing_page": "https://www.football-data.co.uk/sweden.php",
+      "url": "https://www.football-data.co.uk/new/SWE.csv",
+      "http": {
+        "status": 200,
+        "content_type": "text/csv",
+        "content_length_header": 405608,
+        "date": "Mon, 27 Jul 2026 16:45:12 GMT",
+        "last_modified": "Mon, 20 Jul 2026 20:48:18 GMT",
+        "etag": "\"63068-6571106aa2167\""
+      },
+      "sha256": "0427FA4EB2B615B9B7141CF083F9360F506EA56E9B0779CE9893C3E81AC3A468",
+      "bytes": 405608,
+      "decoded_as": "utf-8-sig",
+      "headers": [
+        "Country",
+        "League",
+        "Season",
+        "Date",
+        "Time",
+        "Home",
+        "Away",
+        "HG",
+        "AG",
+        "Res",
+        "PSCH",
+        "PSCD",
+        "PSCA",
+        "MaxCH",
+        "MaxCD",
+        "MaxCA",
+        "AvgCH",
+        "AvgCD",
+        "AvgCA",
+        "BFECH",
+        "BFECD",
+        "BFECA",
+        "B365CH",
+        "B365CD",
+        "B365CA"
+      ],
+      "header_matches_expected": true,
+      "row_count": 3489,
+      "country_values": [
+        "Sweden",
+        "Sweden "
+      ],
+      "league_values": [
+        "Allsvenskan",
+        "Allsvenskan "
+      ],
+      "season_values": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "season_min": 2012,
+      "season_max": 2026,
+      "validation": {
+        "missing_required_rows": 0,
+        "invalid_date_rows": 0,
+        "invalid_time_rows": 0,
+        "season_parse_error_rows": 0,
+        "season_year_mismatch_rows": 0,
+        "invalid_goal_rows": 0,
+        "result_mismatch_rows": 0,
+        "same_home_away_rows": 0,
+        "duplicate_key_groups": 0,
+        "duplicate_key_excess_rows": 0,
+        "country_matches_expected": false,
+        "country_matches_expected_after_trim": true,
+        "rows_with_leading_or_trailing_whitespace": 7,
+        "whitespace_field_counts": {
+          "Country": 7,
+          "League": 7
+        },
+        "normalized_duplicate_key_groups": 0,
+        "normalized_duplicate_key_excess_rows": 0
+      },
+      "anomaly_details": {
+        "missing_required": [],
+        "invalid_dates": [],
+        "invalid_times": [],
+        "season_parse_errors": [],
+        "season_year_mismatches": [],
+        "invalid_goals": [],
+        "result_mismatches": [],
+        "same_home_away": [],
+        "duplicate_keys": [],
+        "whitespace_examples": [
+          {
+            "season": "2018",
+            "date": "22/05/2018",
+            "home": "Orebro",
+            "away": "Kalmar",
+            "fields": [
+              "Country",
+              "League"
+            ]
+          },
+          {
+            "season": "2018",
+            "date": "23/05/2018",
+            "home": "Hacken",
+            "away": "AIK",
+            "fields": [
+              "Country",
+              "League"
+            ]
+          },
+          {
+            "season": "2018",
+            "date": "23/05/2018",
+            "home": "Norrkoping",
+            "away": "Sundsvall",
+            "fields": [
+              "Country",
+              "League"
+            ]
+          },
+          {
+            "season": "2018",
+            "date": "23/05/2018",
+            "home": "Ostersunds",
+            "away": "Sirius",
+            "fields": [
+              "Country",
+              "League"
+            ]
+          },
+          {
+            "season": "2018",
+            "date": "24/05/2018",
+            "home": "Dalkurd",
+            "away": "Elfsborg",
+            "fields": [
+              "Country",
+              "League"
+            ]
+          },
+          {
+            "season": "2018",
+            "date": "24/05/2018",
+            "home": "Goteborg",
+            "away": "Djurgarden",
+            "fields": [
+              "Country",
+              "League"
+            ]
+          },
+          {
+            "season": "2018",
+            "date": "24/05/2018",
+            "home": "Trelleborgs",
+            "away": "Brommapojkarna",
+            "fields": [
+              "Country",
+              "League"
+            ]
+          }
+        ],
+        "normalized_duplicate_keys": []
+      },
+      "odds": {
+        "market": "closing_1x2",
+        "fields": [
+          "PSCH",
+          "PSCD",
+          "PSCA",
+          "MaxCH",
+          "MaxCD",
+          "MaxCA",
+          "AvgCH",
+          "AvgCD",
+          "AvgCA",
+          "BFECH",
+          "BFECD",
+          "BFECA",
+          "B365CH",
+          "B365CD",
+          "B365CA"
+        ],
+        "field_coverage": {
+          "PSCH": {
+            "present_rows": 3366,
+            "missing_rows": 123,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.08,
+            "max_numeric": 15.84
+          },
+          "PSCD": {
+            "present_rows": 3366,
+            "missing_rows": 123,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 2.39,
+            "max_numeric": 13.45
+          },
+          "PSCA": {
+            "present_rows": 3366,
+            "missing_rows": 123,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.17,
+            "max_numeric": 29.08
+          },
+          "MaxCH": {
+            "present_rows": 3489,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.1,
+            "max_numeric": 17.0
+          },
+          "MaxCD": {
+            "present_rows": 3489,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 2.9,
+            "max_numeric": 14.0
+          },
+          "MaxCA": {
+            "present_rows": 3489,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.21,
+            "max_numeric": 35.0
+          },
+          "AvgCH": {
+            "present_rows": 3489,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.08,
+            "max_numeric": 13.83
+          },
+          "AvgCD": {
+            "present_rows": 3489,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 2.78,
+            "max_numeric": 11.38
+          },
+          "AvgCA": {
+            "present_rows": 3489,
+            "missing_rows": 0,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.18,
+            "max_numeric": 24.18
+          },
+          "BFECH": {
+            "present_rows": 449,
+            "missing_rows": 3040,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.22,
+            "max_numeric": 10.5
+          },
+          "BFECD": {
+            "present_rows": 449,
+            "missing_rows": 3040,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 3.0,
+            "max_numeric": 8.2
+          },
+          "BFECA": {
+            "present_rows": 449,
+            "missing_rows": 3040,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.36,
+            "max_numeric": 16.0
+          },
+          "B365CH": {
+            "present_rows": 193,
+            "missing_rows": 3296,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.15,
+            "max_numeric": 7.5
+          },
+          "B365CD": {
+            "present_rows": 193,
+            "missing_rows": 3296,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 3.0,
+            "max_numeric": 8.0
+          },
+          "B365CA": {
+            "present_rows": 193,
+            "missing_rows": 3296,
+            "nonnumeric_rows": 0,
+            "odds_le_1_rows": 0,
+            "min_numeric": 1.33,
+            "max_numeric": 15.0
+          }
+        },
+        "rows_with_any_odds": 3489,
+        "rows_with_all_15_odds_fields": 72,
+        "avg_exceeds_max_violations": {
+          "H": {
+            "count": 0,
+            "examples": []
+          },
+          "D": {
+            "count": 0,
+            "examples": []
+          },
+          "A": {
+            "count": 0,
+            "examples": []
+          }
+        },
+        "b365_exceeds_max_violations": {
+          "H": {
+            "count": 0,
+            "examples": []
+          },
+          "D": {
+            "count": 0,
+            "examples": []
+          },
+          "A": {
+            "count": 0,
+            "examples": []
+          }
+        },
+        "pinnacle": {
+          "fields": [
+            "PSCH",
+            "PSCD",
+            "PSCA"
+          ],
+          "provider_warning_effective_date": "2025-07-23",
+          "rows_before_warning": 3274,
+          "rows_before_warning_with_pinnacle_trio": 3272,
+          "rows_on_or_after_warning": 215,
+          "rows_on_or_after_warning_with_pinnacle_trio": 94,
+          "ps_exceeds_max_after_warning": {
+            "H": {
+              "count": 29,
+              "examples": [
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "09/08/2025",
+                  "Time": "16:30",
+                  "Home": "Halmstad",
+                  "Away": "Sirius",
+                  "HG": "0",
+                  "AG": "1",
+                  "Res": "A",
+                  "PSCH": 3.42,
+                  "MaxCH": 3.4
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "10/08/2025",
+                  "Time": "13:00",
+                  "Home": "AIK",
+                  "Away": "Djurgarden",
+                  "HG": "0",
+                  "AG": "0",
+                  "Res": "D",
+                  "PSCH": 2.7,
+                  "MaxCH": 2.54
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "11/08/2025",
+                  "Time": "18:00",
+                  "Home": "Elfsborg",
+                  "Away": "Varnamo",
+                  "HG": "2",
+                  "AG": "2",
+                  "Res": "D",
+                  "PSCH": 1.46,
+                  "MaxCH": 1.45
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "16/08/2025",
+                  "Time": "14:00",
+                  "Home": "Halmstad",
+                  "Away": "Malmo FF",
+                  "HG": "0",
+                  "AG": "4",
+                  "Res": "A",
+                  "PSCH": 6.01,
+                  "MaxCH": 5.1
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "16/08/2025",
+                  "Time": "16:30",
+                  "Home": "Norrkoping",
+                  "Away": "Elfsborg",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCH": 3.45,
+                  "MaxCH": 3.35
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "13:00",
+                  "Home": "Brommapojkarna",
+                  "Away": "Sirius",
+                  "HG": "2",
+                  "AG": "4",
+                  "Res": "A",
+                  "PSCH": 2.19,
+                  "MaxCH": 2.1
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "15:30",
+                  "Home": "Hacken",
+                  "Away": "Oster",
+                  "HG": "0",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCH": 1.72,
+                  "MaxCH": 1.62
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "15:30",
+                  "Home": "Hammarby",
+                  "Away": "GAIS",
+                  "HG": "1",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCH": 1.98,
+                  "MaxCH": 1.91
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "24/08/2025",
+                  "Time": "13:00",
+                  "Home": "Sirius",
+                  "Away": "Hammarby",
+                  "HG": "3",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCH": 4.13,
+                  "MaxCH": 4.1
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "24/08/2025",
+                  "Time": "15:30",
+                  "Home": "Varnamo",
+                  "Away": "Hacken",
+                  "HG": "1",
+                  "AG": "5",
+                  "Res": "A",
+                  "PSCH": 3.2,
+                  "MaxCH": 3.1
+                }
+              ]
+            },
+            "D": {
+              "count": 31,
+              "examples": [
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "09/08/2025",
+                  "Time": "14:00",
+                  "Home": "Malmo FF",
+                  "Away": "Mjallby",
+                  "HG": "1",
+                  "AG": "3",
+                  "Res": "A",
+                  "PSCD": 3.62,
+                  "MaxCD": 3.6
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "09/08/2025",
+                  "Time": "16:30",
+                  "Home": "Halmstad",
+                  "Away": "Sirius",
+                  "HG": "0",
+                  "AG": "1",
+                  "Res": "A",
+                  "PSCD": 3.58,
+                  "MaxCD": 3.55
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "16/08/2025",
+                  "Time": "14:00",
+                  "Home": "Halmstad",
+                  "Away": "Malmo FF",
+                  "HG": "0",
+                  "AG": "4",
+                  "Res": "A",
+                  "PSCD": 4.27,
+                  "MaxCD": 4.1
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "24/08/2025",
+                  "Time": "15:30",
+                  "Home": "Elfsborg",
+                  "Away": "Halmstad",
+                  "HG": "1",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCD": 4.99,
+                  "MaxCD": 4.7
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "15:30",
+                  "Home": "GAIS",
+                  "Away": "Hacken",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCD": 4.15,
+                  "MaxCD": 4.1
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "14/09/2025",
+                  "Time": "13:00",
+                  "Home": "Djurgarden",
+                  "Away": "Hammarby",
+                  "HG": "3",
+                  "AG": "3",
+                  "Res": "D",
+                  "PSCD": 3.55,
+                  "MaxCD": 3.5
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "14/09/2025",
+                  "Time": "13:00",
+                  "Home": "Oster",
+                  "Away": "Varnamo",
+                  "HG": "4",
+                  "AG": "3",
+                  "Res": "H",
+                  "PSCD": 3.67,
+                  "MaxCD": 3.5
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "14/09/2025",
+                  "Time": "15:30",
+                  "Home": "Elfsborg",
+                  "Away": "Malmo FF",
+                  "HG": "2",
+                  "AG": "2",
+                  "Res": "D",
+                  "PSCD": 3.68,
+                  "MaxCD": 3.6
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "15/09/2025",
+                  "Time": "18:00",
+                  "Home": "AIK",
+                  "Away": "Brommapojkarna",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCD": 3.92,
+                  "MaxCD": 3.75
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "20/09/2025",
+                  "Time": "14:00",
+                  "Home": "GAIS",
+                  "Away": "Elfsborg",
+                  "HG": "2",
+                  "AG": "0",
+                  "Res": "H",
+                  "PSCD": 3.81,
+                  "MaxCD": 3.65
+                }
+              ]
+            },
+            "A": {
+              "count": 26,
+              "examples": [
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "09/08/2025",
+                  "Time": "14:00",
+                  "Home": "Malmo FF",
+                  "Away": "Mjallby",
+                  "HG": "1",
+                  "AG": "3",
+                  "Res": "A",
+                  "PSCA": 4.24,
+                  "MaxCA": 4.0
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "10/08/2025",
+                  "Time": "13:00",
+                  "Home": "Degerfors",
+                  "Away": "Hacken",
+                  "HG": "0",
+                  "AG": "0",
+                  "Res": "D",
+                  "PSCA": 2.53,
+                  "MaxCA": 2.32
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "10/08/2025",
+                  "Time": "15:30",
+                  "Home": "Norrkoping",
+                  "Away": "Hammarby",
+                  "HG": "0",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCA": 1.64,
+                  "MaxCA": 1.61
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "11/08/2025",
+                  "Time": "18:00",
+                  "Home": "GAIS",
+                  "Away": "Goteborg",
+                  "HG": "0",
+                  "AG": "1",
+                  "Res": "A",
+                  "PSCA": 3.8,
+                  "MaxCA": 3.5
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "17/08/2025",
+                  "Time": "13:00",
+                  "Home": "Goteborg",
+                  "Away": "AIK",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCA": 3.63,
+                  "MaxCA": 3.4
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "18/08/2025",
+                  "Time": "18:00",
+                  "Home": "Varnamo",
+                  "Away": "Degerfors",
+                  "HG": "3",
+                  "AG": "2",
+                  "Res": "H",
+                  "PSCA": 3.19,
+                  "MaxCA": 2.8
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "24/08/2025",
+                  "Time": "15:30",
+                  "Home": "Elfsborg",
+                  "Away": "Halmstad",
+                  "HG": "1",
+                  "AG": "2",
+                  "Res": "A",
+                  "PSCA": 7.05,
+                  "MaxCA": 6.1
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "13:00",
+                  "Home": "Norrkoping",
+                  "Away": "Djurgarden",
+                  "HG": "0",
+                  "AG": "4",
+                  "Res": "A",
+                  "PSCA": 1.83,
+                  "MaxCA": 1.77
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "31/08/2025",
+                  "Time": "15:30",
+                  "Home": "GAIS",
+                  "Away": "Hacken",
+                  "HG": "2",
+                  "AG": "1",
+                  "Res": "H",
+                  "PSCA": 3.95,
+                  "MaxCA": 3.8
+                },
+                {
+                  "Country": "Sweden",
+                  "League": "Allsvenskan",
+                  "Season": "2025",
+                  "Date": "13/09/2025",
+                  "Time": "14:00",
+                  "Home": "Degerfors",
+                  "Away": "Mjallby",
+                  "HG": "0",
+                  "AG": "1",
+                  "Res": "A",
+                  "PSCA": 1.82,
+                  "MaxCA": 1.75
+                }
+              ]
+            }
+          },
+          "risk": "Do not use PSCH/PSCD/PSCA on or after 2025-07-23 as a trustworthy closing line. The provider states Pinnacle API odds became systematically stale and were excluded from Max/Avg calculations."
+        },
+        "validation_summary": {
+          "nonnumeric_values": 0,
+          "odds_le_1_values": 0,
+          "avg_exceeds_corresponding_max_rows": 0,
+          "b365_exceeds_corresponding_max_rows": 0,
+          "invalid_or_structurally_inconsistent_values": 0
+        }
+      },
+      "seasons": [
+        {
+          "season": 2012,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "AIK",
+            "Atvidabergs",
+            "Djurgarden",
+            "Elfsborg",
+            "GAIS",
+            "Gefle",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Helsingborg",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Orebro",
+            "Sundsvall",
+            "Syrianska"
+          ],
+          "first_match_date": "2012-03-31",
+          "last_match_date": "2012-11-17",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "AIK",
+            "Atvidabergs",
+            "Djurgarden",
+            "Elfsborg",
+            "GAIS",
+            "Gefle",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Helsingborg",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Orebro",
+            "Sundsvall",
+            "Syrianska"
+          ]
+        },
+        {
+          "season": 2013,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "AIK",
+            "Atvidabergs",
+            "Brommapojkarna",
+            "Djurgarden",
+            "Elfsborg",
+            "Gefle",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Helsingborg",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Osters",
+            "Sundsvall",
+            "Syrianska"
+          ],
+          "first_match_date": "2013-03-31",
+          "last_match_date": "2013-11-10",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "AIK",
+            "Atvidabergs",
+            "Brommapojkarna",
+            "Djurgarden",
+            "Elfsborg",
+            "Gefle",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Helsingborg",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Osters",
+            "Sundsvall",
+            "Syrianska"
+          ]
+        },
+        {
+          "season": 2014,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "AIK",
+            "Atvidabergs",
+            "Brommapojkarna",
+            "Djurgarden",
+            "Elfsborg",
+            "Falkenbergs",
+            "Gefle",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Helsingborg",
+            "Kalmar",
+            "Ljungskile",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Orebro"
+          ],
+          "first_match_date": "2014-03-30",
+          "last_match_date": "2014-11-09",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 240,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "AIK",
+            "Atvidabergs",
+            "Brommapojkarna",
+            "Djurgarden",
+            "Elfsborg",
+            "Falkenbergs",
+            "Gefle",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Helsingborg",
+            "Kalmar",
+            "Ljungskile",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Orebro"
+          ]
+        },
+        {
+          "season": 2015,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "AIK",
+            "Atvidabergs",
+            "Djurgarden",
+            "Elfsborg",
+            "Falkenbergs",
+            "Gefle",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Helsingborg",
+            "Kalmar",
+            "Malmo FF",
+            "Norrkoping",
+            "Orebro",
+            "Sirius",
+            "Sundsvall"
+          ],
+          "first_match_date": "2015-04-04",
+          "last_match_date": "2015-11-08",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "AIK",
+            "Atvidabergs",
+            "Djurgarden",
+            "Elfsborg",
+            "Falkenbergs",
+            "Gefle",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Helsingborg",
+            "Kalmar",
+            "Malmo FF",
+            "Norrkoping",
+            "Orebro",
+            "Sirius",
+            "Sundsvall"
+          ]
+        },
+        {
+          "season": 2016,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "AIK",
+            "Djurgarden",
+            "Elfsborg",
+            "Falkenbergs",
+            "Gefle",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Helsingborg",
+            "Jonkopings",
+            "Kalmar",
+            "Malmo FF",
+            "Norrkoping",
+            "Orebro",
+            "Ostersunds",
+            "Sundsvall"
+          ],
+          "first_match_date": "2016-04-02",
+          "last_match_date": "2016-11-20",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "AIK",
+            "Djurgarden",
+            "Elfsborg",
+            "Falkenbergs",
+            "Gefle",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Helsingborg",
+            "Jonkopings",
+            "Kalmar",
+            "Malmo FF",
+            "Norrkoping",
+            "Orebro",
+            "Ostersunds",
+            "Sundsvall"
+          ]
+        },
+        {
+          "season": 2017,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "AFC Eskilstuna",
+            "AIK",
+            "Djurgarden",
+            "Elfsborg",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Jonkopings",
+            "Kalmar",
+            "Malmo FF",
+            "Norrkoping",
+            "Orebro",
+            "Ostersunds",
+            "Sirius",
+            "Sundsvall",
+            "Trelleborgs"
+          ],
+          "first_match_date": "2017-04-01",
+          "last_match_date": "2017-11-19",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "AFC Eskilstuna",
+            "AIK",
+            "Djurgarden",
+            "Elfsborg",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Jonkopings",
+            "Kalmar",
+            "Malmo FF",
+            "Norrkoping",
+            "Orebro",
+            "Ostersunds",
+            "Sirius",
+            "Sundsvall",
+            "Trelleborgs"
+          ]
+        },
+        {
+          "season": 2018,
+          "country_values": [
+            "Sweden",
+            "Sweden "
+          ],
+          "league_values": [
+            "Allsvenskan",
+            "Allsvenskan "
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "AFC Eskilstuna",
+            "AIK",
+            "Brommapojkarna",
+            "Dalkurd",
+            "Djurgarden",
+            "Elfsborg",
+            "Goteborg",
+            "Hacken",
+            "Hammarby",
+            "Kalmar",
+            "Malmo FF",
+            "Norrkoping",
+            "Orebro",
+            "Ostersunds",
+            "Sirius",
+            "Sundsvall",
+            "Trelleborgs"
+          ],
+          "first_match_date": "2018-04-01",
+          "last_match_date": "2018-11-25",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "AFC Eskilstuna",
+            "AIK",
+            "Brommapojkarna",
+            "Dalkurd",
+            "Djurgarden",
+            "Elfsborg",
+            "Goteborg",
+            "Hacken",
+            "Hammarby",
+            "Kalmar",
+            "Malmo FF",
+            "Norrkoping",
+            "Orebro",
+            "Ostersunds",
+            "Sirius",
+            "Sundsvall",
+            "Trelleborgs"
+          ]
+        },
+        {
+          "season": 2019,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "AFC Eskilstuna",
+            "AIK",
+            "Brage",
+            "Djurgarden",
+            "Elfsborg",
+            "Falkenbergs",
+            "Goteborg",
+            "Hacken",
+            "Hammarby",
+            "Helsingborg",
+            "Kalmar",
+            "Malmo FF",
+            "Norrkoping",
+            "Orebro",
+            "Ostersunds",
+            "Sirius",
+            "Sundsvall"
+          ],
+          "first_match_date": "2019-03-31",
+          "last_match_date": "2019-11-10",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "AFC Eskilstuna",
+            "AIK",
+            "Brage",
+            "Djurgarden",
+            "Elfsborg",
+            "Falkenbergs",
+            "Goteborg",
+            "Hacken",
+            "Hammarby",
+            "Helsingborg",
+            "Kalmar",
+            "Malmo FF",
+            "Norrkoping",
+            "Orebro",
+            "Ostersunds",
+            "Sirius",
+            "Sundsvall"
+          ]
+        },
+        {
+          "season": 2020,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "AIK",
+            "Djurgarden",
+            "Elfsborg",
+            "Falkenbergs",
+            "Goteborg",
+            "Hacken",
+            "Hammarby",
+            "Helsingborg",
+            "Jonkopings",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Orebro",
+            "Ostersunds",
+            "Sirius",
+            "Varberg"
+          ],
+          "first_match_date": "2020-06-14",
+          "last_match_date": "2020-12-13",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "AIK",
+            "Djurgarden",
+            "Elfsborg",
+            "Falkenbergs",
+            "Goteborg",
+            "Hacken",
+            "Hammarby",
+            "Helsingborg",
+            "Jonkopings",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Orebro",
+            "Ostersunds",
+            "Sirius",
+            "Varberg"
+          ]
+        },
+        {
+          "season": 2021,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "AIK",
+            "Degerfors",
+            "Djurgarden",
+            "Elfsborg",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Helsingborg",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Orebro",
+            "Ostersunds",
+            "Sirius",
+            "Varberg"
+          ],
+          "first_match_date": "2021-04-10",
+          "last_match_date": "2021-12-14",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "AIK",
+            "Degerfors",
+            "Djurgarden",
+            "Elfsborg",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Helsingborg",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Orebro",
+            "Ostersunds",
+            "Sirius",
+            "Varberg"
+          ]
+        },
+        {
+          "season": 2022,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "AIK",
+            "Degerfors",
+            "Djurgarden",
+            "Elfsborg",
+            "Goteborg",
+            "Hacken",
+            "Hammarby",
+            "Helsingborg",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Oster",
+            "Sirius",
+            "Sundsvall",
+            "Varberg",
+            "Varnamo"
+          ],
+          "first_match_date": "2022-04-02",
+          "last_match_date": "2022-11-13",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "AIK",
+            "Degerfors",
+            "Djurgarden",
+            "Elfsborg",
+            "Goteborg",
+            "Hacken",
+            "Hammarby",
+            "Helsingborg",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Oster",
+            "Sirius",
+            "Sundsvall",
+            "Varberg",
+            "Varnamo"
+          ]
+        },
+        {
+          "season": 2023,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 240,
+          "team_count": 16,
+          "teams": [
+            "AIK",
+            "Brommapojkarna",
+            "Degerfors",
+            "Djurgarden",
+            "Elfsborg",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Sirius",
+            "Varberg",
+            "Varnamo"
+          ],
+          "first_match_date": "2023-04-01",
+          "last_match_date": "2023-11-12",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 240,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 240,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 16,
+          "teams_after_trim": [
+            "AIK",
+            "Brommapojkarna",
+            "Degerfors",
+            "Djurgarden",
+            "Elfsborg",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Sirius",
+            "Varberg",
+            "Varnamo"
+          ]
+        },
+        {
+          "season": 2024,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 242,
+          "team_count": 17,
+          "teams": [
+            "AIK",
+            "Brommapojkarna",
+            "Djurgarden",
+            "Elfsborg",
+            "GAIS",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Kalmar",
+            "Landskrona",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Sirius",
+            "Varnamo",
+            "Vasteras SK"
+          ],
+          "first_match_date": "2024-03-30",
+          "last_match_date": "2024-11-24",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 242,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 242,
+          "rows_on_or_after_pinnacle_warning": 0,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 17,
+          "teams_after_trim": [
+            "AIK",
+            "Brommapojkarna",
+            "Djurgarden",
+            "Elfsborg",
+            "GAIS",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Kalmar",
+            "Landskrona",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Sirius",
+            "Varnamo",
+            "Vasteras SK"
+          ]
+        },
+        {
+          "season": 2025,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 240,
+          "team_count": 16,
+          "teams": [
+            "AIK",
+            "Brommapojkarna",
+            "Degerfors",
+            "Djurgarden",
+            "Elfsborg",
+            "GAIS",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Oster",
+            "Sirius",
+            "Varnamo"
+          ],
+          "first_match_date": "2025-03-29",
+          "last_match_date": "2025-11-09",
+          "is_latest_season_snapshot": false,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 240,
+          "rows_with_all_closing_odds": 72,
+          "rows_with_pinnacle_trio": 224,
+          "rows_on_or_after_pinnacle_warning": 110,
+          "rows_on_or_after_warning_with_pinnacle_trio": 94,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 16,
+          "teams_after_trim": [
+            "AIK",
+            "Brommapojkarna",
+            "Degerfors",
+            "Djurgarden",
+            "Elfsborg",
+            "GAIS",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Malmo FF",
+            "Mjallby",
+            "Norrkoping",
+            "Oster",
+            "Sirius",
+            "Varnamo"
+          ]
+        },
+        {
+          "season": 2026,
+          "country_values": [
+            "Sweden"
+          ],
+          "league_values": [
+            "Allsvenskan"
+          ],
+          "rows": 105,
+          "team_count": 16,
+          "teams": [
+            "AIK",
+            "Brommapojkarna",
+            "Degerfors",
+            "Djurgarden",
+            "Elfsborg",
+            "GAIS",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Orgryte",
+            "Sirius",
+            "Vasteras SK"
+          ],
+          "first_match_date": "2026-04-04",
+          "last_match_date": "2026-07-20",
+          "is_latest_season_snapshot": true,
+          "required_field_missing_rows": 0,
+          "invalid_goal_rows": 0,
+          "result_mismatch_rows": 0,
+          "duplicate_key_excess_rows": 0,
+          "rows_with_any_closing_odds": 105,
+          "rows_with_all_closing_odds": 0,
+          "rows_with_pinnacle_trio": 0,
+          "rows_on_or_after_pinnacle_warning": 105,
+          "rows_on_or_after_warning_with_pinnacle_trio": 0,
+          "normalized_country_values": [
+            "Sweden"
+          ],
+          "normalized_league_values": [
+            "Allsvenskan"
+          ],
+          "team_count_after_trim": 16,
+          "teams_after_trim": [
+            "AIK",
+            "Brommapojkarna",
+            "Degerfors",
+            "Djurgarden",
+            "Elfsborg",
+            "GAIS",
+            "Goteborg",
+            "Hacken",
+            "Halmstad",
+            "Hammarby",
+            "Kalmar",
+            "Malmo FF",
+            "Mjallby",
+            "Orgryte",
+            "Sirius",
+            "Vasteras SK"
+          ]
+        }
+      ],
+      "normalized_country_values": [
+        "Sweden"
+      ],
+      "normalized_league_values": [
+        "Allsvenskan"
+      ],
+      "time_semantics": {
+        "field": "Time",
+        "format": "HH:MM",
+        "timezone": "unknown",
+        "evidence": "The merged CSV and Football-Data notes define kickoff time but provide no timezone name or UTC offset. No timezone conversion was performed in this validation."
+      }
+    }
+  ],
+  "global_anomalies": {
+    "result_mismatches": [],
+    "duplicate_keys": []
+  },
+  "recommended_ingestion_policy": {
+    "missing_values": "Preserve as NULL; never synthesize odds or results.",
+    "latest_season": "Treat the maximum season in each file as a live partial snapshot, not a completed season.",
+    "pinnacle": "Quarantine PSCH/PSCD/PSCA for matches dated 2025-07-23 or later. MaxCH/MaxCD/MaxCA and AvgCH/AvgCD/AvgCA are documented as excluding Pinnacle after the warning date.",
+    "provenance": "Persist source URL, source SHA-256, HTTP Last-Modified/ETag and source row identity with every import batch.",
+    "source_strings": "Trim leading/trailing whitespace for canonical comparison while retaining the raw source value.",
+    "time": "Keep source Time with timezone_unknown=true until an authoritative timezone rule is established; do not assume UTC or local league time.",
+    "odds_anomaly": "Quarantine Finland 2021-08-31 KTP vs Inter Turku AvgCA=1.75 because it exceeds MaxCA=1.29; do not auto-correct the value."
+  }
+}

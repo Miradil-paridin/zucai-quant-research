@@ -1,0 +1,2 @@
+"""Football quantitative research API."""
+

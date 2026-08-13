@@ -1,0 +1,10 @@
+fastapi>=0.115,<1
+uvicorn[standard]>=0.34,<1
+pydantic>=2.10,<3
+pytest>=8.3,<9
+httpx>=0.28,<1
+python-dotenv>=1.0,<2
+tzdata>=2025.2
+psycopg[binary]>=3.2,<4
+apscheduler>=3.11,<4
+curl_cffi>=0.7

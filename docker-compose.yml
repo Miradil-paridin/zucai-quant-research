@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: zucai-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: zucai
+      POSTGRES_USER: zucai
+      POSTGRES_PASSWORD: zucai_local_dev
+      TZ: UTC
+    ports:
+      - "5432:5432"
+    volumes:
+      - zucai_postgres_data:/var/lib/postgresql/data
+      - ./docs/schema.sql:/docker-entrypoint-initdb.d/001-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zucai -d zucai"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  zucai_postgres_data:
