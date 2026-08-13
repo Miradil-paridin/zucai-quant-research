@@ -11,8 +11,12 @@ from .collector import collector
 scheduler = AsyncIOScheduler(timezone="UTC")
 
 
+def scheduler_configured() -> bool:
+    return os.getenv("INGESTION_SCHEDULER_ENABLED", "true").lower() in {"1", "true", "yes", "on"}
+
+
 def start_scheduler() -> None:
-    if os.getenv("INGESTION_SCHEDULER_ENABLED", "true").lower() not in {"1", "true", "yes", "on"}:
+    if not scheduler_configured():
         return
     if scheduler.running:
         return
@@ -39,6 +43,7 @@ def stop_scheduler() -> None:
 def scheduler_status() -> dict[str, object]:
     job = scheduler.get_job("football-data-ingestion") if scheduler.running else None
     return {
+        "configured": scheduler_configured(),
         "enabled": scheduler.running,
         "next_run_time": job.next_run_time if job else None,
         "collector_running": collector.running,

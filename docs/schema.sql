@@ -18,8 +18,17 @@ CREATE TABLE IF NOT EXISTS raw.ingestion_batches (
     request_count       integer NOT NULL DEFAULT 0 CHECK (request_count >= 0),
     record_count        integer NOT NULL DEFAULT 0 CHECK (record_count >= 0),
     status              text NOT NULL CHECK (status IN ('running','succeeded','partial','failed')),
-    error_summary       text
+    error_summary       text,
+    report              jsonb NOT NULL DEFAULT '{}'::jsonb
 );
+
+ALTER TABLE raw.ingestion_batches
+    ADD COLUMN IF NOT EXISTS report jsonb NOT NULL DEFAULT '{}'::jsonb;
+
+CREATE INDEX IF NOT EXISTS idx_ingestion_batches_source_resource_finished
+    ON raw.ingestion_batches (source_name, resource_type, finished_at_utc DESC);
+CREATE INDEX IF NOT EXISTS idx_ingestion_batches_source_resource_started
+    ON raw.ingestion_batches (source_name, resource_type, started_at_utc DESC, batch_id DESC);
 
 CREATE TABLE IF NOT EXISTS raw.source_payloads (
     payload_id          bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,

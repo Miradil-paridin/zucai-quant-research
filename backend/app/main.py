@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from contextlib import asynccontextmanager
 from datetime import UTC, date, datetime, timedelta
 from uuid import uuid4
@@ -7,9 +8,11 @@ from zoneinfo import ZoneInfo
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from psycopg import InterfaceError, OperationalError
 
 from .collector import CollectorBusyError, collector
-from .database import database_health, initialize_database
+from .collector_runtime import load_runtime_state
+from .database import PROJECT_ROOT, database_health, initialize_database
 from .data_sources import configured_providers
 from .demo_data import BACKTEST, MATCHES, OPS
 from .historical.repository import historical_repository
@@ -24,10 +27,17 @@ from .scheduler import scheduler_status, start_scheduler, stop_scheduler
 from .schemas import MatchSummary, WatchlistRequest, WatchlistResponse
 
 
+logger = logging.getLogger(__name__)
+
+
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    initialize_database()
-    start_scheduler()
+    try:
+        initialize_database()
+    except (OperationalError, InterfaceError):
+        logger.exception("Database initialization failed; API is starting in degraded mode")
+    else:
+        start_scheduler()
     yield
     stop_scheduler()
 
@@ -68,17 +78,44 @@ def health() -> dict[str, object]:
 
 @app.get("/api/ingestion/status")
 def ingestion_status() -> dict[str, object]:
-    return {"scheduler": scheduler_status(), "storage": repository.stats()}
+    database = database_health()
+    storage: dict[str, object] = {"available": False, "counts": {}, "latest_batches": []}
+    if database["status"] == "ok":
+        try:
+            storage = {"available": True, **repository.stats()}
+        except (OperationalError, InterfaceError) as error:
+            database = {"status": "error", "message": str(error)[:180]}
+        except Exception as error:
+            storage = {
+                "available": False,
+                "counts": {},
+                "latest_batches": [],
+                "error": f"{type(error).__name__}: {error}"[:180],
+            }
+    runtime_dir = PROJECT_ROOT / "output" / "runtime"
+    return {
+        "database": database,
+        "scheduler": scheduler_status(),
+        "storage": storage,
+        "odds_collectors": {
+            "jingcai": load_runtime_state(runtime_dir / "jingcai_collector.state.json"),
+            "consensus": load_runtime_state(runtime_dir / "consensus_collector.state.json"),
+        },
+    }
 
 
 @app.get("/api/historical/status")
 def historical_status() -> dict[str, object]:
-    return {
+    response: dict[str, object] = {
         "source": "football-data.co.uk",
         "storage": "postgresql",
         "provenance": "raw CSV + SHA-256 + source URL + parser validation report",
-        **historical_repository.stats(),
     }
+    try:
+        response.update({"available": True, **historical_repository.stats()})
+    except Exception as error:
+        response.update({"available": False, "totals": {}, "error": str(error)[:180]})
+    return response
 
 
 @app.get("/api/historical/matches")
@@ -135,6 +172,8 @@ async def run_ingestion(days: int = Query(default=7, ge=1, le=7)) -> dict[str, o
         return await collector.run(days=days)
     except CollectorBusyError as error:
         raise HTTPException(status_code=409, detail=str(error)) from error
+    except (OperationalError, InterfaceError) as error:
+        raise HTTPException(status_code=503, detail="PostgreSQL is unavailable") from error
 
 
 @app.get("/api/fixtures")

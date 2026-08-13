@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo
 
 import httpx
 
+from .database import connect
 from .data_sources import API_FOOTBALL_URL, FOOTBALL_DATA_URL, normalize_api_football, normalize_football_data
 from .localization import is_supported_competition
 from .repository import Repository, repository
@@ -33,6 +34,9 @@ class IngestionCollector:
             return await self._run(days=max(1, min(days, 7)))
 
     async def _run(self, *, days: int) -> dict[str, Any]:
+        # Fail closed before touching provider quotas when durable storage is down.
+        with connect() as connection:
+            connection.execute("SELECT 1")
         started_at = datetime.now(UTC)
         local_today = datetime.now(ZoneInfo("Asia/Shanghai")).date()
         end_date = local_today + timedelta(days=days - 1)

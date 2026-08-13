@@ -464,6 +464,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--cyan); outline-
 .concentration-bar { --value: 50%; display: block; width: 100%; max-width: 130px; height: 3px; background: linear-gradient(90deg, var(--cyan) var(--value), rgba(255,255,255,.04) var(--value)); border-radius: 4px; }
 
 .ops-summary { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--line); }
+.ops-summary.collector-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .ops-summary > div { display: grid; grid-template-columns: 24px 1fr; padding: 22px 18px; border-right: 1px solid var(--line); }
 .ops-summary > div:first-child { padding-left: 0; }
 .ops-summary > div:last-child { border-right: 0; }

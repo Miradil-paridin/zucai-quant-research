@@ -2,8 +2,11 @@ import asyncio
 from datetime import date
 
 import httpx
+import pytest
 from fastapi.testclient import TestClient
 
+import app.collector as collector_module
+import app.main as main_module
 from app.main import app
 from app.collector import IngestionCollector
 from app.data_sources import fetch_api_football, normalize_api_football, normalize_football_data
@@ -20,6 +23,61 @@ def test_health(monkeypatch) -> None:
     response = client.get("/api/health")
     assert response.status_code == 200
     assert response.json()["mode"] == "demo"
+
+
+def test_ingestion_status_degrades_cleanly_when_database_is_down(monkeypatch) -> None:
+    monkeypatch.setattr(
+        main_module,
+        "database_health",
+        lambda: {"status": "error", "message": "connection timeout"},
+    )
+    monkeypatch.setattr(
+        repository,
+        "stats",
+        lambda: (_ for _ in ()).throw(AssertionError("stats must not run while DB is down")),
+    )
+
+    response = client.get("/api/ingestion/status")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["database"]["status"] == "error"
+    assert payload["storage"] == {"available": False, "counts": {}, "latest_batches": []}
+
+
+def test_ingestion_status_does_not_misdiagnose_a_stats_bug_as_db_down(monkeypatch) -> None:
+    monkeypatch.setattr(main_module, "database_health", lambda: {"status": "ok"})
+    monkeypatch.setattr(
+        repository,
+        "stats",
+        lambda: (_ for _ in ()).throw(KeyError("unexpected result shape")),
+    )
+
+    payload = client.get("/api/ingestion/status").json()
+
+    assert payload["database"]["status"] == "ok"
+    assert payload["storage"]["available"] is False
+    assert "KeyError" in payload["storage"]["error"]
+
+
+def test_ingestion_fails_before_provider_calls_when_database_is_down(monkeypatch) -> None:
+    provider_called = False
+
+    def fail_connect():
+        raise RuntimeError("database unavailable")
+
+    async def unexpected_provider_call(*_args, **_kwargs):
+        nonlocal provider_called
+        provider_called = True
+        return {}
+
+    collector = IngestionCollector()
+    monkeypatch.setattr(collector_module, "connect", fail_connect)
+    monkeypatch.setattr(collector, "_api_football_quota", unexpected_provider_call)
+
+    with pytest.raises(RuntimeError, match="database unavailable"):
+        asyncio.run(collector._run(days=1))
+    assert provider_called is False
 
 
 def test_match_probabilities_are_valid() -> None:

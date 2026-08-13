@@ -135,6 +135,16 @@ Fiorentina–Inter 的半场聚合源冲突依据俱乐部官方比赛中心复�
 - 调度前读取账户剩余额度；额度不足时停止增强数据请求。额度接口
   不可用时采取 fail-closed，剩余额度按 0 处理，不猜测还有 100 次。
 
+竞彩官方赔率与 The Odds API 国际共识赔率使用
+`scripts/collect_jingcai_odds.py`、`scripts/collect_consensus_odds.py` 两个一次性脚本，
+不属于上述进程内调度器。若由 Windows 计划任务周期启动，任务的启用状态仍由
+Windows 管理；运维页只展示脚本最近一次运行结果，不能据此判断计划任务是否启用。
+
+共识赔率按成功采集批次门控：临近停售时默认最短间隔 3 小时，否则最多每天心跳一次；
+失败后默认退避 3 小时。月度请求硬预算默认 400 次，并为数据源账户保留 100 次额度，
+可通过 `ODDS_API_MONTHLY_REQUEST_BUDGET` 与 `ODDS_API_QUOTA_RESERVE` 调整；将月度预算设为
+`0` 可关闭外部共识赔率请求。数据库不可用时两个脚本均先退避，不访问外部数据源。
+
 ## 幂等与时间
 
 - 原始响应以 `source + resource_type + payload_hash` 去重。

@@ -146,6 +146,12 @@ def _upsert_match(connection: Any, match: dict[str, Any]) -> int:
         ON CONFLICT (official_match_id) DO UPDATE
         SET last_seen_at_utc = now(),
             match_num_str = EXCLUDED.match_num_str,
+            league_code = EXCLUDED.league_code,
+            league_name = EXCLUDED.league_name,
+            home_team = EXCLUDED.home_team,
+            away_team = EXCLUDED.away_team,
+            match_date_local = EXCLUDED.match_date_local,
+            match_time_local = EXCLUDED.match_time_local,
             sell_end_local = EXCLUDED.sell_end_local,
             raw_payload = EXCLUDED.raw_payload
         RETURNING jc_match_id
