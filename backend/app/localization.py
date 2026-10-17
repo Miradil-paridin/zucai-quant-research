@@ -23,6 +23,8 @@ COUNTRY_CODES = {
 }
 
 COMPETITIONS_ZH = {
+    ("Europe", "UEFA Champions League"): "欧洲冠军联赛",
+    ("World", "UEFA Champions League"): "欧洲冠军联赛",
     ("England", "Premier League"): "英格兰超级联赛",
     ("England", "Championship"): "英格兰冠军联赛",
     ("Spain", "La Liga"): "西班牙甲级联赛",
@@ -66,6 +68,8 @@ COMPETITIONS_ZH = {
 # 项目需求边界：五大联赛，加上三个北欧顶级联赛。使用国家与赛事名
 # 联合判断，避免把其他国家同名的 Premier League / Serie A 混入。
 SUPPORTED_COMPETITIONS = {
+    ("Europe", "UEFA Champions League"),
+    ("World", "UEFA Champions League"),
     ("England", "Premier League"),
     ("Spain", "La Liga"),
     ("Spain", "Primera Division"),
@@ -79,6 +83,8 @@ SUPPORTED_COMPETITIONS = {
 }
 
 COMPETITION_CODES = {
+    ("Europe", "UEFA Champions League"): "CL",
+    ("World", "UEFA Champions League"): "CL",
     ("England", "Premier League"): "PL",
     ("Spain", "La Liga"): "PD",
     ("Spain", "Primera Division"): "PD",
@@ -92,6 +98,21 @@ COMPETITION_CODES = {
 }
 
 TEAMS_ZH = {
+    # football-data.org 欧冠源名称；统一到竞彩全名，供跨源精确关联。
+    "Club Brugge KV": "布鲁日", "Aston Villa FC": "阿斯顿维拉",
+    "PAE AEK": "雅典AEK", "LASK Linz": "LASK林茨",
+    "Real Madrid CF": "皇家马德里", "FC Internazionale Milano": "国际米兰",
+    "FC Porto": "波尔图", "Manchester City FC": "曼彻斯特城",
+    "Villarreal CF": "比利亚雷亚尔", "Lille OSC": "里尔",
+    "Real Betis Balompié": "皇家贝蒂斯", "Feyenoord Rotterdam": "费耶诺德",
+    "Viking FK": "维京", "Club Atlético de Madrid": "马德里竞技",
+    "Paris Saint-Germain FC": "巴黎圣日尔曼", "ŠK Slovan Bratislava": "布拉迪斯拉发",
+    "Sporting Clube de Portugal": "里斯本竞技", "Galatasaray SK": "加拉塔萨雷",
+    "Fenerbahçe SK": "费内巴切", "PSV": "埃因霍温",
+    "FK Shakhtar Donetsk": "顿涅茨克矿工", "FK Bodø/Glimt": "博德闪耀",
+    "Manchester United FC": "曼彻斯特联", "Sabah FK": "萨巴赫",
+    "Como 1907": "科莫", "SK Slavia Praha": "布拉格斯拉维亚",
+    "Racing Club de Lens": "朗斯", "SSC Napoli": "那不勒斯",
     # 英格兰
     "Arsenal": "阿森纳", "Arsenal FC": "阿森纳", "Aston Villa": "阿斯顿维拉",
     "Chelsea": "切尔西", "Liverpool": "利物浦", "Liverpool FC": "利物浦",
@@ -108,7 +129,7 @@ TEAMS_ZH = {
     "Sevilla": "塞维利亚", "Valencia": "瓦伦西亚", "Girona": "赫罗纳",
     # 德国
     "Bayern Munich": "拜仁慕尼黑", "FC Bayern München": "拜仁慕尼黑", "Borussia Dortmund": "多特蒙德",
-    "RB Leipzig": "RB莱比锡", "Bayer Leverkusen": "勒沃库森", "Eintracht Frankfurt": "法兰克福",
+    "RB Leipzig": "莱比锡红牛", "Bayer Leverkusen": "勒沃库森", "Eintracht Frankfurt": "法兰克福",
     "VfB Stuttgart": "斯图加特", "SC Freiburg": "弗赖堡", "VfL Wolfsburg": "沃尔夫斯堡",
     # 意大利
     "Inter": "国际米兰", "Inter Milan": "国际米兰", "AC Milan": "AC米兰", "Juventus": "尤文图斯",

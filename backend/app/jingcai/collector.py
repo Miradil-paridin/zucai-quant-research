@@ -180,7 +180,7 @@ def _upsert_match(connection: Any, match: dict[str, Any]) -> int:
 def _insert_snapshot_if_changed(connection: Any, jc_match_id: int, row: dict[str, Any]) -> bool:
     latest = connection.execute(
         """
-        SELECT content_hash FROM jingcai.jc_odds_snapshots
+        SELECT jc_snapshot_id, content_hash FROM jingcai.jc_odds_snapshots
         WHERE jc_match_id = %s AND pool_code = %s
         ORDER BY captured_at_utc DESC, jc_snapshot_id DESC
         LIMIT 1
@@ -188,6 +188,15 @@ def _insert_snapshot_if_changed(connection: Any, jc_match_id: int, row: dict[str
         (jc_match_id, row["pool_code"]),
     ).fetchone()
     if latest and latest["content_hash"] == row["content_hash"]:
+        connection.execute(
+            """
+            UPDATE jingcai.jc_odds_snapshots
+            SET last_observed_at_utc = now(),
+                observation_times_utc = array_append(observation_times_utc, now())
+            WHERE jc_snapshot_id = %s
+            """,
+            (latest["jc_snapshot_id"],),
+        )
         return False
     connection.execute(
         """

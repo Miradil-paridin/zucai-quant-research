@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: zucai_local_dev
       TZ: UTC
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - zucai_postgres_data:/var/lib/postgresql/data
       - ./docs/schema.sql:/docker-entrypoint-initdb.d/001-schema.sql:ro

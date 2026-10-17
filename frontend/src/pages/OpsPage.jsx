@@ -13,10 +13,19 @@ const timeFormatter = new Intl.DateTimeFormat('zh-CN', {
 })
 
 const resourceNames = {
+  ucl_backfill: '欧冠赛程与赛果补齐',
   fixtures: '赛程主数据',
   injuries: '伤停快照',
   odds: '1X2 赔率快照',
   fixture_bundle: '赛中/赛后详情',
+}
+
+const qualityNames = {
+  core_future_fixture_coverage: '未来赛程覆盖', core_stale_live_status: '赛中状态及时性',
+  jingcai_odds_freshness: '竞彩赔率更新', consensus_odds_freshness: '国际赔率更新',
+  jingcai_result_freshness: '竞彩赛果更新', jingcai_consensus_link_coverage: '近期比赛关联',
+  ucl_consensus_link_coverage: '欧冠球队关联', ucl_prematch_alignment: '欧冠赛前赔率对齐',
+  repricing_report_freshness: '分析报告更新',
 }
 
 const collectorStatusNames = {
@@ -78,9 +87,10 @@ export function OpsPage() {
 
   const loadStatus = useCallback(async () => {
     try {
-      const [ingestionResponse, historicalResponse] = await Promise.all([
+      const [ingestionResponse, historicalResponse, repricingResponse] = await Promise.all([
         fetch('/api/ingestion/status'),
         fetch('/api/historical/status'),
+        fetch('/api/research/repricing/latest'),
       ])
       if (!ingestionResponse.ok) throw new Error(`采集状态接口返回 ${ingestionResponse.status}`)
       if (!historicalResponse.ok) throw new Error(`历史状态接口返回 ${historicalResponse.status}`)
@@ -88,7 +98,8 @@ export function OpsPage() {
         ingestionResponse.json(),
         historicalResponse.json(),
       ])
-      setData({ ...ingestion, historical })
+      const repricing = repricingResponse.ok ? await repricingResponse.json() : { available: false }
+      setData({ ...ingestion, historical, repricing })
       setError('')
     } catch (requestError) {
       setError(requestError.message || '无法读取采集状态')
@@ -132,6 +143,15 @@ export function OpsPage() {
   const collectorRunning = Boolean(data?.scheduler?.collector_running)
   const jingcaiCollector = data?.odds_collectors?.jingcai || {}
   const consensusCollector = data?.odds_collectors?.consensus || {}
+  const repricingCollector = data?.collectors?.repricing || {}
+  const analysis = data?.repricing?.result
+  const ucl = useMemo(() => {
+    const all = (analysis?.match_coverage || []).filter((row) => row.league === '欧洲冠军联赛')
+    const latest = all.map((row) => row.date).sort().at(-1)
+    if (!latest) return []
+    const earliest = new Date(new Date(`${latest}T00:00:00Z`).getTime() - 6 * 86400000).toISOString().slice(0, 10)
+    return all.filter((row) => row.date >= earliest)
+  }, [analysis])
   const databaseMessage = data && !databaseAvailable ? data?.database?.message || 'PostgreSQL 连接不可用' : ''
   const storageMessage = data && databaseAvailable && !storageAvailable
     ? data?.storage?.error || '采集统计暂不可用'
@@ -191,7 +211,35 @@ export function OpsPage() {
         <div className="ops-summary collector-summary">
           <div><RefreshCw size={18} /><span>竞彩脚本最近状态</span><strong>{collectorStatusNames[jingcaiCollector.last_status] || '尚无状态'}</strong><small>{collectorDetail(jingcaiCollector)}</small></div>
           <div><RefreshCw size={18} /><span>共识脚本最近状态</span><strong>{collectorStatusNames[consensusCollector.last_status] || '尚无状态'}</strong><small>{collectorDetail(consensusCollector)}</small></div>
+          <div><RefreshCw size={18} /><span>价差分析最近状态</span><strong>{collectorStatusNames[repricingCollector.last_status] || '尚无状态'}</strong><small>{collectorDetail(repricingCollector)}</small></div>
         </div>
+
+        <section className="source-health">
+          <div className="section-heading"><div><span>欧冠数据覆盖</span><h3>最近一个比赛窗口</h3></div>
+            <small>{analysis?.generated_at_utc ? timeFormatter.format(new Date(analysis.generated_at_utc)) : '尚无分析报告'}{data?.repricing?.stale ? ' · 报告已过期' : ''}</small>
+          </div>
+          <div className="ops-summary">
+            <div><Database size={18} /><span>竞彩比赛</span><strong>{ucl.length || '—'}</strong><small>竞彩覆盖不等于完整欧冠赛程</small></div>
+            <div><Check size={18} /><span>双方队名已关联</span><strong>{ucl.length ? ucl.filter((row) => row.provider_event_id).length : '—'}</strong><small>同一赛事、开赛时间及球队核对</small></div>
+            <div><Database size={18} /><span>胜平负市场样本</span><strong>{ucl.length ? ucl.filter((row) => row.status !== 'no_had_snapshots').length : '—'}</strong><small>只有让球赔率的比赛不计入</small></div>
+            <div><Check size={18} /><span>赛前有效对比</span><strong>{ucl.length ? ucl.filter((row) => row.aligned_pairs > 0).length : '—'}</strong><small>仅使用停售前可证明的报价</small></div>
+          </div>
+          <p>未采到的历史赛前赔率不会补造。价差信号是研究样本，不能直接视为命中率或收益。</p>
+        </section>
+
+        <section className="source-health">
+          <div className="section-heading"><div><span>数据质量</span><h3>最新检查结果</h3></div></div>
+          <div className="source-list">{(data?.storage?.data_quality || []).map((check) => (
+            <div className="source-row" key={check.check_name}>
+              <span className={`source-status ${check.status === 'pass' ? '' : 'warning'}`} />
+              <div><strong>{qualityNames[check.check_name] || check.check_name}</strong><small>{check.checked_at_utc ? timeFormatter.format(new Date(check.checked_at_utc)) : ''}</small></div>
+              <div><span>实测值</span><strong>{check.metric_value == null ? '缺失' : Number(check.metric_value).toFixed(2)}</strong></div>
+              <div><span>参考阈值</span><strong>{Number(check.threshold_value).toFixed(2)}</strong></div>
+              <div className="health-line"><i style={{ width: check.status === 'pass' ? '100%' : '35%' }} /></div>
+              <span className={`status-label ${check.status === 'pass' ? '' : 'warning'}`}>{({ pass: '通过', warn: '需关注', fail: '失败' })[check.status]}</span>
+            </div>
+          ))}</div>
+        </section>
 
         <div className="ops-summary">
           <div><Database size={18} /><span>原始响应</span><strong>{storageAvailable ? (counts.raw_payloads ?? 0) : '—'}</strong><small>{storageAvailable ? '不可变 API payload' : '统计不可用'}</small></div>

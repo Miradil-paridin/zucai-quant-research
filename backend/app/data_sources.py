@@ -91,7 +91,17 @@ def normalize_api_football(item: dict[str, Any]) -> dict[str, Any]:
             "crest": teams["away"].get("logo"),
         },
         "score": {"home": goals.get("home"), "away": goals.get("away")},
+        "regulation_score": (item.get("score") or {}).get("fulltime") or {},
+        "result_duration": "REGULAR" if (fixture.get("status") or {}).get("short") == "FT" else (fixture.get("status") or {}).get("short"),
     }
+
+
+def football_data_area(item: dict[str, Any]) -> str | None:
+    return (item.get("area") or (item.get("competition") or {}).get("area") or {}).get("name")
+
+
+def supported_football_data(item: dict[str, Any]) -> bool:
+    return is_supported_competition(football_data_area(item), (item.get("competition") or {}).get("name", ""))
 
 
 def normalize_football_data(item: dict[str, Any]) -> dict[str, Any]:
@@ -99,7 +109,7 @@ def normalize_football_data(item: dict[str, Any]) -> dict[str, Any]:
     home = item["homeTeam"]
     away = item["awayTeam"]
     full_time = (item.get("score") or {}).get("fullTime") or {}
-    country = (competition.get("area") or {}).get("name")
+    country = football_data_area(item)
     competition_name = competition.get("name") or "Unknown competition"
     home_name = home.get("name") or home.get("shortName")
     away_name = away.get("name") or away.get("shortName")
@@ -117,7 +127,12 @@ def normalize_football_data(item: dict[str, Any]) -> dict[str, Any]:
         "country_original": country,
         "round": localize_round(round_name),
         "round_original": round_name,
-        "season_label": str(season.get("startDate", "unknown"))[:4],
+        "season_label": (
+            str(season["startDate"])[:4] + "/" + str(season["endDate"])[2:4]
+            if season.get("startDate") and season.get("endDate")
+            and str(season["startDate"])[:4] != str(season["endDate"])[:4]
+            else str(season.get("startDate", "unknown"))[:4]
+        ),
         "season_start": season.get("startDate"),
         "season_end": season.get("endDate"),
         "kickoff_utc": item["utcDate"],
@@ -141,6 +156,8 @@ def normalize_football_data(item: dict[str, Any]) -> dict[str, Any]:
             "crest": away.get("crest"),
         },
         "score": {"home": full_time.get("home"), "away": full_time.get("away")},
+        "regulation_score": full_time if (item.get("score") or {}).get("duration") == "REGULAR" else (item.get("score") or {}).get("regularTime") or {},
+        "result_duration": (item.get("score") or {}).get("duration"),
     }
 
 
@@ -189,10 +206,7 @@ async def fetch_football_data(client: httpx.AsyncClient, date_from: date, date_t
     return [
         normalize_football_data(item)
         for item in response.json().get("matches", [])
-        if is_supported_competition(
-            ((item.get("competition") or {}).get("area") or {}).get("name"),
-            (item.get("competition") or {}).get("name", ""),
-        )
+        if supported_football_data(item)
     ]
 
 

@@ -1,40 +1,76 @@
-# 五大联赛量化研究台
+# 足彩量化研究台 · Football Quant Research Desk
 
-一个面向足球量化研究者的可审计决策系统。项目以 `deep-research-report.md` 为唯一需求来源，当前首版聚焦：
+**中文** · [English](README.en.md)
 
-- 五大联赛比赛、阵容、球员表现、伤停与赔率数据的统一沉淀。
-- 球员位置评分与球队攻防强度聚合。
-- 赛前胜平负概率、市场隐含概率与价值差对比。
-- 时间序列回测、模拟下注、CLV 与回撤监控。
-- 数据质量、模型版本和每次预测的完整审计链路。
+> **项目已封存（2026-10-18）。** 结论：在公开数据和竞彩约 88% 的返奖率下，**没有找到可实盘的正期望边际**。
+> 本仓库是一份可审计的研究记录，**不是投注工具，也不构成任何投注建议**。完整结论见 [docs/final-report.md](docs/final-report.md)。
+
+## 这是什么
+
+一个面向足球量化研究的本地全栈系统，用来回答一个问题：**能不能用数据在竞彩足球上长期赚钱？**
+
+它做了三件事：
+
+1. **自建概率模型**：滚动 Poisson / Dixon-Coles + 射门特征 + 温度校准，在严格防泄漏的 walk-forward 回测里与博彩市场比较。
+2. **历史价差回测**：把 2015–2026 年竞彩官方停售赔率与国际封盘共识逐场配对（7,051 场），检验跨市场价差。
+3. **实时调价滞后检验**：每 10 分钟采集竞彩赔率、按需采集国际锐利庄家（Pinnacle 等）赔率，全部带时间戳，检验“竞彩调价慢于国际市场”是否会产生可下注的错价。
+
+## 结论速览
+
+| 路线 | 结果 |
+|---|---|
+| 自建模型 v1–v3 | 校准良好（ECE≈0.014），但 Brier/LogLoss 均逊于市场；允许与开盘赔率任意混合时，最优权重为 **100% 市场 / 0% 模型** |
+| 竞彩 vs 国际封盘（历史 7,051 场） | 竞彩抽水 13.5%；EV>2% 的 ROI +6% 但 t<1，EV>5% 反而 -8.3% |
+| 实时滞后检验（2.5 个月，1,593 组对齐价格） | 全部方向 EV 均值 -10.7%；12 个信号账面盈利但标准误 ±81%；表观边际在封盘前平均回吐 ~3.7 个百分点；多数信号无单关 |
+
+**一句话：预测能做到“和市场一样准”，但抽水约 12%，要赚钱必须比市场准出 12% 以上——这是结构性的，不是再多研究几个月能补上的。**
+
+## 技术栈
+
+- **后端**：Python 3.14 · FastAPI · psycopg 3 · APScheduler · curl_cffi
+- **数据库**：PostgreSQL 16（Docker），`raw` → `core` 分层，原始响应与 SHA-256 指纹全部留档
+- **前端**：React 19 · Vite · ECharts（比赛中心、回测、赛前参考、数据运维等页面）
+- **测试**：pytest（141 通过）、前端 smoke 测试
+
+## 数据来源
+
+| 来源 | 用途 | 是否需要密钥 |
+|---|---|---|
+| football-data.co.uk | 1993/94–2025/26 五大联赛及北欧联赛历史赛果与赔率 | 否 |
+| football-data.org | 赛程、比分、跨来源核验 | 是 |
+| API-Football | 赛程、阵容、伤停、事件 | 是 |
+| The Odds API | 国际庄家实时 1X2 赔率 | 是 |
+| 中国体育彩票竞彩官网 | 竞彩在售赔率与开奖结果 | 否（需中国大陆出口 IP） |
+
+历史库合计 68,697 场比赛、848,390 条赔率；2024/25 五大联赛 1,752 场完成双源比分核验。
 
 ## 项目结构
 
 ```text
-backend/            FastAPI 服务、真实赛程聚合、历史查询与概率回测
+backend/            FastAPI 服务、采集器、历史库、回测与竞彩分析
+  app/historical/   football-data.co.uk 与北欧历史数据导入
+  app/research/     滚动 Poisson/DC 模型与 walk-forward 回测
+  app/jingcai/      竞彩采集、国际共识采集、价差与调价滞后分析
+  app/reference/    赛前参考页（市场去水概率 + 赛前/赛后留档）
+  scripts/          一次性采集、导入、回测脚本
+  tests/            pytest
 frontend/           React + Vite + ECharts 数据驾驶舱
-docs/               架构、数据库、页面与 API 设计
-data/historical/    供应商官网历史 CSV 缓存与机器审计清单（原文件不改写）
-deep-research-report.md
+docs/               架构、数据库 schema、回测报告、终结报告
+scripts/            历史数据审计脚本与终结审计 final_live_audit.py
+data/source_samples 跨来源核验的哈希固定样本（不含任何密钥）
 ```
 
 ## 本地运行
 
-数据库（首次运行会自动创建 PostgreSQL 16 数据卷并执行 `docs/schema.sql`）：
+### 1. 数据库
 
 ```powershell
 docker compose up -d postgres
 ```
 
-前端：
+首次启动会自动执行 `docs/schema.sql`。`docker-compose.yml` 中的数据库口令仅供本机开发，端口只绑定 `127.0.0.1`；如需对外暴露请自行修改口令。
 
-```powershell
-cd frontend
-npm install
-npm run dev -- --port 5174
-```
-
-后端：
+### 2. 后端
 
 ```powershell
 cd backend
@@ -42,132 +78,57 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 Copy-Item .env.example .env
-# 在 .env 中填写 API_FOOTBALL_API_KEY 与 FOOTBALL_DATA_API_KEY
+# 在 .env 中填写你自己的 API_FOOTBALL_API_KEY、FOOTBALL_DATA_API_KEY、ODDS_API_KEY
 uvicorn app.main:app --reload --port 8000
 ```
 
-比赛中心通过 `/api/fixtures` 展示 API-Football 与 football-data.org 的真实赛程，
-并可通过 `/api/historical/matches` 浏览已审计的真实历史比赛。球队页已切换为
-真实赛果滚动基线，回测页已切换为真实 walk-forward 概率评估；球员页因缺少
-足够的历史球员数据，仍保留明确隔离的示例内容。密钥仅保存在 `backend/.env`，
-该文件已被 `.gitignore` 排除。
+**密钥只放在 `backend/.env`，该文件已被 `.gitignore` 排除，仓库中不包含任何真实密钥。**
 
-真实赛程的业务范围硬限制为：英超、西甲、德甲、意甲、法甲、瑞典超级联赛、挪威超级联赛和芬兰超级联赛。页面查询未来 7 天；受 API-Football 免费套餐限制，该来源当前只补充当天比赛，未来比赛由 football-data.org 的免费覆盖范围补充。
+### 3. 前端
 
-## 采集与持久化
+```powershell
+cd frontend
+npm install
+npm run dev -- --port 5174
+```
 
-- 后端进程内调度器每 3 小时执行一次 API-Football/football-data.org 配额感知采集。
-- 竞彩与国际共识赔率由独立的一次性脚本采集；Windows 计划任务如有配置，需在系统中单独启停。
-- 赛程原始响应、伤停、赔率以及赛中/赛后详情先写入 `raw`，再标准化到 `core`。
-- 伤停最短 12 小时刷新一次，赔率最短 6 小时刷新一次。
-- 距离开赛不足 90 分钟、比赛进行中或已结束时，补拉阵容、事件和球员比赛统计。
-- 比赛页面只读取 PostgreSQL，不因刷新页面额外消耗第三方 API 次数。
-- 数据运维页可查看真实表计数、批次状态并手动触发采集。
-
-五大联赛历史底座（默认 2021/22–2025/26）：
+### 4. 常用脚本
 
 ```powershell
 cd backend
+# 导入五大联赛历史（默认 2021/22–2025/26；加 --all-history 回填 1993/94 起）
 .\.venv\Scripts\python.exe scripts\import_historical.py
-```
-
-回填已验证可下载范围 1993/94–2025/26（五大联赛共 165 个源文件）：
-
-```powershell
-.\.venv\Scripts\python.exe scripts\import_historical.py --all-history
-```
-
-该任务从 football-data.co.uk 官网的公开 CSV 直链下载真实赛果与历史赔率。
-每份文件保存来源 URL、HTTP Last-Modified、SHA-256、原始行和校验报告；
-比分与赛果冲突、重复比赛以及不合法赔率不会进入标准化表。可通过
-`GET /api/historical/status` 查看已入库覆盖。
-
-对 2024/25 五大联赛执行哈希固定的跨来源核验，并导入已验证球队别名：
-
-```powershell
-.\.venv\Scripts\python.exe scripts\apply_cross_source_validation.py
-.\.venv\Scripts\python.exe scripts\import_team_aliases.py
-```
-
-跨来源报告逐场对照 football-data.org；OpenFootball 和俱乐部/联赛官方页面
-仅作为附加证据。程序不会用“多数票”覆盖主源，更不会补造缺失比分、半场或
-统计。原始证据、来源 URL 和文件哈希保存在 `data/source_samples`，认证密钥
-不会写入这些文件。
-
-当前本地历史快照已经完成全范围回填：
-
-- 1993/94–2025/26，五大联赛 33 个赛季、165 个哈希固定源文件。
-- 59,079 场比赛、818,368 条规范化赔率；18 个非法源赔率单元已隔离。
-- 2024/25 共 1,752 场完成跨来源全场比分核验；其余赛季诚实保留
-  `unverified`，不会冒充双源验证。
-- 独立审计结论 `PASS_WITH_WARNINGS`、P0 为 0，详见
-  `docs/historical-database-final-audit.md`。
-
-次级 Nordic 底座也已按独立审查结论入库：
-
-- 芬超、挪超、瑞超 2012–2026，共 9,618 场和 30,022 条 closing 1X2 赔率。
-- 官网未说明 `Time` 的时区，数据库明确保存为 `unknown`，不转换为 UTC。
-- 2025-07-23 后 252 组 Pinnacle 赔率及 1 场结构冲突中的 2 组市场聚合赔率
-  已隔离；原始值仍可通过 `raw_row` 追溯。
-- 当前历史库合计 168 个源文件、68,697 场、848,390 条赔率。
-
-## 真实概率回测
-
-运行固定配置、可幂等复现的五大联赛历史回测：
-
-```powershell
-cd backend
+# 运行可复现的历史概率回测
 .\.venv\Scripts\python.exe scripts\run_historical_backtest.py
+# 竞彩 vs 国际封盘价差回测
+.\.venv\Scripts\python.exe scripts\run_jc_spread_backtest.py
+# 实时调价滞后终结审计
+.\.venv\Scripts\python.exe ..\scripts\final_live_audit.py
+# 测试
+.\.venv\Scripts\python.exe -m pytest -q
 ```
 
-当前 `rolling-poisson-dc-v1` 使用 2019-07-01 起的历史作为滚动训练底座，
-对 2024/25 五大联赛 1,750 场跨来源核验的正常完赛逐日样本外预测。每个比赛日
-先统一预测、后统一更新结果，因此同日比赛互相不可见；2 场判定比赛被排除，
-历史赔率也不进入模型特征。
+不要使用 `docker compose down -v`，它会删除数据库数据卷。
 
-首轮真实结果：
+## 研究原则
 
-- 模型 Brier：0.196524；封盘市场参考 Brier：0.190117。
-- 模型 Log Loss：0.989187；封盘市场参考：0.960222。
-- ECE：0.015424。
-- 1,750 条预测已持久化，全部赛果均经跨来源核验，日期截止约束违规数为 0。
-- 输入比赛、赔率、实现代码和预测内容分别保存 SHA-256 指纹；重复运行幂等。
+- **防泄漏**：每场预测只用更早日期的数据；同日比赛先统一预测、后统一更新。
+- **不造数据**：缺失的比分、赔率时间戳一律标记为缺失；没有逐条采集时间的历史赔率不用于 ROI/CLV。
+- **如实报告**：模型逊于市场就写逊于市场，不生成虚假盈利曲线。
+- **可复现**：输入数据、实现代码、预测结果均有 SHA-256 指纹。
 
-当前基线略逊于市场，系统会原样展示。由于历史 opening/closing 赔率没有逐条
-采集时间证明，ROI、CLV 和最大回撤保持 `null`，不会生成虚假盈利曲线。详见
-`docs/backtest-report.md`。
+## 已知问题（封存时未修复）
 
-复现最终数据库审计：
+- 国际赔率采集网关在一次网络失败后会锁死到下个月（详见终结报告）。
+- 竞彩官网 WAF 会拦截境外出口 IP。
 
-```powershell
-.\backend\.venv\Scripts\python.exe scripts\audit_historical_database.py `
-  --output output\historical-database-audit-final.json
-```
+## 文档
 
-Nordic 独立来源报告位于
-`data/source_samples/nordic_source_validation.json`；重复导入使用：
+- [终结报告 / Final report](docs/final-report.md)
+- [回测报告](docs/backtest-report.md)
+- [架构](docs/architecture.md) · [数据字典](docs/data-dictionary.md) · [API](docs/api.md) · [采集](docs/ingestion.md)
+- [赛前参考系统](docs/reference-system.md)
 
-```powershell
-.\backend\.venv\Scripts\python.exe scripts\import_nordic_historical.py --offline
-```
+## 免责声明
 
-手动执行：
-
-```powershell
-Invoke-RestMethod -Method Post http://127.0.0.1:8000/api/ingestion/run?days=7
-```
-
-停止容器不会删除数据：
-
-```powershell
-docker compose stop postgres
-```
-
-不要使用 `docker compose down -v`，该命令会删除 PostgreSQL 数据卷。
-
-## 设计与安全边界
-
-- 赛季初仅采集，不输出真实投注建议。
-- 首版只提供模拟观察与研究判断，不提供真实资金下单。
-- 网页型数据源只用于低频补充和人工校验，生产主链路以授权 API 为准。
-- GPT 仅用于解释已经由数值服务计算出的结构化结果，不参与核心概率计算和风控决策。
+本项目仅用于数据工程与统计研究学习。研究结论明确表明：基于公开数据的竞彩投注期望收益为负。请勿将本项目用于实际投注。

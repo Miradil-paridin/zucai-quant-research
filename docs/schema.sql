@@ -810,12 +810,22 @@ CREATE TABLE IF NOT EXISTS jingcai.jc_odds_snapshots (
     official_update_raw text,                   -- 官方 updateDate+updateTime 原文
     content_hash        text NOT NULL,          -- 赔率内容哈希，用于变更去重
     captured_at_utc     timestamptz NOT NULL DEFAULT now(),
+    last_observed_at_utc timestamptz NOT NULL DEFAULT now(),
     source              text NOT NULL DEFAULT 'webapi.sporttery.cn',
     point_in_time_safe  boolean NOT NULL DEFAULT true
 );
 
 CREATE INDEX IF NOT EXISTS idx_jc_snapshots_match_pool_time
     ON jingcai.jc_odds_snapshots (jc_match_id, pool_code, captured_at_utc DESC);
+
+ALTER TABLE jingcai.jc_odds_snapshots
+    ADD COLUMN IF NOT EXISTS last_observed_at_utc timestamptz;
+UPDATE jingcai.jc_odds_snapshots
+SET last_observed_at_utc = captured_at_utc
+WHERE last_observed_at_utc IS NULL;
+ALTER TABLE jingcai.jc_odds_snapshots
+    ALTER COLUMN last_observed_at_utc SET DEFAULT now(),
+    ALTER COLUMN last_observed_at_utc SET NOT NULL;
 
 -- 国际市场共识赔率快照（价差对照的另一侧；provider 可插拔）
 CREATE TABLE IF NOT EXISTS jingcai.consensus_odds_snapshots (
@@ -833,6 +843,7 @@ CREATE TABLE IF NOT EXISTS jingcai.consensus_odds_snapshots (
     odd_away            numeric(10,4),
     content_hash        text NOT NULL,
     captured_at_utc     timestamptz NOT NULL DEFAULT now(),
+    last_observed_at_utc timestamptz NOT NULL DEFAULT now(),
     point_in_time_safe  boolean NOT NULL DEFAULT true,
     raw_payload         jsonb NOT NULL DEFAULT '{}'::jsonb
 );
@@ -840,8 +851,22 @@ CREATE TABLE IF NOT EXISTS jingcai.consensus_odds_snapshots (
 CREATE INDEX IF NOT EXISTS idx_consensus_snapshots_match_time
     ON jingcai.consensus_odds_snapshots (jc_match_id, bookmaker, captured_at_utc DESC);
 
+-- Retain real unchanged-price observations; first/last alone lose intermediate evidence.
+ALTER TABLE jingcai.jc_odds_snapshots
+    ADD COLUMN IF NOT EXISTS observation_times_utc timestamptz[] NOT NULL DEFAULT '{}';
+ALTER TABLE jingcai.consensus_odds_snapshots
+    ADD COLUMN IF NOT EXISTS observation_times_utc timestamptz[] NOT NULL DEFAULT '{}';
+
 ALTER TABLE jingcai.consensus_odds_snapshots
     ADD COLUMN IF NOT EXISTS sport_key text;
+ALTER TABLE jingcai.consensus_odds_snapshots
+    ADD COLUMN IF NOT EXISTS last_observed_at_utc timestamptz;
+UPDATE jingcai.consensus_odds_snapshots
+SET last_observed_at_utc = captured_at_utc
+WHERE last_observed_at_utc IS NULL;
+ALTER TABLE jingcai.consensus_odds_snapshots
+    ALTER COLUMN last_observed_at_utc SET DEFAULT now(),
+    ALTER COLUMN last_observed_at_utc SET NOT NULL;
 
 -- 竞彩历史赛果与最终固定赔率(开奖公告接口回填; 无逐条时间戳,
 -- 最终赔率≈停售价, point_in_time_safe=false, 仅用于价差回测)

@@ -7,6 +7,111 @@
 from __future__ import annotations
 
 JC_TO_CONSENSUS: dict[str, str] = {
+    # 欧冠：与实际入库的 The Odds API 队名核对（2026-09-21）。
+    "雅典AEK": "AEK Athens",
+    "LASK林茨": "LASK",
+    "布鲁日": "Club Brugge",
+    "阿斯顿维拉": "Aston Villa",
+    "皇家马德里": "Real Madrid",
+    "国际米兰": "Inter Milan",
+    "多特蒙德": "Borussia Dortmund",
+    "比利亚雷亚尔": "Villarreal",
+    "皇家贝蒂斯": "Real Betis",
+    "曼彻斯特城": "Manchester City",
+    "费耶诺德": "Feyenoord",
+    "斯图加特": "VfB Stuttgart",
+    "马德里竞技": "Atlético Madrid",
+    "巴黎圣日尔曼": "Paris Saint Germain",
+    "布拉迪斯拉发": "ŠK Slovan Bratislava",
+    "那不勒斯": "Napoli",
+    "阿森纳": "Arsenal",
+    "里斯本竞技": "Sporting Lisbon",
+    "加拉塔萨雷": "Galatasaray",
+    "费内巴切": "Fenerbahce",
+    "埃因霍温": "PSV Eindhoven",
+    "顿涅茨克矿工": "Shakhtar Donetsk",
+    "拜仁慕尼黑": "Bayern Munich",
+    "曼彻斯特联": "Manchester United",
+    "萨巴赫": "Sabah FK",
+    "科莫": "Como",
+    "莱比锡红牛": "RB Leipzig",
+    "布拉格斯拉维亚": "Slavia Praha",
+    "朗斯": "RC Lens",
+    # 英格兰冠军联赛
+    "斯旺西": "Swansea City",
+    "沃特福德": "Watford",
+    "西汉姆联": "West Ham United",
+    "伍尔弗汉普顿": "Wolverhampton Wanderers",
+    "朴次茅斯": "Portsmouth",
+    "德比郡": "Derby County",
+    "林肯城": "Lincoln City",
+    "布莱克本": "Blackburn Rovers",
+    "普雷斯顿": "Preston North End",
+    "布里斯托尔城": "Bristol City",
+    "谢菲尔德联": "Sheffield United",
+    "博尔顿": "Bolton Wanderers",
+    "伯明翰": "Birmingham City",
+    "南安普敦": "Southampton",
+    "斯托克城": "Stoke City",
+    "诺维奇": "Norwich City",
+    "米尔沃尔": "Millwall",
+    "雷克斯汉姆": "Wrexham AFC",
+    "西布罗姆维奇": "West Bromwich Albion",
+    "查尔顿": "Charlton Athletic",
+    "女王公园巡游者": "Queens Park Rangers",
+    "加的夫城": "Cardiff City",
+    "伯恩利": "Burnley",
+    "米德尔斯堡": "Middlesbrough",
+    # 英格兰超级联赛
+    "纽卡斯尔联": "Newcastle United",
+    "利物浦": "Liverpool",
+    "富勒姆": "Fulham",
+    "切尔西": "Chelsea",
+    # 西班牙甲级联赛
+    "赫塔费": "Getafe",
+    "桑坦德竞技": "Real Racing Club de Santander",
+    "埃尔切": "Elche CF",
+    "巴塞罗那": "Barcelona",
+    "奥萨苏纳": "CA Osasuna",
+    "莱万特": "Levante",
+    "马拉加": "Málaga",
+    "拉科鲁尼亚": "Deportivo La Coruña",
+    # 意大利甲级联赛
+    "弗洛西诺内": "Frosinone",
+    "尤文图斯": "Juventus",
+    "威尼斯": "Venezia",
+    "莱切": "Lecce",
+    "都灵": "Torino",
+    "AC米兰": "AC Milan",
+    "亚特兰大": "Atalanta BC",
+    "萨索洛": "Sassuolo",
+    "博洛尼亚": "Bologna",
+    "拉齐奥": "Lazio",
+    "罗马": "AS Roma",
+    "佛罗伦萨": "Fiorentina",
+    # 葡萄牙超级联赛
+    "圣克拉拉": "Santa Clara",
+    "法马利康": "Famalicão",
+    "波尔图": "FC Porto",
+    "阿罗卡": "Arouca",
+    "吉维森特": "Gil Vicente",
+    "卡萨皮亚": "Casa Pia",
+    # 日本职业联赛
+    "大阪樱花": "Cerezo Osaka",
+    "柏太阳神": "Kashiwa Reysol",
+    "水户蜀葵": "Mito HollyHock",
+    "鹿岛鹿角": "Kashima Antlers",
+    "町田泽维亚": "FC Machida Zelvia",
+    "川崎前锋": "Kawasaki Frontale",
+    # 巴西、瑞典及其他当前覆盖联赛
+    "弗拉门戈": "Flamengo",
+    "米拉索尔": "Mirassol",
+    "米亚尔比": "Mjällby AIF",
+    "佐加顿斯": "Djurgardens IF",
+    "图卢兹": "Toulouse",
+    "里尔": "Lille",
+    "皇家社会": "Real Sociedad",
+    "维戈塞尔塔": "Celta Vigo",
     # 挪威超级联赛
     "博德闪耀": "Bodø/Glimt",
     "利勒斯特罗姆": "Lillestrom",
@@ -70,6 +175,43 @@ JC_TO_CONSENSUS: dict[str, str] = {
     "大田市民": "Daejeon Citizen",
     "光州FC": "Gwangju FC",
 }
+
+
+# Explicit provider spelling variants; never infer team identity by fuzzy odds/name matching.
+CONSENSUS_NAME_VARIANTS = {"FC Porto": {"FC Porto", "Porto"}}
+
+# Exact spellings checked against the 2026-09-21 primary-fixture and odds
+# responses. Core teams may retain historical English abbreviations.
+REFERENCE_TEAM_ALIASES = {
+    "云达不来梅": "Werder Bremen", "里昂": "Lyon", "Leeds United FC": "Leeds United",
+    "热那亚": "Genoa", "SC Paderborn 07": "SC Paderborn", "伯恩茅斯": "Bournemouth",
+    "Ipswich": "Ipswich Town", "布伦特福德": "Brentford", "阿拉维斯": "Alavés",
+    "勒阿弗尔": "Le Havre", "帕尔马": "Parma", "托特纳姆热刺": "Tottenham Hotspur",
+    "法兰克福": "Eintracht Frankfurt", "Frosinone Calcio": "Frosinone", "摩纳哥": "AS Monaco",
+    "卡利亚里": "Cagliari", "乌迪内斯": "Udinese", "Coventry City FC": "Coventry City",
+    "埃弗顿": "Everton", "Espanol": "Espanyol", "柏林联合": "Union Berlin",
+    "Hull City AFC": "Hull City", "斯特拉斯堡": "Strasbourg", "ES Troyes AC": "Troyes",
+    "Nott'm Forest": "Nottingham Forest", "塞维利亚": "Sevilla", "Vallecano": "Rayo Vallecano",
+    "Málaga CF": "Málaga", "Ath Bilbao": "Athletic Bilbao", "Mainz": "FSV Mainz 05",
+    "Leverkusen": "Bayer Leverkusen", "SV 07 Elversberg": "Elversberg",
+    "Hoffenheim": "TSG Hoffenheim", "Sunderland AFC": "Sunderland",
+    "布莱顿": "Brighton and Hove Albion", "昂热": "Angers", "FC Lorient": "Lorient",
+    "巴黎FC": "Paris FC", "Celta": "Celta Vigo", "水晶宫": "Crystal Palace",
+    "尼斯": "Nice", "M'gladbach": "Borussia Monchengladbach", "Sociedad": "Real Sociedad",
+    "RC Deportivo La Coruña": "Deportivo La Coruña", "雷恩": "Rennes", "欧塞尔": "Auxerre",
+    "弗赖堡": "SC Freiburg", "US Sassuolo Calcio": "Sassuolo", "Milan": "AC Milan",
+    "马赛": "Marseille", "瓦伦西亚": "Valencia", "Levante UD": "Levante",
+    "Augsburg": "Augsburg", "Monza": "Monza", "Venezia": "Venezia",
+    "Le Mans FC": "Le Mans FC", "Hamburger SV": "Hamburger SV", "Brest": "Brest",
+    "1. FC Köln": "1. FC Köln", "FC Schalke 04": "FC Schalke 04",
+}
+
+
+def consensus_names(chinese_name: str) -> set[str]:
+    canonical = JC_TO_CONSENSUS.get(chinese_name) or REFERENCE_TEAM_ALIASES.get(chinese_name)
+    if canonical is None and chinese_name in (set(JC_TO_CONSENSUS.values()) | set(REFERENCE_TEAM_ALIASES.values())):
+        canonical = chinese_name
+    return CONSENSUS_NAME_VARIANTS.get(canonical, {canonical}) if canonical else set()
 
 
 # 竞彩中文简称 -> football-data.co.uk 英文队名(五大联赛, 用于历史价差回测)

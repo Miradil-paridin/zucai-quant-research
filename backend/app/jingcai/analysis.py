@@ -15,7 +15,7 @@ from __future__ import annotations
 from typing import Any
 
 from ..database import connect
-from .team_names import JC_TO_CONSENSUS
+from .matching import resolve_consensus_event
 
 SHARP_BOOKMAKERS = ("pinnacle", "betfair_ex_eu", "marathonbet", "onexbet")
 
@@ -36,7 +36,8 @@ def _latest_jc_snapshots(connection: Any) -> list[dict[str, Any]]:
                    s.jc_match_id, m.official_match_id, m.match_num_str,
                    m.league_name, m.home_team, m.away_team, m.match_date_local,
                    s.odd_home::float8 AS odd_home, s.odd_draw::float8 AS odd_draw,
-                   s.odd_away::float8 AS odd_away, s.captured_at_utc
+                   s.odd_away::float8 AS odd_away, s.captured_at_utc,
+                   m.match_time_local
             FROM jingcai.jc_odds_snapshots s
             JOIN jingcai.jc_matches m USING (jc_match_id)
             WHERE s.pool_code = 'had'
@@ -46,18 +47,18 @@ def _latest_jc_snapshots(connection: Any) -> list[dict[str, Any]]:
     )
 
 
-def _latest_consensus(connection: Any, home_en: str, away_en: str) -> dict[str, Any] | None:
+def _latest_consensus(connection: Any, provider_event_id: str) -> dict[str, Any] | None:
     for bookmaker in SHARP_BOOKMAKERS:
         row = connection.execute(
             """
             SELECT bookmaker, odd_home::float8 AS odd_home, odd_draw::float8 AS odd_draw,
                    odd_away::float8 AS odd_away, captured_at_utc, commence_time_utc
             FROM jingcai.consensus_odds_snapshots
-            WHERE home_team = %s AND away_team = %s AND bookmaker = %s
+            WHERE provider_event_id = %s AND bookmaker = %s
             ORDER BY captured_at_utc DESC, consensus_snapshot_id DESC
             LIMIT 1
             """,
-            (home_en, away_en, bookmaker),
+            (provider_event_id, bookmaker),
         ).fetchone()
         if row:
             return dict(row)
@@ -69,17 +70,23 @@ def analyze_spread() -> dict[str, Any]:
     unmatched: list[str] = []
     with connect() as connection:
         for jc in _latest_jc_snapshots(connection):
-            home_en = JC_TO_CONSENSUS.get(jc["home_team"])
-            away_en = JC_TO_CONSENSUS.get(jc["away_team"])
-            if not home_en or not away_en:
+            event = resolve_consensus_event(
+                connection,
+                league_name=jc["league_name"],
+                home_team=jc["home_team"],
+                away_team=jc["away_team"],
+                match_date_local=jc["match_date_local"],
+                match_time_local=jc["match_time_local"],
+            )
+            if event is None:
                 unmatched.append(
-                    f"{jc['match_num_str']} {jc['home_team']} vs {jc['away_team']} (缺队名映射)"
+                    f"{jc['match_num_str']} {jc['home_team']} vs {jc['away_team']} (无可靠共识关联)"
                 )
                 continue
-            consensus = _latest_consensus(connection, home_en, away_en)
+            consensus = _latest_consensus(connection, event.provider_event_id)
             if consensus is None:
                 unmatched.append(
-                    f"{jc['match_num_str']} {home_en} vs {away_en} (共识侧无该场快照)"
+                    f"{jc['match_num_str']} {event.home_team} vs {event.away_team} (缺锐利公司快照)"
                 )
                 continue
             jc_p = _devig(jc["odd_home"], jc["odd_draw"], jc["odd_away"])
@@ -105,7 +112,9 @@ def analyze_spread() -> dict[str, Any]:
                     "match_num": jc["match_num_str"],
                     "league": jc["league_name"],
                     "match": f"{jc['home_team']} vs {jc['away_team']}",
-                    "match_en": f"{home_en} vs {away_en}",
+                    "match_en": f"{event.home_team} vs {event.away_team}",
+                    "match_link_method": event.method,
+                    "match_link_confidence": event.confidence,
                     "match_date": str(jc["match_date_local"]),
                     "jc_captured_at": str(jc["captured_at_utc"]),
                     "consensus_bookmaker": consensus["bookmaker"],

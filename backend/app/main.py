@@ -25,6 +25,7 @@ from .research.service import (
 )
 from .scheduler import scheduler_status, start_scheduler, stop_scheduler
 from .schemas import MatchSummary, WatchlistRequest, WatchlistResponse
+from .reference.api import router as reference_router
 
 
 logger = logging.getLogger(__name__)
@@ -48,6 +49,7 @@ app = FastAPI(
     description="Auditable football research, probability and simulation API.",
     lifespan=lifespan,
 )
+app.include_router(reference_router)
 
 app.add_middleware(
     CORSMiddleware,
@@ -97,11 +99,30 @@ def ingestion_status() -> dict[str, object]:
         "database": database,
         "scheduler": scheduler_status(),
         "storage": storage,
+        "collectors": {
+            "core": load_runtime_state(runtime_dir / "core_collector.state.json"),
+            "jingcai": load_runtime_state(runtime_dir / "jingcai_collector.state.json"),
+            "consensus": load_runtime_state(runtime_dir / "consensus_collector.state.json"),
+            "repricing": load_runtime_state(runtime_dir / "repricing_lag.state.json"),
+            "reference": load_runtime_state(runtime_dir / "reference.state.json"),
+        },
         "odds_collectors": {
             "jingcai": load_runtime_state(runtime_dir / "jingcai_collector.state.json"),
             "consensus": load_runtime_state(runtime_dir / "consensus_collector.state.json"),
         },
     }
+
+
+@app.get("/api/research/repricing/latest")
+def repricing_latest() -> dict[str, object]:
+    result = load_runtime_state(PROJECT_ROOT / "output" / "runtime" / "repricing_lag_latest.json")
+    generated = result.get("generated_at_utc")
+    try:
+        age_hours = (datetime.now(UTC) - datetime.fromisoformat(str(generated))).total_seconds() / 3600
+    except (ValueError, TypeError):
+        age_hours = None
+    return {"available": bool(result), "age_hours": age_hours,
+            "stale": age_hours is None or age_hours > 8 * 24, "result": result}
 
 
 @app.get("/api/historical/status")
@@ -197,6 +218,7 @@ async def list_fixtures(
     football_data_count = sum(
         "football-data.org" in item["provider_ids"] for item in stored_items
     )
+    sporttery_count = sum("sporttery" in item["provider_ids"] for item in stored_items)
     if stored_items:
         return {
             "date_from": start,
@@ -209,16 +231,26 @@ async def list_fixtures(
             "storage": "postgresql",
             "providers": {
                 "api-football": {
-                    "status": "ok" if api_football_count or provider_configuration["api-football"] else "not_configured",
+                    "status": "ok" if api_football_count else "empty" if provider_configuration["api-football"] else "not_configured",
                     "count": api_football_count,
                     "coverage": start.isoformat(),
                 },
                 "football-data.org": {
-                    "status": "ok" if football_data_count or provider_configuration["football-data.org"] else "not_configured",
+                    "status": "ok" if football_data_count else "empty" if provider_configuration["football-data.org"] else "not_configured",
                     "count": football_data_count,
                     "coverage": f"{start.isoformat()}..{end.isoformat()}",
                 },
+                "sporttery": {
+                    "status": "fallback" if sporttery_count else "empty",
+                    "count": sporttery_count,
+                    "coverage": "selected_for_sale",
+                },
             },
+            "coverage_warning": (
+                "仅包含竞彩在售比赛，不代表完整联赛赛程。"
+                if sporttery_count and not (api_football_count or football_data_count)
+                else None
+            ),
             "items": stored_items,
         }
     return {
@@ -229,16 +261,18 @@ async def list_fixtures(
         "storage": "postgresql",
         "providers": {
             "api-football": {
-                "status": "ok" if provider_configuration["api-football"] else "not_configured",
+                "status": "empty" if provider_configuration["api-football"] else "not_configured",
                 "count": 0,
                 "coverage": start.isoformat(),
             },
             "football-data.org": {
-                "status": "ok" if provider_configuration["football-data.org"] else "not_configured",
+                "status": "empty" if provider_configuration["football-data.org"] else "not_configured",
                 "count": 0,
                 "coverage": f"{start.isoformat()}..{end.isoformat()}",
             },
+            "sporttery": {"status": "empty", "count": 0, "coverage": "selected_for_sale"},
         },
+        "coverage_warning": None,
         "items": [],
     }
 

@@ -1,0 +1,2999 @@
+{
+  "dataset_id": "efl-trophy-2026-09-22",
+  "items": [
+    {
+      "version": "2026-09-21-v1",
+      "as_of_utc": "2026-09-21T11:07:47.600977+00:00",
+      "kickoff_utc": "2026-09-22T18:00:00+00:00",
+      "kind": "qualitative_assessment",
+      "probabilities": null,
+      "result_scope": "regulation_90_minutes",
+      "confidence": "low",
+      "confidence_label": "低把握 · 资料初评",
+      "method": "由助手核对联赛赛果与新闻后撰写的定性判断；没有拟合概率模型，也没有用新闻机械加减胜率。上赛季作背景，本赛季作近期依据；不同联赛级别分开阅读。",
+      "coverage_note": "六队各含上赛季46场、本赛季7场联赛；不代表全赛事覆盖。最新一轮已用赛果报道补充。尚未完整核实六队当前伤停、杯赛轮换和正式首发。",
+      "availability_status": "not_fully_verified",
+      "lineup_status": "unconfirmed",
+      "match_id": 4128,
+      "home_team_id": 10908,
+      "away_team_id": 10909,
+      "teams": {
+        "home": {
+          "team_id": 10908,
+          "name": "米尔顿凯恩斯",
+          "source_team_name": "Milton Keynes Dons",
+          "identity_review": "Fixture pairing and English/Chinese club identity explicitly reviewed for this report; no global alias merge.",
+          "previous": {
+            "season": "2025/26",
+            "competition": "英乙",
+            "records": [
+              {
+                "date": "2025-08-02",
+                "opponent": "Oldham",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-09",
+                "opponent": "Barrow",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-16",
+                "opponent": "Cheltenham",
+                "venue": "home",
+                "goals_for": 5,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-19",
+                "opponent": "Crawley Town",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-23",
+                "opponent": "Newport County",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-30",
+                "opponent": "Walsall",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-06",
+                "opponent": "Grimsby",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-13",
+                "opponent": "Chesterfield",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-20",
+                "opponent": "Accrington",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-27",
+                "opponent": "Shrewsbury",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-04",
+                "opponent": "Gillingham",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-11",
+                "opponent": "Bristol Rvs",
+                "venue": "away",
+                "goals_for": 4,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-18",
+                "opponent": "Crewe",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-25",
+                "opponent": "Bromley",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-08",
+                "opponent": "Barnet",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-15",
+                "opponent": "Salford",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-22",
+                "opponent": "Tranmere",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-29",
+                "opponent": "Fleetwood Town",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-09",
+                "opponent": "Notts County",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-13",
+                "opponent": "Cambridge",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-20",
+                "opponent": "Harrogate",
+                "venue": "away",
+                "goals_for": 4,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-26",
+                "opponent": "Swindon",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-29",
+                "opponent": "Notts County",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-01",
+                "opponent": "Colchester",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-04",
+                "opponent": "Chesterfield",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-17",
+                "opponent": "Accrington",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-24",
+                "opponent": "Shrewsbury",
+                "venue": "home",
+                "goals_for": 5,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-27",
+                "opponent": "Bristol Rvs",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-31",
+                "opponent": "Grimsby",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-07",
+                "opponent": "Cheltenham",
+                "venue": "away",
+                "goals_for": 3,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-14",
+                "opponent": "Newport County",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-17",
+                "opponent": "Crawley Town",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-23",
+                "opponent": "Walsall",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-28",
+                "opponent": "Cambridge",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-07",
+                "opponent": "Harrogate",
+                "venue": "home",
+                "goals_for": 4,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-10",
+                "opponent": "Gillingham",
+                "venue": "away",
+                "goals_for": 5,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-14",
+                "opponent": "Swindon",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-18",
+                "opponent": "Colchester",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-21",
+                "opponent": "Barnet",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-28",
+                "opponent": "Salford",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-03",
+                "opponent": "Barrow",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-06",
+                "opponent": "Oldham",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-11",
+                "opponent": "Bromley",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-18",
+                "opponent": "Crewe",
+                "venue": "away",
+                "goals_for": 3,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-25",
+                "opponent": "Tranmere",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-05-02",
+                "opponent": "Fleetwood Town",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              }
+            ]
+          },
+          "current": {
+            "season": "2026/27",
+            "competition": "英甲",
+            "records": [
+              {
+                "date": "2026-08-15",
+                "opponent": "Oxford",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-08-22",
+                "opponent": "Huddersfield",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-08-29",
+                "opponent": "Leicester",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-02",
+                "opponent": "Wigan",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 3,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-05",
+                "opponent": "Wycombe",
+                "venue": "away",
+                "goals_for": 3,
+                "goals_against": 3,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-12",
+                "opponent": "Peterboro",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-17",
+                "opponent": "AFC Wimbledon",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2627-E2"
+              }
+            ]
+          }
+        },
+        "away": {
+          "team_id": 10909,
+          "name": "克劳利",
+          "source_team_name": "Crawley Town",
+          "identity_review": "Fixture pairing and English/Chinese club identity explicitly reviewed for this report; no global alias merge.",
+          "previous": {
+            "season": "2025/26",
+            "competition": "英乙",
+            "records": [
+              {
+                "date": "2025-08-02",
+                "opponent": "Grimsby",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-09",
+                "opponent": "Newport County",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-16",
+                "opponent": "Crewe",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-19",
+                "opponent": "Milton Keynes Dons",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-23",
+                "opponent": "Tranmere",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-30",
+                "opponent": "Chesterfield",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-06",
+                "opponent": "Harrogate",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-13",
+                "opponent": "Cheltenham",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-20",
+                "opponent": "Notts County",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 4,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-27",
+                "opponent": "Barrow",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-04",
+                "opponent": "Cambridge",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-11",
+                "opponent": "Walsall",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-18",
+                "opponent": "Shrewsbury",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-25",
+                "opponent": "Bristol Rvs",
+                "venue": "home",
+                "goals_for": 4,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-08",
+                "opponent": "Fleetwood Town",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-15",
+                "opponent": "Gillingham",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-22",
+                "opponent": "Accrington",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-29",
+                "opponent": "Salford",
+                "venue": "away",
+                "goals_for": 3,
+                "goals_against": 4,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-09",
+                "opponent": "Bromley",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-13",
+                "opponent": "Oldham",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-20",
+                "opponent": "Swindon",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-26",
+                "opponent": "Colchester",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-29",
+                "opponent": "Bromley",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-01",
+                "opponent": "Barnet",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-04",
+                "opponent": "Cheltenham",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-17",
+                "opponent": "Notts County",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-24",
+                "opponent": "Barrow",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-27",
+                "opponent": "Walsall",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-31",
+                "opponent": "Harrogate",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-07",
+                "opponent": "Crewe",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-10",
+                "opponent": "Cambridge",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-14",
+                "opponent": "Tranmere",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-17",
+                "opponent": "Milton Keynes Dons",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-21",
+                "opponent": "Chesterfield",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-28",
+                "opponent": "Oldham",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-07",
+                "opponent": "Swindon",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-13",
+                "opponent": "Colchester",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-17",
+                "opponent": "Barnet",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-21",
+                "opponent": "Fleetwood Town",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-28",
+                "opponent": "Gillingham",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-03",
+                "opponent": "Newport County",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-06",
+                "opponent": "Grimsby",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-11",
+                "opponent": "Bristol Rvs",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-18",
+                "opponent": "Shrewsbury",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-25",
+                "opponent": "Accrington",
+                "venue": "away",
+                "goals_for": 3,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-05-02",
+                "opponent": "Salford",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              }
+            ]
+          },
+          "current": {
+            "season": "2026/27",
+            "competition": "英乙",
+            "records": [
+              {
+                "date": "2026-08-15",
+                "opponent": "Crewe",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2627-E3"
+              },
+              {
+                "date": "2026-08-22",
+                "opponent": "Rochdale",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2627-E3"
+              },
+              {
+                "date": "2026-08-29",
+                "opponent": "Bristol Rvs",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2627-E3"
+              },
+              {
+                "date": "2026-09-01",
+                "opponent": "Northampton",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2627-E3"
+              },
+              {
+                "date": "2026-09-05",
+                "opponent": "Accrington",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 3,
+                "source_id": "2627-E3"
+              },
+              {
+                "date": "2026-09-12",
+                "opponent": "Cheltenham",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 3,
+                "source_id": "2627-E3"
+              },
+              {
+                "date": "2026-09-19",
+                "opponent": "Grimsby",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "grimsby-report"
+              }
+            ]
+          }
+        }
+      },
+      "lean": "偏主队不败，主胜优先、防平",
+      "summary": "历史实力和本季联赛级别偏向米尔顿凯恩斯，克劳利近期失球偏多；但主队本季七轮还没有赢球，主胜只能作为初步方向。",
+      "support": [
+        {
+          "text": "上赛季两队同处英乙：米尔顿凯恩斯24胜14平8负、进86失45；克劳利8胜16平22负、进44失68。完整赛季表现支持主队实力优势，但阵容已经可能变化。",
+          "source_ids": [
+            "2526-E3"
+          ]
+        },
+        {
+          "text": "本季米尔顿凯恩斯在英甲7轮0胜6平1负；克劳利在英乙7轮1胜1平5负、进6失13，且最近三轮全负。级别与走势共同支持主队不败方向。",
+          "source_ids": [
+            "2627-E2",
+            "2627-E3",
+            "grimsby-report"
+          ]
+        }
+      ],
+      "counterpoints": [
+        {
+          "text": "米尔顿凯恩斯本季联赛6场平局，赢球能力尚未证明；不能把上赛季较高胜率直接当作本场胜率。",
+          "source_ids": [
+            "2627-E2"
+          ]
+        },
+        {
+          "text": "Sports Mole报道克劳利近四次交锋不败，且可能调整人员。这是对主胜方向的反面证据，交锋权重低于当前状态。",
+          "source_ids": [
+            "mk-preview"
+          ]
+        }
+      ],
+      "news": [
+        {
+          "text": "9月19日格里姆斯比官方战报确认克劳利0:2落败。",
+          "source_ids": [
+            "grimsby-report"
+          ]
+        },
+        {
+          "text": "9月19日媒体报道柯林斯本季联赛7场5球，并预计他与诺姆贝搭档、翼卫提供宽度；这是赛前预计，尚非本场官方首发。",
+          "source_ids": [
+            "mk-preview"
+          ]
+        }
+      ],
+      "review_triggers": [
+        "核对柯林斯、诺姆贝和主队中后场是否首发；若主要攻击手轮休，降低主胜倾向。",
+        "核对克劳利是否更换锋线及后防人员；若阵容明显强于预计，重新判断。",
+        "以90分钟结果为准；正式首发和伤停核实后再复核，不把可能的点球胜出算作主胜。"
+      ],
+      "sources": [
+        {
+          "id": "2526-E3",
+          "title": "Football-Data 25/26 英乙联赛结果 CSV",
+          "kind": "results_dataset",
+          "url": "https://www.football-data.co.uk/mmz4281/2526/E3.csv",
+          "retrieved_at_utc": "2026-09-21T10:59:34.528404+00:00",
+          "sha256": "eff4fa15cb18857091d1f0666d0b8a6c61eda7a8374feef8f2d8a38244e0e45d"
+        },
+        {
+          "id": "2627-E2",
+          "title": "Football-Data 26/27 英甲联赛结果 CSV",
+          "kind": "results_dataset",
+          "url": "https://www.football-data.co.uk/mmz4281/2627/E2.csv",
+          "retrieved_at_utc": "2026-09-21T10:59:33.882091+00:00",
+          "sha256": "7673699d37a48045fc140aeb17328c1a6e19544e82863d9f03f26ba5388134da"
+        },
+        {
+          "id": "2627-E3",
+          "title": "Football-Data 26/27 英乙联赛结果 CSV",
+          "kind": "results_dataset",
+          "url": "https://www.football-data.co.uk/mmz4281/2627/E3.csv",
+          "retrieved_at_utc": "2026-09-21T10:59:33.810682+00:00",
+          "sha256": "3236db61208ba7f36407445d9a6ef14ced30bb5b13802148b8b7701ad81c70f6"
+        },
+        {
+          "id": "grimsby-report",
+          "title": "格里姆斯比官网：2:0克劳利，联赛七场不败",
+          "kind": "official_club_report",
+          "published_on": "2026-09-19",
+          "url": "https://gtfc.co.uk/mariners-make-it-seven-unbeaten-with-victory-over-crawley-town/",
+          "retrieved_at_utc": "2026-09-21T11:07:47.600977+00:00",
+          "capture_method": "web_search_and_page_review",
+          "publication_time_precision": "day"
+        },
+        {
+          "id": "mk-preview",
+          "title": "Sports Mole：米尔顿凯恩斯对克劳利赛前报道",
+          "kind": "media_preview",
+          "published_on": "2026-09-19",
+          "url": "https://www.sportsmole.co.uk/football/mk-dons/efl-trophy/preview/mk-dons-vs-crawley-town-prediction-team-news-lineups_605490.html",
+          "retrieved_at_utc": "2026-09-21T11:07:47.600977+00:00",
+          "capture_method": "web_search_and_page_review",
+          "publication_time_precision": "day"
+        }
+      ]
+    },
+    {
+      "version": "2026-09-21-v1",
+      "as_of_utc": "2026-09-21T11:07:47.600977+00:00",
+      "kickoff_utc": "2026-09-22T18:00:00+00:00",
+      "kind": "qualitative_assessment",
+      "probabilities": null,
+      "result_scope": "regulation_90_minutes",
+      "confidence": "low",
+      "confidence_label": "低把握 · 资料初评",
+      "method": "由助手核对联赛赛果与新闻后撰写的定性判断；没有拟合概率模型，也没有用新闻机械加减胜率。上赛季作背景，本赛季作近期依据；不同联赛级别分开阅读。",
+      "coverage_note": "六队各含上赛季46场、本赛季7场联赛；不代表全赛事覆盖。最新一轮已用赛果报道补充。尚未完整核实六队当前伤停、杯赛轮换和正式首发。",
+      "availability_status": "not_fully_verified",
+      "lineup_status": "unconfirmed",
+      "match_id": 4129,
+      "home_team_id": 10910,
+      "away_team_id": 10911,
+      "teams": {
+        "home": {
+          "team_id": 10910,
+          "name": "维冈竞技",
+          "source_team_name": "Wigan",
+          "identity_review": "Fixture pairing and English/Chinese club identity explicitly reviewed for this report; no global alias merge.",
+          "previous": {
+            "season": "2025/26",
+            "competition": "英甲",
+            "records": [
+              {
+                "date": "2025-08-02",
+                "opponent": "Northampton",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-08-09",
+                "opponent": "Leyton Orient",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-08-16",
+                "opponent": "Peterboro",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-08-19",
+                "opponent": "Luton",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-08-23",
+                "opponent": "Rotherham",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-08-30",
+                "opponent": "Stockport",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-09-06",
+                "opponent": "Lincoln",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-09-13",
+                "opponent": "Doncaster",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-09-20",
+                "opponent": "Bolton",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 4,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-09-27",
+                "opponent": "Cardiff",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-10-04",
+                "opponent": "Plymouth",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-10-11",
+                "opponent": "Wycombe",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-10-18",
+                "opponent": "Port Vale",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-10-25",
+                "opponent": "Mansfield",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-11-08",
+                "opponent": "Exeter",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-11-22",
+                "opponent": "AFC Wimbledon",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-11-29",
+                "opponent": "Stevenage",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-12-02",
+                "opponent": "Burton",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-12-13",
+                "opponent": "Huddersfield",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-12-20",
+                "opponent": "Blackpool",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-12-26",
+                "opponent": "Bradford",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-12-29",
+                "opponent": "Burton",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-01-01",
+                "opponent": "Barnsley",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-01-04",
+                "opponent": "Cardiff",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-01-17",
+                "opponent": "Bolton",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-01-24",
+                "opponent": "Doncaster",
+                "venue": "away",
+                "goals_for": 3,
+                "goals_against": 3,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-01-27",
+                "opponent": "Wycombe",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-01-31",
+                "opponent": "Lincoln",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-02-07",
+                "opponent": "Peterboro",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 6,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-02-10",
+                "opponent": "Reading",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-02-18",
+                "opponent": "Luton",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-02-21",
+                "opponent": "Stockport",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 4,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-02-28",
+                "opponent": "Huddersfield",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-03-07",
+                "opponent": "Blackpool",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-03-10",
+                "opponent": "Plymouth",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 3,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-03-14",
+                "opponent": "Bradford",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-03-17",
+                "opponent": "Barnsley",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-03-21",
+                "opponent": "Exeter",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-03-28",
+                "opponent": "Reading",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 3,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-04-02",
+                "opponent": "Leyton Orient",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-04-06",
+                "opponent": "Northampton",
+                "venue": "away",
+                "goals_for": 3,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-04-11",
+                "opponent": "Mansfield",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-04-14",
+                "opponent": "Rotherham",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-04-19",
+                "opponent": "Port Vale",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-04-25",
+                "opponent": "AFC Wimbledon",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-05-02",
+                "opponent": "Stevenage",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              }
+            ]
+          },
+          "current": {
+            "season": "2026/27",
+            "competition": "英甲",
+            "records": [
+              {
+                "date": "2026-08-15",
+                "opponent": "Cambridge",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 3,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-08-22",
+                "opponent": "Leyton Orient",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-08-30",
+                "opponent": "AFC Wimbledon",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-02",
+                "opponent": "Milton Keynes Dons",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 1,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-05",
+                "opponent": "Stockport",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 4,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-12",
+                "opponent": "Sheffield Weds",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-19",
+                "opponent": "Wycombe",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "wigan-result"
+              }
+            ]
+          }
+        },
+        "away": {
+          "team_id": 10911,
+          "name": "布莱克浦",
+          "source_team_name": "Blackpool",
+          "identity_review": "Fixture pairing and English/Chinese club identity explicitly reviewed for this report; no global alias merge.",
+          "previous": {
+            "season": "2025/26",
+            "competition": "英甲",
+            "records": [
+              {
+                "date": "2025-08-02",
+                "opponent": "Stevenage",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 3,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-08-09",
+                "opponent": "Exeter",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 4,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-08-16",
+                "opponent": "Huddersfield",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-08-19",
+                "opponent": "Mansfield",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-08-23",
+                "opponent": "Plymouth",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-08-30",
+                "opponent": "Bolton",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-09-13",
+                "opponent": "Northampton",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-09-20",
+                "opponent": "Barnsley",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-09-27",
+                "opponent": "Bradford",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-09-30",
+                "opponent": "Luton",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-10-04",
+                "opponent": "AFC Wimbledon",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-10-11",
+                "opponent": "Stockport",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-10-18",
+                "opponent": "Wycombe",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-10-25",
+                "opponent": "Peterboro",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-11-08",
+                "opponent": "Cardiff",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-11-15",
+                "opponent": "Burton",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-11-22",
+                "opponent": "Leyton Orient",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-11-29",
+                "opponent": "Reading",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 3,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-12-10",
+                "opponent": "Rotherham",
+                "venue": "away",
+                "goals_for": 3,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-12-13",
+                "opponent": "Lincoln",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-12-20",
+                "opponent": "Wigan",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-12-26",
+                "opponent": "Doncaster",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2025-12-29",
+                "opponent": "Rotherham",
+                "venue": "home",
+                "goals_for": 4,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-01-01",
+                "opponent": "Port Vale",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 5,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-01-04",
+                "opponent": "Bradford",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-01-17",
+                "opponent": "Barnsley",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-01-24",
+                "opponent": "Northampton",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-01-27",
+                "opponent": "Stockport",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-01-31",
+                "opponent": "Luton",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-02-07",
+                "opponent": "Huddersfield",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-02-14",
+                "opponent": "Plymouth",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 4,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-02-17",
+                "opponent": "Mansfield",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-02-21",
+                "opponent": "Bolton",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-02-28",
+                "opponent": "Lincoln",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 4,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-03-07",
+                "opponent": "Wigan",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-03-11",
+                "opponent": "AFC Wimbledon",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 4,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-03-14",
+                "opponent": "Doncaster",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-03-17",
+                "opponent": "Port Vale",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 2,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-03-21",
+                "opponent": "Cardiff",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-03-28",
+                "opponent": "Burton",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-04-03",
+                "opponent": "Exeter",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-04-06",
+                "opponent": "Stevenage",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-04-11",
+                "opponent": "Peterboro",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 1,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-04-18",
+                "opponent": "Wycombe",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-04-25",
+                "opponent": "Leyton Orient",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              },
+              {
+                "date": "2026-05-02",
+                "opponent": "Reading",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E2"
+              }
+            ]
+          },
+          "current": {
+            "season": "2026/27",
+            "competition": "英甲",
+            "records": [
+              {
+                "date": "2026-08-15",
+                "opponent": "Wycombe",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-08-22",
+                "opponent": "Stockport",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-08-29",
+                "opponent": "Peterboro",
+                "venue": "home",
+                "goals_for": 4,
+                "goals_against": 0,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-02",
+                "opponent": "Barnsley",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-05",
+                "opponent": "Reading",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 3,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-12",
+                "opponent": "Bromley",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-19",
+                "opponent": "Plymouth",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 4,
+                "source_id": "blackpool-report"
+              }
+            ]
+          }
+        }
+      },
+      "lean": "略偏布莱克浦不败，胜负方向弱",
+      "summary": "布莱克浦本季进攻产出较高，维冈最近连续三轮未进球；但客队防守也在失分，这场只有很弱的客队不败倾向，不足以确定单一胜负。",
+      "support": [
+        {
+          "text": "同在英甲，本季7轮维冈1胜1平5负、进5失12；布莱克浦2胜2平3负、进13失13。客队进攻表现更好，但两队防守都不足以支撑高把握判断。",
+          "source_ids": [
+            "2627-E2",
+            "wigan-result",
+            "blackpool-report"
+          ]
+        },
+        {
+          "text": "维冈最近三轮分别0:4、0:0、0:1，连续未进球；这降低了对主队取胜的期待。",
+          "source_ids": [
+            "2627-E2",
+            "wigan-result"
+          ]
+        }
+      ],
+      "counterpoints": [
+        {
+          "text": "布莱克浦近四轮1平3负、丢11球，上轮主场2:4失利；不能把客队进球更多理解成状态稳定。",
+          "source_ids": [
+            "2627-E2",
+            "blackpool-report"
+          ]
+        },
+        {
+          "text": "上赛季同级联赛维冈14胜14平18负，布莱克浦17胜9平20负，整体差距不大。本季客队三次联赛客场1胜2负，客场因素削弱客胜判断。",
+          "source_ids": [
+            "2526-E2",
+            "2627-E2"
+          ]
+        }
+      ],
+      "news": [
+        {
+          "text": "9月19日维冈主场0:1负于威科姆；9月20日BBC供稿的报道确认布莱克浦上轮2:4负于普利茅斯。两队均在本场前三天踢过联赛。",
+          "source_ids": [
+            "wigan-result",
+            "blackpool-report"
+          ]
+        }
+      ],
+      "review_triggers": [
+        "两队仅间隔三天再战，需核对杯赛轮换；这是根据赛程提出的检查点，尚无完整官方轮换名单。",
+        "核对维冈是否调整锋线，以及布莱克浦防线的人员变化；大幅轮换时撤回当前弱倾向。",
+        "尚缺完整、可靠的本场伤停公告，不把未发现伤停等同于全员健康。"
+      ],
+      "sources": [
+        {
+          "id": "2526-E2",
+          "title": "Football-Data 25/26 英甲联赛结果 CSV",
+          "kind": "results_dataset",
+          "url": "https://www.football-data.co.uk/mmz4281/2526/E2.csv",
+          "retrieved_at_utc": "2026-09-21T10:59:34.454371+00:00",
+          "sha256": "4c96eff8a2f20c5e26015af8609c4f90478ff055f58ab6e137cc3445bf4c67ee"
+        },
+        {
+          "id": "2627-E2",
+          "title": "Football-Data 26/27 英甲联赛结果 CSV",
+          "kind": "results_dataset",
+          "url": "https://www.football-data.co.uk/mmz4281/2627/E2.csv",
+          "retrieved_at_utc": "2026-09-21T10:59:33.882091+00:00",
+          "sha256": "7673699d37a48045fc140aeb17328c1a6e19544e82863d9f03f26ba5388134da"
+        },
+        {
+          "id": "blackpool-report",
+          "title": "BBC Sport / AOL：普利茅斯4:2击败布莱克浦后的主帅采访",
+          "kind": "syndicated_report",
+          "published_on": "2026-09-20",
+          "url": "https://www.aol.com/articles/cleverley-hails-mentality-argyle-third-094013000.html",
+          "retrieved_at_utc": "2026-09-21T11:07:47.600977+00:00",
+          "capture_method": "web_search_and_page_review",
+          "publication_time_precision": "day"
+        },
+        {
+          "id": "wigan-result",
+          "title": "Football Web Pages：维冈0:1威科姆",
+          "kind": "match_result",
+          "published_on": "2026-09-19",
+          "url": "https://www.footballwebpages.co.uk/match/2026-2027/league-one/wigan-athletic/wycombe-wanderers/568509",
+          "retrieved_at_utc": "2026-09-21T11:07:47.600977+00:00",
+          "capture_method": "web_search_and_page_review",
+          "publication_time_precision": "day"
+        }
+      ]
+    },
+    {
+      "version": "2026-09-21-v1",
+      "as_of_utc": "2026-09-21T11:07:47.600977+00:00",
+      "kickoff_utc": "2026-09-22T18:00:00+00:00",
+      "kind": "qualitative_assessment",
+      "probabilities": null,
+      "result_scope": "regulation_90_minutes",
+      "confidence": "low",
+      "confidence_label": "低把握 · 资料初评",
+      "method": "由助手核对联赛赛果与新闻后撰写的定性判断；没有拟合概率模型，也没有用新闻机械加减胜率。上赛季作背景，本赛季作近期依据；不同联赛级别分开阅读。",
+      "coverage_note": "六队各含上赛季46场、本赛季7场联赛；不代表全赛事覆盖。最新一轮已用赛果报道补充。尚未完整核实六队当前伤停、杯赛轮换和正式首发。",
+      "availability_status": "not_fully_verified",
+      "lineup_status": "unconfirmed",
+      "match_id": 4130,
+      "home_team_id": 10912,
+      "away_team_id": 10913,
+      "teams": {
+        "home": {
+          "team_id": 10912,
+          "name": "诺茨郡",
+          "source_team_name": "Notts County",
+          "identity_review": "Fixture pairing and English/Chinese club identity explicitly reviewed for this report; no global alias merge.",
+          "previous": {
+            "season": "2025/26",
+            "competition": "英乙",
+            "records": [
+              {
+                "date": "2025-08-02",
+                "opponent": "Newport County",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-09",
+                "opponent": "Salford",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-16",
+                "opponent": "Barrow",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-20",
+                "opponent": "Shrewsbury",
+                "venue": "home",
+                "goals_for": 4,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-23",
+                "opponent": "Bromley",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-30",
+                "opponent": "Tranmere",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-06",
+                "opponent": "Fleetwood Town",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-13",
+                "opponent": "Gillingham",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-20",
+                "opponent": "Crawley Town",
+                "venue": "home",
+                "goals_for": 4,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-27",
+                "opponent": "Crewe",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-04",
+                "opponent": "Oldham",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-18",
+                "opponent": "Barnet",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-21",
+                "opponent": "Swindon",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-25",
+                "opponent": "Cambridge",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-10",
+                "opponent": "Cheltenham",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-15",
+                "opponent": "Harrogate",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-22",
+                "opponent": "Colchester",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-29",
+                "opponent": "Bristol Rvs",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-09",
+                "opponent": "Milton Keynes Dons",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-13",
+                "opponent": "Grimsby",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-20",
+                "opponent": "Walsall",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-26",
+                "opponent": "Chesterfield",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-29",
+                "opponent": "Milton Keynes Dons",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-01",
+                "opponent": "Accrington",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-17",
+                "opponent": "Crawley Town",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-24",
+                "opponent": "Crewe",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-27",
+                "opponent": "Swindon",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-31",
+                "opponent": "Fleetwood Town",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-03",
+                "opponent": "Gillingham",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-07",
+                "opponent": "Barrow",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-14",
+                "opponent": "Bromley",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-17",
+                "opponent": "Shrewsbury",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-21",
+                "opponent": "Tranmere",
+                "venue": "home",
+                "goals_for": 5,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-28",
+                "opponent": "Grimsby",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-07",
+                "opponent": "Walsall",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-14",
+                "opponent": "Chesterfield",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-17",
+                "opponent": "Accrington",
+                "venue": "away",
+                "goals_for": 4,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-21",
+                "opponent": "Cheltenham",
+                "venue": "home",
+                "goals_for": 5,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-24",
+                "opponent": "Oldham",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-28",
+                "opponent": "Harrogate",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-03",
+                "opponent": "Salford",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-06",
+                "opponent": "Newport County",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-11",
+                "opponent": "Cambridge",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 4,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-18",
+                "opponent": "Barnet",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-25",
+                "opponent": "Colchester",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-05-02",
+                "opponent": "Bristol Rvs",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              }
+            ]
+          },
+          "current": {
+            "season": "2026/27",
+            "competition": "英甲",
+            "records": [
+              {
+                "date": "2026-08-15",
+                "opponent": "Leicester",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-08-22",
+                "opponent": "Luton",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-08-29",
+                "opponent": "Burton",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-01",
+                "opponent": "Doncaster",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-05",
+                "opponent": "Huddersfield",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-12",
+                "opponent": "Bradford",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2627-E2"
+              },
+              {
+                "date": "2026-09-19",
+                "opponent": "Reading",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "notts-preview"
+              }
+            ]
+          }
+        },
+        "away": {
+          "team_id": 10913,
+          "name": "格里姆斯比",
+          "source_team_name": "Grimsby",
+          "identity_review": "Fixture pairing and English/Chinese club identity explicitly reviewed for this report; no global alias merge.",
+          "previous": {
+            "season": "2025/26",
+            "competition": "英乙",
+            "records": [
+              {
+                "date": "2025-08-02",
+                "opponent": "Crawley Town",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-09",
+                "opponent": "Harrogate",
+                "venue": "away",
+                "goals_for": 3,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-16",
+                "opponent": "Newport County",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-19",
+                "opponent": "Walsall",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-23",
+                "opponent": "Accrington",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-08-30",
+                "opponent": "Bristol Rvs",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-06",
+                "opponent": "Milton Keynes Dons",
+                "venue": "away",
+                "goals_for": 3,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-13",
+                "opponent": "Cambridge",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-20",
+                "opponent": "Barnet",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-09-27",
+                "opponent": "Cheltenham",
+                "venue": "home",
+                "goals_for": 7,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-04",
+                "opponent": "Salford",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-11",
+                "opponent": "Colchester",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-18",
+                "opponent": "Gillingham",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-10-25",
+                "opponent": "Crewe",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-08",
+                "opponent": "Barrow",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-15",
+                "opponent": "Chesterfield",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-22",
+                "opponent": "Swindon",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-11-27",
+                "opponent": "Tranmere",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-09",
+                "opponent": "Shrewsbury",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-13",
+                "opponent": "Notts County",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-20",
+                "opponent": "Bromley",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-26",
+                "opponent": "Oldham",
+                "venue": "home",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2025-12-29",
+                "opponent": "Shrewsbury",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-01",
+                "opponent": "Fleetwood Town",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-17",
+                "opponent": "Barnet",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-24",
+                "opponent": "Cheltenham",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-27",
+                "opponent": "Colchester",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-01-31",
+                "opponent": "Milton Keynes Dons",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-07",
+                "opponent": "Newport County",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-11",
+                "opponent": "Accrington",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-18",
+                "opponent": "Walsall",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-21",
+                "opponent": "Bristol Rvs",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-02-28",
+                "opponent": "Notts County",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-03",
+                "opponent": "Salford",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-07",
+                "opponent": "Bromley",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-14",
+                "opponent": "Oldham",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-17",
+                "opponent": "Fleetwood Town",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-03-21",
+                "opponent": "Barrow",
+                "venue": "home",
+                "goals_for": 5,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-03",
+                "opponent": "Harrogate",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 3,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-06",
+                "opponent": "Crawley Town",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-11",
+                "opponent": "Crewe",
+                "venue": "home",
+                "goals_for": 3,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-14",
+                "opponent": "Chesterfield",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 2,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-18",
+                "opponent": "Gillingham",
+                "venue": "away",
+                "goals_for": 4,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-21",
+                "opponent": "Cambridge",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-04-25",
+                "opponent": "Swindon",
+                "venue": "home",
+                "goals_for": 4,
+                "goals_against": 0,
+                "source_id": "2526-E3"
+              },
+              {
+                "date": "2026-05-02",
+                "opponent": "Tranmere",
+                "venue": "away",
+                "goals_for": 1,
+                "goals_against": 1,
+                "source_id": "2526-E3"
+              }
+            ]
+          },
+          "current": {
+            "season": "2026/27",
+            "competition": "英乙",
+            "records": [
+              {
+                "date": "2026-08-15",
+                "opponent": "Exeter",
+                "venue": "home",
+                "goals_for": 1,
+                "goals_against": 0,
+                "source_id": "2627-E3"
+              },
+              {
+                "date": "2026-08-22",
+                "opponent": "Walsall",
+                "venue": "away",
+                "goals_for": 0,
+                "goals_against": 0,
+                "source_id": "2627-E3"
+              },
+              {
+                "date": "2026-08-29",
+                "opponent": "Fleetwood Town",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2627-E3"
+              },
+              {
+                "date": "2026-09-01",
+                "opponent": "Accrington",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2627-E3"
+              },
+              {
+                "date": "2026-09-05",
+                "opponent": "Cheltenham",
+                "venue": "away",
+                "goals_for": 2,
+                "goals_against": 2,
+                "source_id": "2627-E3"
+              },
+              {
+                "date": "2026-09-12",
+                "opponent": "Bristol Rvs",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "2627-E3"
+              },
+              {
+                "date": "2026-09-19",
+                "opponent": "Crawley Town",
+                "venue": "home",
+                "goals_for": 2,
+                "goals_against": 0,
+                "source_id": "grimsby-report"
+              }
+            ]
+          }
+        }
+      },
+      "lean": "平局优先，偏格里姆斯比不败",
+      "summary": "格里姆斯比近期更稳定，诺茨郡连续两轮未进球；但主队处于更高级别联赛，且客队本季三个联赛客场都是平局，因此先防平，不直接强推客胜。",
+      "support": [
+        {
+          "text": "格里姆斯比本季英乙7轮3胜4平不败、进11失6，最近两轮均2:0取胜；诺茨郡本季英甲7轮1胜4平2负，最近两轮0:1、0:2失利。",
+          "source_ids": [
+            "2627-E2",
+            "2627-E3",
+            "grimsby-report",
+            "notts-preview"
+          ]
+        },
+        {
+          "text": "格里姆斯比本季三个联赛客场全部战平；诺茨郡七轮也有四场平局，支持将平局作为优先防范方向。",
+          "source_ids": [
+            "2627-E2",
+            "2627-E3"
+          ]
+        }
+      ],
+      "counterpoints": [
+        {
+          "text": "两队本季联赛级别不同，不能直接比较不败率。上赛季同处英乙时诺茨郡24胜8平14负、格里姆斯比22胜12平12负，主队并无明显的长期实力劣势。",
+          "source_ids": [
+            "2526-E3",
+            "2627-E2",
+            "2627-E3"
+          ]
+        },
+        {
+          "text": "媒体预计双方轮换；文章的文字和预测首发名单存在不一致，因此仅保留轮换风险，不采用具体预测十一人。",
+          "source_ids": [
+            "notts-preview"
+          ]
+        }
+      ],
+      "news": [
+        {
+          "text": "9月19日官方战报确认格里姆斯比2:0克劳利、连续两场零封，门将皮姆回到首发。上一场出场不等于本场已经确认首发。",
+          "source_ids": [
+            "grimsby-report"
+          ]
+        },
+        {
+          "text": "9月20日赛前报道预计双方调整阵容，未获得完整的本场官方首发和伤停确认。",
+          "source_ids": [
+            "notts-preview"
+          ]
+        }
+      ],
+      "review_triggers": [
+        "如果诺茨郡保留主力而格里姆斯比大幅轮休，需要上调对主队的判断，当前客队不败倾向可能失效。",
+        "核对格里姆斯比门将及中后场是否延续近期人员；不能仅用连续零封外推杯赛。",
+        "伤停消息和正式首发仍需复核；当前只给初步方向，不给未经验证的精确胜率。"
+      ],
+      "sources": [
+        {
+          "id": "2526-E3",
+          "title": "Football-Data 25/26 英乙联赛结果 CSV",
+          "kind": "results_dataset",
+          "url": "https://www.football-data.co.uk/mmz4281/2526/E3.csv",
+          "retrieved_at_utc": "2026-09-21T10:59:34.528404+00:00",
+          "sha256": "eff4fa15cb18857091d1f0666d0b8a6c61eda7a8374feef8f2d8a38244e0e45d"
+        },
+        {
+          "id": "2627-E2",
+          "title": "Football-Data 26/27 英甲联赛结果 CSV",
+          "kind": "results_dataset",
+          "url": "https://www.football-data.co.uk/mmz4281/2627/E2.csv",
+          "retrieved_at_utc": "2026-09-21T10:59:33.882091+00:00",
+          "sha256": "7673699d37a48045fc140aeb17328c1a6e19544e82863d9f03f26ba5388134da"
+        },
+        {
+          "id": "2627-E3",
+          "title": "Football-Data 26/27 英乙联赛结果 CSV",
+          "kind": "results_dataset",
+          "url": "https://www.football-data.co.uk/mmz4281/2627/E3.csv",
+          "retrieved_at_utc": "2026-09-21T10:59:33.810682+00:00",
+          "sha256": "3236db61208ba7f36407445d9a6ef14ced30bb5b13802148b8b7701ad81c70f6"
+        },
+        {
+          "id": "grimsby-report",
+          "title": "格里姆斯比官网：2:0克劳利，联赛七场不败",
+          "kind": "official_club_report",
+          "published_on": "2026-09-19",
+          "url": "https://gtfc.co.uk/mariners-make-it-seven-unbeaten-with-victory-over-crawley-town/",
+          "retrieved_at_utc": "2026-09-21T11:07:47.600977+00:00",
+          "capture_method": "web_search_and_page_review",
+          "publication_time_precision": "day"
+        },
+        {
+          "id": "notts-preview",
+          "title": "Sports Mole：诺茨郡对格里姆斯比赛前报道",
+          "kind": "media_preview",
+          "published_on": "2026-09-20",
+          "url": "https://www.sportsmole.co.uk/football/notts-county/efl-trophy/preview/notts-county-vs-grimsby-town-prediction-team-news-lineups_605517.html",
+          "retrieved_at_utc": "2026-09-21T11:07:47.600977+00:00",
+          "capture_method": "web_search_and_page_review",
+          "publication_time_precision": "day"
+        }
+      ]
+    }
+  ]
+}

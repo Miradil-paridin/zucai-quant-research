@@ -6,7 +6,7 @@ from types import SimpleNamespace
 from psycopg import OperationalError
 
 from app.collector_runtime import load_runtime_state
-from scripts import collect_consensus_odds, collect_jingcai_odds
+from scripts import collect_consensus_odds, collect_core_data, collect_jingcai_odds
 
 
 class ProbeConnection:
@@ -84,4 +84,23 @@ def test_consensus_downstream_failure_continues_existing_database_backoff(
     )
 
     assert collect_consensus_odds.main() == 1
+    assert load_runtime_state(state_path)["consecutive_db_failures"] == 6
+
+
+def test_core_collector_write_failure_continues_existing_database_backoff(
+    monkeypatch,
+    tmp_path,
+) -> None:
+    state_path = tmp_path / "core.state.json"
+    _old_failure_state(state_path)
+    monkeypatch.setattr(collect_core_data, "STATE_PATH", state_path)
+    monkeypatch.setattr(collect_core_data, "LOG_PATH", tmp_path / "core.log")
+    monkeypatch.setattr(collect_core_data, "connect", lambda: ProbeConnection())
+
+    async def fail_run(*_args, **_kwargs):
+        raise OperationalError("write unavailable")
+
+    monkeypatch.setattr(collect_core_data.collector, "run", fail_run)
+
+    assert collect_core_data.main() == 1
     assert load_runtime_state(state_path)["consecutive_db_failures"] == 6

@@ -203,7 +203,8 @@ def _event_rows(event: dict[str, Any], sport_key: str) -> list[dict[str, Any]]:
 def _insert_if_changed(connection: Any, row: dict[str, Any]) -> bool:
     latest = connection.execute(
         """
-        SELECT content_hash FROM jingcai.consensus_odds_snapshots
+        SELECT consensus_snapshot_id, content_hash
+        FROM jingcai.consensus_odds_snapshots
         WHERE provider = %s AND provider_event_id = %s AND bookmaker = %s
         ORDER BY captured_at_utc DESC, consensus_snapshot_id DESC
         LIMIT 1
@@ -211,6 +212,15 @@ def _insert_if_changed(connection: Any, row: dict[str, Any]) -> bool:
         (PROVIDER, row["provider_event_id"], row["bookmaker"]),
     ).fetchone()
     if latest and latest["content_hash"] == row["content_hash"]:
+        connection.execute(
+            """
+            UPDATE jingcai.consensus_odds_snapshots
+            SET last_observed_at_utc = now(),
+                observation_times_utc = array_append(observation_times_utc, now())
+            WHERE consensus_snapshot_id = %s
+            """,
+            (latest["consensus_snapshot_id"],),
+        )
         return False
     connection.execute(
         """

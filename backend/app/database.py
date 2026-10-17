@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import time
 from pathlib import Path
 from typing import Any
 
@@ -33,8 +34,19 @@ def connect(*, autocommit: bool = False) -> psycopg.Connection:
 
 def initialize_database() -> None:
     schema = (PROJECT_ROOT / "docs" / "schema.sql").read_text(encoding="utf-8")
-    with connect(autocommit=True) as connection:
-        connection.execute(schema, prepare=False)
+    # Concurrent collectors can hold row locks during the idempotent migration.
+    # Retry an aborted transaction on a fresh connection, never mask other errors.
+    for attempt in range(3):
+        try:
+            with connect(autocommit=True) as connection:
+                connection.execute(schema, prepare=False)
+                from .reference.service import install_schema
+                install_schema(connection)
+            return
+        except psycopg.errors.DeadlockDetected:
+            if attempt == 2:
+                raise
+            time.sleep(0.25 * (attempt + 1))
 
 
 def database_health() -> dict[str, Any]:

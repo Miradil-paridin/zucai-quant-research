@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 const navigation = [
   { to: '/', label: '比赛', icon: Gauge },
+  { to: '/reference', label: '赛前参考', icon: Activity },
   { to: '/players', label: '球员', icon: UsersRound },
   { to: '/teams', label: '球队', icon: ShieldCheck },
   { to: '/backtest', label: '回测', icon: BarChart3 },
@@ -39,4 +40,3 @@ export function Sidebar() {
     </aside>
   )
 }
-

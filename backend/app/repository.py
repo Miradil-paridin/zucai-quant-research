@@ -173,10 +173,13 @@ class Repository:
             INSERT INTO core.teams (canonical_name, normalized_name, country_code)
             VALUES (%s, %s, %s)
             ON CONFLICT (normalized_name, country_code)
-            DO UPDATE SET canonical_name = EXCLUDED.canonical_name, active = true
+            DO UPDATE SET canonical_name = CASE WHEN %s = 'sporttery'
+                                                THEN core.teams.canonical_name
+                                                ELSE EXCLUDED.canonical_name END,
+                          active = true
             RETURNING team_id
             """,
-            (name, normalized, code),
+            (name, normalized, code, source),
         ).fetchone()
         team_id = int(row["team_id"])
         if source_id:
@@ -208,18 +211,76 @@ class Repository:
         return player_id
 
     def upsert_fixture(self, connection: Connection, item: dict[str, Any], source: str) -> int:
+        source_match_id = str(item.get("provider_ids", {}).get(source) or "")
+        mapped = self._mapped_id(connection, "match", source, source_match_id) if source_match_id else None
+        if source != "sporttery" and not mapped:
+            # Promote an existing sale-only fixture only on exact competition,
+            # kickoff and BOTH translated names. Never use kickoff alone.
+            candidates = connection.execute(
+                """
+                SELECT m.match_id, m.home_team_id, m.away_team_id
+                FROM core.matches m
+                JOIN core.seasons s USING (season_id)
+                JOIN core.competitions c USING (competition_id)
+                JOIN core.teams ht ON ht.team_id = m.home_team_id
+                JOIN core.teams at ON at.team_id = m.away_team_id
+                WHERE c.code = %s AND m.kickoff_utc = %s
+                  AND ht.canonical_name = %s AND at.canonical_name = %s
+                  AND EXISTS (SELECT 1 FROM core.source_entity_mappings sem
+                    WHERE sem.entity_type = 'match' AND sem.canonical_id = m.match_id
+                      AND sem.source_name = 'sporttery')
+                """,
+                (item.get("canonical_competition_code") or canonical_competition_code(
+                    item.get("country_original"), item.get("competition_original") or item["competition"]),
+                 item["kickoff_utc"], item["home_team"]["name"], item["away_team"]["name"]),
+            ).fetchall()
+            if len(candidates) == 1:
+                candidate = candidates[0]
+                mapped = int(candidate["match_id"])
+                for side in ("home", "away"):
+                    team_source_id = str(item[f"{side}_team"].get("id") or "")
+                    if team_source_id:
+                        existing = self._mapped_id(connection, "team", source, team_source_id)
+                        if existing is not None and existing != candidate[f"{side}_team_id"]:
+                            mapped = None
+                            break
+                if mapped:
+                    for side in ("home", "away"):
+                        team_source_id = str(item[f"{side}_team"].get("id") or "")
+                        if team_source_id:
+                            self._upsert_mapping(connection, "team", candidate[f"{side}_team_id"], source, team_source_id)
+        if mapped:
+            if source != "sporttery":
+                score = item.get("score") or {}
+                connection.execute(
+                    """UPDATE core.matches SET kickoff_utc=%s, status=%s,
+                       home_goals=%s, away_goals=%s, venue=COALESCE(%s,venue),
+                       matchday=COALESCE(%s,matchday), last_source_update_utc=now(), updated_at_utc=now()
+                       WHERE match_id=%s""",
+                    (item["kickoff_utc"], item["status"], score.get("home"), score.get("away"),
+                     item.get("venue"), _matchday(item.get("round_original")), mapped),
+                )
+            if source_match_id:
+                self._upsert_mapping(connection, "match", mapped, source, source_match_id)
+            self._persist_regulation_score(connection, mapped, item, source)
+            return mapped
         competition_name = item["competition"]
         original_competition = item.get("competition_original") or competition_name
         original_country = item.get("country_original")
-        competition_code = canonical_competition_code(original_country, original_competition)
+        competition_code = item.get("canonical_competition_code") or canonical_competition_code(
+            original_country, original_competition
+        )
         competition_row = connection.execute(
             """
             INSERT INTO core.competitions (code, name, country_code, tier, active)
             VALUES (%s, %s, %s, 1, true)
-            ON CONFLICT (code) DO UPDATE SET name = EXCLUDED.name, active = true
+            ON CONFLICT (code) DO UPDATE
+            SET name = CASE WHEN %s = 'sporttery'
+                            THEN core.competitions.name ELSE EXCLUDED.name END,
+                active = true
             RETURNING competition_id
             """,
-            (competition_code, competition_name, country_code(original_country)),
+            (competition_code, competition_name, country_code(original_country), source),
         ).fetchone()
         competition_id = int(competition_row["competition_id"])
         source_competition_id = str(item.get("competition_code") or "")
@@ -232,10 +293,13 @@ class Repository:
             INSERT INTO core.seasons (competition_id, label, starts_on, ends_on)
             VALUES (%s, %s, %s, %s)
             ON CONFLICT (competition_id, label)
-            DO UPDATE SET starts_on = EXCLUDED.starts_on, ends_on = EXCLUDED.ends_on
+            DO UPDATE SET starts_on = CASE WHEN %s = 'sporttery'
+                                           THEN core.seasons.starts_on ELSE EXCLUDED.starts_on END,
+                          ends_on = CASE WHEN %s = 'sporttery'
+                                         THEN core.seasons.ends_on ELSE EXCLUDED.ends_on END
             RETURNING season_id
             """,
-            (competition_id, season_label, starts_on, ends_on),
+            (competition_id, season_label, starts_on, ends_on, source, source),
         ).fetchone()
         season_id = int(season_row["season_id"])
 
@@ -252,9 +316,12 @@ class Repository:
             ON CONFLICT (season_id, home_team_id, away_team_id, kickoff_utc)
             DO UPDATE SET venue = COALESCE(EXCLUDED.venue, core.matches.venue),
                           matchday = COALESCE(EXCLUDED.matchday, core.matches.matchday),
-                          status = EXCLUDED.status,
-                          home_goals = EXCLUDED.home_goals,
-                          away_goals = EXCLUDED.away_goals,
+                          status = CASE WHEN %s = 'sporttery'
+                                        THEN core.matches.status ELSE EXCLUDED.status END,
+                          home_goals = CASE WHEN %s = 'sporttery'
+                                            THEN core.matches.home_goals ELSE EXCLUDED.home_goals END,
+                          away_goals = CASE WHEN %s = 'sporttery'
+                                            THEN core.matches.away_goals ELSE EXCLUDED.away_goals END,
                           last_source_update_utc = now(),
                           updated_at_utc = now()
             RETURNING match_id
@@ -262,13 +329,26 @@ class Repository:
             (
                 season_id, home_team_id, away_team_id, kickoff, item.get("venue"),
                 _matchday(item.get("round_original")), item["status"], score.get("home"), score.get("away"),
+                source, source, source,
             ),
         ).fetchone()
         match_id = int(match_row["match_id"])
         source_match_id = str(item.get("provider_ids", {}).get(source) or item.get("fixture_id", "")).removeprefix("af-").removeprefix("fd-")
         if source_match_id:
             self._upsert_mapping(connection, "match", match_id, source, source_match_id)
+        self._persist_regulation_score(connection, match_id, item, source)
         return match_id
+
+    @staticmethod
+    def _persist_regulation_score(connection, match_id, item, source):
+        if source not in {"football-data.org", "api-football"}:
+            return
+        regulation = item.get("regulation_score") or {}
+        connection.execute(
+            """UPDATE core.matches SET regulation_home_goals=%s,regulation_away_goals=%s,
+                result_duration=%s WHERE match_id=%s""",
+            (regulation.get("home"),regulation.get("away"),item.get("result_duration"),match_id),
+        )
 
     def persist_fixture_response(
         self,
@@ -503,7 +583,20 @@ class Repository:
                 FROM raw.ingestion_batches ORDER BY batch_id DESC LIMIT 20
                 """
             ).fetchall()
-        return {"counts": counts, "latest_batches": latest}
+            data_quality = connection.execute(
+                """
+                SELECT DISTINCT ON (check_name)
+                       check_name, metric_name, metric_value, threshold_value,
+                       status, details, checked_at_utc
+                FROM audit.data_quality_checks
+                ORDER BY check_name, checked_at_utc DESC, dq_check_id DESC
+                """
+            ).fetchall()
+        return {
+            "counts": counts,
+            "latest_batches": latest,
+            "data_quality": data_quality,
+        }
 
     def list_fixtures(self, date_from: date, date_to: date, competition: str | None = None) -> list[dict[str, Any]]:
         with connect() as connection:
@@ -526,8 +619,8 @@ class Repository:
                     FROM core.source_entity_mappings sem
                     WHERE sem.entity_type = 'match' AND sem.canonical_id = m.match_id
                 ) map ON true
-                WHERE m.kickoff_utc >= %s::date
-                  AND m.kickoff_utc < (%s::date + interval '1 day')
+                WHERE m.kickoff_utc >= (%s::date::timestamp AT TIME ZONE 'Asia/Shanghai')
+                  AND m.kickoff_utc < ((%s::date + 1)::timestamp AT TIME ZONE 'Asia/Shanghai')
                   AND (%s::text IS NULL OR c.name ILIKE '%%' || %s::text || '%%')
                 ORDER BY m.kickoff_utc, c.name, ht.canonical_name
                 """,
@@ -540,14 +633,20 @@ class Repository:
                 fixture_id = f"af-{provider_ids['api-football']}"
             elif "football-data.org" in provider_ids:
                 fixture_id = f"fd-{provider_ids['football-data.org']}"
+            elif "sporttery" in provider_ids:
+                fixture_id = f"jc-{provider_ids['sporttery']}"
             else:
                 fixture_id = f"db-{row['match_id']}"
             source = " + ".join(sorted(provider_ids)) or "postgresql"
+            primary_sources = {"api-football", "football-data.org"} & set(provider_ids)
+            fallback_only = "sporttery" in provider_ids and not primary_sources
             country = COUNTRY_NAMES_BY_CODE.get(row["country_code"], row["country_code"])
             items.append({
                 "fixture_id": fixture_id,
                 "provider_ids": provider_ids,
                 "source": source,
+                "coverage": "selected_for_sale" if fallback_only else "competition_schedule",
+                "data_status": "fallback_schedule_only" if fallback_only else "provider_schedule",
                 "competition": row["competition"],
                 "competition_original": row["competition"],
                 "competition_code": row["competition_code"],
@@ -559,7 +658,9 @@ class Repository:
                 "season_label": row["season_label"],
                 "kickoff_utc": row["kickoff_utc"],
                 "status": row["status"],
-                "status_detail": row["status"],
+                "status_detail": (
+                    "Sporttery sale listing; schedule only" if fallback_only else row["status"]
+                ),
                 "elapsed": None,
                 "venue": row["venue"],
                 "city": None,
@@ -575,6 +676,29 @@ class Repository:
                 "last_source_update_utc": row["last_source_update_utc"],
             })
         return items
+
+    def stale_fixture_ids(
+        self,
+        source_name: str,
+        *,
+        limit: int = 3,
+    ) -> list[str]:
+        with connect() as connection:
+            rows = connection.execute(
+                """
+                SELECT sem.source_entity_id
+                FROM core.matches m
+                JOIN core.source_entity_mappings sem
+                  ON sem.entity_type = 'match' AND sem.canonical_id = m.match_id
+                WHERE sem.source_name = %s
+                  AND m.status = 'live'
+                  AND m.kickoff_utc < now() - interval '6 hours'
+                ORDER BY m.kickoff_utc, m.match_id
+                LIMIT %s
+                """,
+                (source_name, max(1, limit)),
+            ).fetchall()
+        return [str(row["source_entity_id"]) for row in rows]
 
     def resource_due(self, source_name: str, resource_type: str, *, minimum_age: timedelta) -> bool:
         with connect() as connection:

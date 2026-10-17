@@ -8,6 +8,7 @@ const PlayersPage = lazy(() => import('./pages/PlayersPage').then((module) => ({
 const TeamsPage = lazy(() => import('./pages/TeamsPage').then((module) => ({ default: module.TeamsPage })))
 const BacktestPage = lazy(() => import('./pages/BacktestPage').then((module) => ({ default: module.BacktestPage })))
 const OpsPage = lazy(() => import('./pages/OpsPage').then((module) => ({ default: module.OpsPage })))
+const ReferencePage = lazy(() => import('./pages/ReferencePage').then((module) => ({ default: module.ReferencePage })))
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
               <Route path="/teams" element={<TeamsPage />} />
               <Route path="/backtest" element={<BacktestPage />} />
               <Route path="/ops" element={<OpsPage />} />
+              <Route path="/reference" element={<ReferencePage />} />
             </Routes>
           </Suspense>
         </ErrorBoundary>

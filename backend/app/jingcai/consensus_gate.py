@@ -129,6 +129,7 @@ def evaluate_gate(
     kickoff_min_gap_hours: float = 3.0,
     heartbeat_hours: float = HEARTBEAT_HOURS,
     failure_retry_hours: float = 3.0,
+    reference_keys: tuple[str, ...] = (),
 ) -> GateDecision:
     now = _as_utc(now_utc) or datetime.now(UTC)
     last_ok = _as_utc(last_success)
@@ -156,6 +157,8 @@ def evaluate_gate(
         failure_age = (now - last_finished).total_seconds() / 3600.0
         if failure_age < failure_retry_hours:
             return GateDecision(False, f"failure_backoff({failure_age:.1f}h)", **base)
+    if reference_keys:
+        return GateDecision(True, "reference_checkpoint", reference_keys, **base)
     if not active_keys:
         return GateDecision(False, "no_mapped_sports", **base)
 
@@ -249,6 +252,7 @@ def should_collect_now(connection: Any, *, now_utc: datetime | None = None) -> G
         WHERE last_seen_at_utc > now() - interval '3 days'
         """
     ).fetchall()
+    reference_keys = reference_checkpoint_sports(connection, now_utc or datetime.now(UTC))
     return evaluate_gate(
         now_utc=now_utc or datetime.now(UTC),
         last_success=stats["last_success"],
@@ -263,7 +267,28 @@ def should_collect_now(connection: Any, *, now_utc: datetime | None = None) -> G
         quota_reserve=_env_int("ODDS_API_QUOTA_RESERVE", 100),
         kickoff_min_gap_hours=_env_float("ODDS_API_KICKOFF_MIN_GAP_HOURS", 3.0),
         failure_retry_hours=_env_float("ODDS_API_FAILURE_RETRY_HOURS", 3.0),
+        reference_keys=reference_keys,
     )
+
+
+def reference_checkpoint_sports(connection: Any, now: datetime) -> tuple[str, ...]:
+    """Query just the leagues due for a prospective checkpoint, at most once
+    per half hour per league. Quota and failure gates still apply afterward.
+    """
+    from ..reference.model import due_checkpoint
+    rows=connection.execute(
+        """SELECT c.name AS league_name,m.kickoff_utc FROM core.matches m
+           JOIN core.seasons s USING(season_id) JOIN core.competitions c USING(competition_id)
+           WHERE m.status='scheduled' AND m.kickoff_utc>%s AND m.kickoff_utc<=%s""",
+        (now,now+timedelta(hours=24)),
+    ).fetchall()
+    keys=sorted({SPORT_KEY_BY_LEAGUE[r["league_name"]] for r in rows
+                 if r["league_name"] in SPORT_KEY_BY_LEAGUE and due_checkpoint(r["kickoff_utc"],now)})
+    return tuple(key for key in keys if not connection.execute(
+        """SELECT 1 FROM raw.ingestion_batches WHERE source_name=%s AND resource_type=%s
+           AND started_at_utc>=%s AND request_count>0 AND report->'sport_keys' ? %s LIMIT 1""",
+        (PROVIDER,RESOURCE_TYPE,now-timedelta(minutes=30),key),
+    ).fetchone())
 
 
 def finalize_stale_collection_runs(

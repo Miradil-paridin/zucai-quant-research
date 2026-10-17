@@ -14,10 +14,11 @@
 from __future__ import annotations
 
 from collections import defaultdict
+from datetime import UTC, datetime
 from typing import Any
 
 from ..database import connect
-from .team_names import JC_TO_CONSENSUS
+from .matching import jingcai_kickoff_utc, resolve_consensus_event
 
 SHARP_BOOKMAKERS = ("pinnacle", "betfair_ex_eu", "marathonbet", "onexbet")
 SIGNAL_EDGE_THRESHOLD = 0.02
@@ -36,11 +37,16 @@ def _jc_trajectories(connection: Any) -> dict[int, dict[str, Any]]:
         """
         SELECT s.jc_match_id, m.match_num_str, m.league_name, m.home_team,
                m.away_team, m.match_date_local, s.odd_home::float8 AS h,
-               s.odd_draw::float8 AS d, s.odd_away::float8 AS a, s.captured_at_utc
+               s.odd_draw::float8 AS d, s.odd_away::float8 AS a,
+               m.match_time_local, m.sell_end_local,
+               observed.t AS observed_at_utc
         FROM jingcai.jc_odds_snapshots s
         JOIN jingcai.jc_matches m USING (jc_match_id)
-        WHERE s.pool_code = 'had'
-        ORDER BY s.jc_match_id, s.captured_at_utc
+        JOIN LATERAL (SELECT DISTINCT t FROM unnest(
+          ARRAY[s.captured_at_utc, s.last_observed_at_utc] || s.observation_times_utc) points(t)) observed ON true
+        WHERE s.pool_code = 'had' AND s.point_in_time_safe
+          AND s.odd_home > 1 AND s.odd_draw > 1 AND s.odd_away > 1
+        ORDER BY s.jc_match_id, observed_at_utc
         """
     ).fetchall()
     for row in rows:
@@ -52,91 +58,158 @@ def _jc_trajectories(connection: Any) -> dict[int, dict[str, Any]]:
                 "home": row["home_team"],
                 "away": row["away_team"],
                 "date": str(row["match_date_local"]),
+                "match_date_local": row["match_date_local"],
+                "match_time_local": row["match_time_local"],
+                "sell_end_local": row["sell_end_local"],
                 "snaps": [],
             },
         )
         entry["snaps"].append(
-            {"h": row["h"], "d": row["d"], "a": row["a"], "t": row["captured_at_utc"]}
+            {"h": row["h"], "d": row["d"], "a": row["a"], "t": row["observed_at_utc"]}
         )
     return matches
 
 
-def _consensus_trajectory(connection: Any, home_en: str, away_en: str) -> list[dict[str, Any]]:
+def _consensus_trajectory(connection: Any, provider_event_id: str) -> list[dict[str, Any]]:
     for bookmaker in SHARP_BOOKMAKERS:
         rows = connection.execute(
             """
             SELECT odd_home::float8 AS h, odd_draw::float8 AS d,
-                   odd_away::float8 AS a, captured_at_utc AS t
-            FROM jingcai.consensus_odds_snapshots
-            WHERE home_team = %s AND away_team = %s AND bookmaker = %s
-            ORDER BY captured_at_utc
+                   odd_away::float8 AS a,
+                   observed.t AS t,
+                   commence_time_utc AS kickoff
+            FROM jingcai.consensus_odds_snapshots s
+            JOIN LATERAL (SELECT DISTINCT t FROM unnest(
+              ARRAY[s.captured_at_utc, s.last_observed_at_utc] || s.observation_times_utc) points(t)) observed ON true
+            WHERE provider_event_id = %s AND bookmaker = %s
+              AND point_in_time_safe AND market_type = '1X2'
+              AND odd_home > 1 AND odd_draw > 1 AND odd_away > 1
+              AND observed.t < commence_time_utc
+            ORDER BY t
             """,
-            (home_en, away_en, bookmaker),
+            (provider_event_id, bookmaker),
         ).fetchall()
         if rows:
             return [dict(row) for row in rows]
     return []
 
 
+def _sale_cutoff(match: dict[str, Any]) -> datetime | None:
+    kickoff = jingcai_kickoff_utc(match["match_date_local"], match["match_time_local"])
+    raw = match.get("sell_end_local")
+    if raw:
+        try:
+            end = datetime.fromisoformat(raw)
+            from zoneinfo import ZoneInfo
+            end = end.replace(tzinfo=ZoneInfo("Asia/Shanghai")) if end.tzinfo is None else end
+            return min(kickoff, end.astimezone(UTC)) if kickoff else end.astimezone(UTC)
+        except ValueError:
+            pass
+    return kickoff
+
+
+def evaluate_match(match: dict[str, Any], consensus: list[dict[str, Any]], now: datetime) -> dict[str, Any]:
+    cutoff = _sale_cutoff(match)
+    kickoff = jingcai_kickoff_utc(match["match_date_local"], match["match_time_local"])
+    pairs = 0
+    signals = []
+    seen = set()
+    if cutoff is None or kickoff is None:
+        return {"pairs": 0, "signals": [], "status": "missing_kickoff"}
+    consensus = sorted((x for x in consensus if x["t"] < kickoff and x["t"] <= now), key=lambda x: x["t"])
+    if not consensus:
+        return {"pairs": 0, "signals": [], "status": "no_prematch_consensus"}
+    final = consensus[-1]
+    closing_age = (kickoff - final["t"]).total_seconds() / 3600
+    closing_available = now >= kickoff and 0 <= closing_age <= MAX_ALIGN_GAP_HOURS
+    for snap in sorted(match["snaps"], key=lambda x: x["t"]):
+        if snap["t"] >= cutoff or snap["t"] > now:
+            continue
+        previous = [x for x in consensus if x["t"] <= snap["t"]]
+        if not previous:
+            continue
+        latest = previous[-1]
+        gap = (snap["t"] - latest["t"]).total_seconds() / 3600
+        if gap > MAX_ALIGN_GAP_HOURS:
+            continue
+        pairs += 1
+        p_now = _devig(latest["h"], latest["d"], latest["a"])
+        p_final = _devig(final["h"], final["d"], final["a"])
+        for i, (outcome, odd) in enumerate(zip(("home", "draw", "away"), (snap["h"], snap["d"], snap["a"]))):
+            edge = p_now[i] * odd - 1
+            if edge <= SIGNAL_EDGE_THRESHOLD or outcome in seen:
+                continue
+            seen.add(outcome)
+            signals.append({
+                "match": f"{match['match_num']} {match['home']} vs {match['away']}",
+                "league": match["league"], "date": match["date"], "outcome": outcome,
+                "jc_odd": odd, "edge_at_signal": round(edge, 4),
+                "signal_at_utc": snap["t"].isoformat(),
+                "consensus_at_utc": latest["t"].isoformat(),
+                "align_gap_hours": round(gap, 2), "closing_age_hours": round(closing_age, 2),
+                "clv_vs_final": round(p_final[i] * odd - 1, 4) if closing_available else None,
+                "evaluation_status": "closing_proxy_available" if closing_available
+                    else "pending_kickoff" if now < kickoff else "missing_fresh_closing_proxy",
+            })
+    return {"pairs": pairs, "signals": signals, "status": "aligned" if pairs else "no_aligned_prematch_snapshots"}
+
+
 def analyze_repricing_lag() -> dict[str, Any]:
     signals: list[dict[str, Any]] = []
     matched = unmatched = aligned_pairs = 0
+    match_methods: dict[str, int] = defaultdict(int)
+    coverage: list[dict[str, Any]] = []
+    now_utc = datetime.now(UTC)
     with connect() as connection:
-        for jc_match in _jc_trajectories(connection).values():
-            home_en = JC_TO_CONSENSUS.get(jc_match["home"])
-            away_en = JC_TO_CONSENSUS.get(jc_match["away"])
+        trajectories = _jc_trajectories(connection)
+        all_matches = connection.execute("SELECT * FROM jingcai.jc_matches ORDER BY match_date_local, jc_match_id").fetchall()
+        for row in all_matches:
+            jc_match = trajectories.get(int(row["jc_match_id"]))
+            diagnostic = {"jc_match_id": int(row["jc_match_id"]), "league": row["league_name"],
+                          "date": str(row["match_date_local"]), "home": row["home_team"], "away": row["away_team"],
+                          "provider_event_id": None, "aligned_pairs": 0}
+            coverage.append(diagnostic)
+            # Identity linkage is reported even when the HAD market was never offered.
+            identity = dict(league_name=row["league_name"], home_team=row["home_team"],
+                            away_team=row["away_team"], match_date_local=row["match_date_local"],
+                            match_time_local=row["match_time_local"])
+            event = resolve_consensus_event(
+                connection, **identity,
+            )
+            if event:
+                diagnostic.update(provider_event_id=event.provider_event_id, match_method=event.method)
+            if not jc_match:
+                diagnostic["status"] = "no_had_snapshots"
+                continue
             consensus = (
-                _consensus_trajectory(connection, home_en, away_en)
-                if home_en and away_en
+                _consensus_trajectory(connection, event.provider_event_id)
+                if event is not None
                 else []
             )
             if not consensus:
                 unmatched += 1
+                diagnostic["status"] = "unmatched_event" if event is None else "no_prematch_consensus"
                 continue
             matched += 1
-            final = consensus[-1]
-            p_final = _devig(final["h"], final["d"], final["a"])
-            seen_signal_keys: set[tuple[int, str]] = set()
-            for snap in jc_match["snaps"]:
-                latest = None
-                for cs in consensus:
-                    if cs["t"] <= snap["t"]:
-                        latest = cs
-                    else:
-                        break
-                if latest is None:
-                    continue
-                gap_hours = (snap["t"] - latest["t"]).total_seconds() / 3600.0
-                if gap_hours > MAX_ALIGN_GAP_HOURS:
-                    continue
-                aligned_pairs += 1
-                p_now = _devig(latest["h"], latest["d"], latest["a"])
-                jc_odds = (snap["h"], snap["d"], snap["a"])
-                for i, label in enumerate(("home", "draw", "away")):
-                    edge = p_now[i] * jc_odds[i] - 1.0
-                    if edge <= SIGNAL_EDGE_THRESHOLD:
-                        continue
-                    key = (id(jc_match), label)
-                    if key in seen_signal_keys:
-                        continue  # 每场每方向只记首个信号
-                    seen_signal_keys.add(key)
-                    clv = p_final[i] * jc_odds[i] - 1.0
-                    signals.append(
-                        {
-                            "match": f"{jc_match['match_num']} {jc_match['home']} vs {jc_match['away']}",
-                            "league": jc_match["league"],
-                            "date": jc_match["date"],
-                            "outcome": label,
-                            "jc_odd": jc_odds[i],
-                            "edge_at_signal": round(edge, 4),
-                            "align_gap_hours": round(gap_hours, 2),
-                            "clv_vs_final": round(clv, 4),
-                        }
-                    )
-    clvs = [signal["clv_vs_final"] for signal in signals]
+            match_methods[event.method] += 1
+            evaluated = evaluate_match(jc_match, consensus, now_utc)
+            aligned_pairs += evaluated["pairs"]
+            signals.extend(evaluated["signals"])
+            diagnostic.update(status=evaluated["status"], aligned_pairs=evaluated["pairs"], signals=len(evaluated["signals"]))
+    clvs = [
+        signal["clv_vs_final"]
+        for signal in signals
+        if signal["clv_vs_final"] is not None
+    ]
     return {
+        "analysis_version": "prematch-observations-v2",
+        "matches_total": len(coverage),
+        "matches_without_had": sum(x["status"] == "no_had_snapshots" for x in coverage),
+        "matches_aligned": sum(x["aligned_pairs"] > 0 for x in coverage),
+        "match_coverage": coverage,
         "matches_with_both_sides": matched,
         "matches_unmatched": unmatched,
+        "match_methods": dict(sorted(match_methods.items())),
         "aligned_snapshot_pairs": aligned_pairs,
         "signal_threshold": SIGNAL_EDGE_THRESHOLD,
         "signals": len(signals),
@@ -145,6 +218,11 @@ def analyze_repricing_lag() -> dict[str, Any]:
             sum(1 for value in clvs if value > 0) / len(clvs), 4
         ) if clvs else None,
         "signal_details": sorted(
-            signals, key=lambda item: item["clv_vs_final"], reverse=True
-        )[:40],
+            signals,
+            key=lambda item: (
+                item["clv_vs_final"] is not None,
+                item["clv_vs_final"] if item["clv_vs_final"] is not None else item["edge_at_signal"],
+            ),
+            reverse=True,
+        ),
     }

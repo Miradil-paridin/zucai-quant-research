@@ -12,6 +12,7 @@ from app.collector import IngestionCollector
 from app.data_sources import fetch_api_football, normalize_api_football, normalize_football_data
 from app.repository import repository
 from app.localization import is_supported_competition, localize_competition, localize_country, localize_round, localize_team
+from app.jingcai.team_names import JC_TO_CONSENSUS
 
 
 client = TestClient(app)
@@ -147,6 +148,22 @@ def test_fixture_feed_endpoint(monkeypatch) -> None:
     assert response.json()["items"][0]["competition"] == "Premier League"
 
 
+def test_fixture_feed_exposes_sporttery_as_selected_sale_fallback(monkeypatch) -> None:
+    monkeypatch.setattr(repository, "list_fixtures", lambda *_args: [{
+        "competition": "英格兰冠军联赛",
+        "provider_ids": {"sporttery": "35602"},
+        "last_source_update_utc": None,
+        "coverage": "selected_for_sale",
+        "data_status": "fallback_schedule_only",
+    }])
+    response = client.get("/api/fixtures?date_from=2026-09-03&days=1")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["providers"]["sporttery"]["status"] == "fallback"
+    assert payload["providers"]["sporttery"]["count"] == 1
+    assert payload["coverage_warning"] == "仅包含竞彩在售比赛，不代表完整联赛赛程。"
+
+
 def test_chinese_localization_preserves_known_football_names() -> None:
     assert localize_country("England") == "英格兰"
     assert localize_competition("England", "Premier League") == "英格兰超级联赛"
@@ -157,6 +174,13 @@ def test_chinese_localization_preserves_known_football_names() -> None:
     assert localize_team("Unmapped Town") == "Unmapped Town"
     assert is_supported_competition("England", "Premier League") is True
     assert is_supported_competition("Lebanon", "Premier League") is False
+
+
+def test_current_jingcai_names_map_to_exact_consensus_provider_names() -> None:
+    assert JC_TO_CONSENSUS["纽卡斯尔联"] == "Newcastle United"
+    assert JC_TO_CONSENSUS["桑坦德竞技"] == "Real Racing Club de Santander"
+    assert JC_TO_CONSENSUS["亚特兰大"] == "Atalanta BC"
+    assert JC_TO_CONSENSUS["圣克拉拉"] == "Santa Clara"
 
 
 def test_api_football_keeps_today_when_free_plan_rejects_future(monkeypatch) -> None:
@@ -192,3 +216,77 @@ def test_api_football_quota_probe_fails_closed() -> None:
     quota = asyncio.run(run())
     assert quota["status"] == "unavailable"
     assert quota["remaining"] == 0
+
+
+class _OddsRepositoryStub:
+    def __init__(self) -> None:
+        self.finished: dict | None = None
+
+    def start_batch(self, *_args) -> int:
+        return 42
+
+    def persist_odds(self, **_kwargs) -> dict[str, int]:
+        return {"raw_inserted": 1, "odds_inserted": 3}
+
+    def finish_batch(self, batch_id: int, **kwargs) -> None:
+        self.finished = {"batch_id": batch_id, **kwargs}
+
+    def fail_batch(self, *_args, **_kwargs) -> None:
+        raise AssertionError("targeted odds collection must not fail")
+
+
+def test_targeted_odds_uses_fixture_filter_and_never_requests_page_four(monkeypatch) -> None:
+    monkeypatch.setenv("API_FOOTBALL_MIN_INTERVAL_SECONDS", "0")
+    requested_pages: list[int] = []
+    repository_stub = _OddsRepositoryStub()
+    collector = IngestionCollector(repository_stub)
+    summary = {"api_football_requests": 0, "resources": {}, "errors": []}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        assert request.url.params["fixture"] == "42"
+        assert request.url.params["bet"] == "1"
+        page = int(request.url.params["page"])
+        requested_pages.append(page)
+        return httpx.Response(200, json={
+            "errors": [],
+            "results": 1,
+            "paging": {"current": page, "total": 8},
+            "response": [{"fixture": {"id": 42}, "bookmakers": []}],
+        })
+
+    async def run() -> None:
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as http_client:
+            await collector._collect_targeted_odds(
+                http_client, "test-key", ["42"], summary, max_requests=8
+            )
+
+    asyncio.run(run())
+
+    assert requested_pages == [1, 2, 3]
+    assert summary["api_football_requests"] == 3
+    assert summary["errors"] == []
+    assert summary["resources"]["odds"]["page_cap"] == 3
+    assert summary["resources"]["odds"]["page_cap_truncated_fixtures"] == 1
+    assert repository_stub.finished["status"] == "partial"
+
+
+def test_api_football_retries_429_once(monkeypatch) -> None:
+    monkeypatch.setenv("API_FOOTBALL_MIN_INTERVAL_SECONDS", "0")
+    calls = 0
+    collector = IngestionCollector()
+
+    def handler(_: httpx.Request) -> httpx.Response:
+        nonlocal calls
+        calls += 1
+        if calls == 1:
+            return httpx.Response(429, headers={"Retry-After": "0"})
+        return httpx.Response(200, json={"errors": [], "response": []})
+
+    async def run() -> tuple[httpx.Response, int]:
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as http_client:
+            return await collector._api_football_get(http_client, "test-key", "fixtures")
+
+    response, attempts = asyncio.run(run())
+    assert response.status_code == 200
+    assert attempts == 2
+    assert calls == 2
